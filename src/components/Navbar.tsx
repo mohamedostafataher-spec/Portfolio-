@@ -31,11 +31,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { nameEn: 'Cover', nameAr: 'الرئيسية', href: '#home' },
-    { nameEn: '6 Skills', nameAr: 'المهارات الـ 6', href: '#skills-portfolio' },
-    { nameEn: 'ROI Estimator', nameAr: 'حاسبة العائد', href: '#roi-calculator' },
+    { nameEn: '6 Skills', nameAr: 'المهارات', href: '#skills-portfolio' },
+    { nameEn: 'Projects', nameAr: 'المشاريع', href: '#projects-breakdown' },
+    { nameEn: 'Drive Vault', nameAr: 'أرشيف الدرايف', href: '#drive-vault' },
     { nameEn: 'Case Studies', nameAr: 'دراسات الحالة', href: '#work' },
     { nameEn: 'Content Lab', nameAr: 'مختبر المحتوى', href: '#creative-hub' },
-    { nameEn: 'Profile', nameAr: 'عن محمد', href: '#about' },
     { nameEn: 'Workflow', nameAr: 'حلقة العمل', href: '#process' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="px-3 py-1.5 text-xs font-semibold text-amber-300 hover:text-amber-200 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-full transition-all flex items-center gap-1.5 cursor-pointer font-mono"
             >
               <FileText className="w-3.5 h-3.5 text-amber-400" />
-              <span>{isAr ? 'كتيب الـ PDF (21 صفحة)' : '21-Page PDF'}</span>
+              <span>{isAr ? 'كتيب الـ PDF (25 صفحة)' : '25-Page PDF'}</span>
             </button>
           )}
 

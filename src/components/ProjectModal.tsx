@@ -26,6 +26,7 @@ import {
   ChevronRight,
   Check,
   FolderOpen,
+  ShieldCheck,
 } from 'lucide-react';
 import { Project } from '../types';
 import { parseVideoUrl } from '../utils/videoHelper';
@@ -113,9 +114,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         {/* Top Navigation Tabs */}
         <div className="sticky top-0 z-20 px-6 pt-4 pb-3 bg-[#101014]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-bold uppercase tracking-wider">
-              {project.clientOrSpec}
-            </span>
+            {project.evidenceStatus ? (
+              <span
+                className={`px-3 py-1 rounded-full text-xs font-bold font-mono border ${
+                  project.evidenceStatus === 'Drive-backed'
+                    ? 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40'
+                    : project.evidenceStatus === 'Coursework'
+                    ? 'bg-blue-950/80 text-blue-300 border-blue-500/40'
+                    : project.evidenceStatus === 'Spec Concept'
+                    ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
+                    : 'bg-purple-950/80 text-purple-300 border-purple-500/40'
+                }`}
+              >
+                {isAr ? project.evidenceLabelAr || project.evidenceStatus : project.evidenceStatus}
+              </span>
+            ) : (
+              <span className="px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-bold uppercase tracking-wider">
+                {project.clientOrSpec}
+              </span>
+            )}
             <span className="text-zinc-400 text-xs font-mono hidden sm:inline">
               // {project.category}
             </span>
@@ -128,7 +145,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 title="Google Drive Folder"
               >
                 <FolderOpen className="w-3.5 h-3.5 text-blue-400" />
-                <span>{isAr ? 'مجلد Google Drive' : 'Drive Folder'}</span>
+                <span>{isAr ? 'مجلد Google Drive المعتمد' : 'Drive Folder'}</span>
               </a>
             )}
           </div>
@@ -469,6 +486,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 {project.finalResult}
               </p>
             </div>
+
+            {/* Guardrail Note / Transparency Notice */}
+            {project.guardrailNote && (
+              <div className="p-4 rounded-xl bg-zinc-900/90 border border-amber-500/30 text-xs text-amber-300 space-y-1">
+                <div className="font-bold flex items-center gap-1.5 font-mono uppercase tracking-wider text-amber-400">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>{isAr ? 'تنويه الشفافية وحدود العمل (ACCURACY & GUARDRAIL)' : 'TRANSPARENCY & GUARDRAIL'}</span>
+                </div>
+                <p className="text-zinc-300 font-mono leading-relaxed">
+                  {project.guardrailNote}
+                </p>
+              </div>
+            )}
           </div>
         )}
 

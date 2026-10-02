@@ -1022,6 +1022,132 @@ export const INITIAL_PROJECTS: Project[] = [
     ],
     featured: true,
   },
+  {
+    id: 'level-fitness-spec',
+    tracks: ['Marketing Strategy', 'Content Creation'],
+    title: 'Level Fitness: First rep, not perfect rep (ابدأ بخطوة صغيرة)',
+    clientOrSpec: 'Spec Project',
+    evidenceStatus: 'Spec Concept',
+    evidenceLabelAr: 'مفهوم حملة مقترح · Spec Concept',
+    subtitle: '«Your First Rep Counts» • WhatsApp Trial-Session Funnel & Meta Ads Plan',
+    category: 'Marketing Strategy',
+    tagline: 'ابدأ بخطوة صغيرة.. أول عدة هي الأهم، مش العدة المثالية.',
+    description:
+      'خطة حملة إعلانية مقترحة (Spec Campaign Plan) لنادي Level Fitness تركز على إزالة حاجز التردد والرهبة لدى المبتدئين وتحويلهم إلى طلب جلسة تجريبية عبر الواتساب دون ادعاءات تحول مبالغ فيها.',
+    skills: ['Funnel Architecture', 'Meta Ads Campaign Structure', 'Copywriting for Friction Removal', 'WhatsApp Lead Routing'],
+    objective:
+      'توليد استفسارات لحجز جلسات تجريبية موثوقة (Trial Sessions) عبر الواتساب في النطاق الجغرافي الفعلي للنادي، مع تأكيد المواعيد والأسعار قبل الإطلاق.',
+    concept:
+      '“Your First Rep Counts” / «ابدأ بخطوة صغيرة»: التركيز على بيئة تدريب مرحبة، ومدرب يشرح ببساطة، بدلاً من أسلوب التخويف أو وعود النتائج المستحيلة.',
+    myRole:
+      'مخطط الحملة وكاتب الإعلانات المقترح — هندسة مسار الإعلانات واختبار الخطافات (A/B Test Hooks) ورسائل الرد الفوري للواتساب.',
+    tools: ['Meta Ads Manager Structure', 'WhatsApp Business Routing', 'Funnel Blueprint', 'Local Catchment Segmentation'],
+    process: [
+      { step: '01. تحديد الجمهور الجغرافي', detail: 'استهداف البالغين 18+ في المحيط الفعلي للنادي وتقسيم الرسائل بين المبتدئين والعائدين للتمرين.' },
+      { step: '02. صياغة الخطاف الترحيبي', detail: 'استخدام هوك «ابدأ بخطوة صغيرة» لإزالة التردد والرهبة من اليوم الأول في الجيم.' },
+      { step: '03. ضبط مسار الواتساب المباشر', detail: 'توجيه النقرات إلى نموذج محادثة محدد يسأل عن أول زيارة والجدول الأنسب للعميل.' },
+      { step: '04. القياس ومؤشرات الأداء', detail: 'متابعة سرعة الرد، معدل الحضور الفعلي للجلسة، وتكلفة الاستفسار المؤهل (Qualified Enquiry).' },
+    ],
+    finalResult:
+      'مسار تسويقي مقترح جاهز للاختبار الفعلي فور تحديد الموقع الدقيق والميزانية، يلتزم بالصدق الإعلاني دون ادعاء نتائج سابقة.',
+    image: takaaCapcutPoster,
+    aspectRatio: '4:3',
+    guardrailNote: 'Spec concept only · No live campaign, location, ad set or performance data is claimed. A Level-specific visual is required before presentation as executed work.',
+    stats: [
+      { label: 'Status', value: 'Spec Concept' },
+      { label: 'Hook', value: 'ابدأ بخطوة صغيرة' },
+      { label: 'CTA', value: 'اسأل عن أول زيارة' },
+    ],
+    featured: false,
+  },
+  {
+    id: 'wojooh-tourism-spec',
+    tracks: ['Content Creation', 'Videos', 'Marketing Strategy'],
+    title: 'WOJOOH: Tourism, told through local eyes (السياحة بعيون أهل البلد)',
+    clientOrSpec: 'Spec Project',
+    evidenceStatus: 'Spec Concept',
+    evidenceLabelAr: 'مفهوم استراتيجي ذاتي · Spec Concept',
+    subtitle: '«See the city through the people who live it» • Experiential Local Tourism Series',
+    category: 'Content Creation',
+    tagline: 'تفاصيل المكان لا تُحفظ في قائمة المعالم.. تُعاش في حكايات أهله وطقوسهم اليومية.',
+    description:
+      'مفهوم استراتيجي ذاتي المبادرة لمحتوى السياحة التجريبية (Self-Initiated Strategy Concept) يبتعد عن استعراض المعالم التقليدي ويقدم القاهرة كمسارات إنسانية حية يقودها صناع المحتوى المحليون.',
+    skills: ['Cultural Storytelling', 'Short-Form Narrative', 'Destination Content Architecture', 'Route-Based Discovery'],
+    objective:
+      'بناء سلسلة محتوى ترفع الرغبة في خوض التجارب المحلية وتدفع الزائر لحفظ المسارات المقترحة وزيارة صفحة الحجز المباشر.',
+    concept:
+      '“See the city through the people who live it”: كل حلقة يقودها مرشد أو صانع حرفة مصري يكشف تفصيلة واحدة دافئة (مقهى قديم، مسار مشي، نكهة مخبوزات).',
+    myRole:
+      'مبتكر المفهوم ومهندس استراتيجية المحتوى — تصميم هيكل الحلقات القصيرة، وربط الفيديو بصفحة الخريطة الرقمية التفاعلية.',
+    tools: ['Content Mapping', 'Reels / TikTok Strategy', 'Searchable Guide Architecture', 'Creator Partnership Guidelines'],
+    process: [
+      { step: '01. استخراج الرؤية الثقافية', detail: 'الجمهور يتذكر ملمس المكان والطقوس اليومية أكثر من مجرد قائمة بالآثار الصامتة.' },
+      { step: '02. تصميم الحلقات القصيرة', detail: 'هندسة كل حلقة لتركز على شخصية محلية واحدة وحكاية إنسانية قابلة للاكتشاف والتجربة.' },
+      { step: '03. ربط الفيديو بمسار عملي', detail: 'وضع دعوة واضحة لحفظ المسار (Save Route) والاطلاع على الخريطة وساعات العمل.' },
+      { step: '04. القياس الصادق', detail: 'قياس نقرات حفظ المسار والخرائط وزيارات صفحة الدليل قبل الإنفاق على الترويج الممول.' },
+    ],
+    finalResult:
+      'رؤية إبداعية لسياحة حقيقية ملهمة ومجهزة للتنفيذ فور التعاون مع الجهات السياحية أو الثقافية المعنية.',
+    image: qaimEditorial1,
+    aspectRatio: '4:3',
+    guardrailNote: 'Spec concept · Validate actual destination, access, safety, permissions and brand identity before any public use.',
+    stats: [
+      { label: 'Status', value: 'Spec Concept' },
+      { label: 'Core Angle', value: 'Local Human Stories' },
+      { label: 'Key Action', value: 'Save Route & Map' },
+    ],
+    featured: false,
+  },
+  {
+    id: 'golden-sun-spec',
+    tracks: ['Dubbing & Audio', 'Videos', 'AI Content'],
+    title: 'Golden Sun: A story built around the last light (حكاية آخر خيوط الضوء)',
+    clientOrSpec: 'Spec Project',
+    evidenceStatus: 'Spec Concept',
+    evidenceLabelAr: 'معالجة فيديو وصوت مقترحة · Spec Concept',
+    subtitle: '«20s Sunset Storyboard & Egyptian Arabic Synthetic Narration»',
+    category: 'Dubbing & Audio',
+    tagline: 'في آخر اليوم، لما الشمس تلمس البحر.. بنفتكر إن أحلى الحكايات بتبدأ من لحظة هدوء.',
+    description:
+      'معالجة فيديو وسرد إعلاني مقترح (Spec Video-Story Treatment) يجمع بين تصوير لحظات الغروب الساحلية وسيناريو فويس أوفر دافئ باللهجة المصرية لنقل شعور بالسكينة والانتماء.',
+    skills: ['Poetic Voiceover Scripting', 'Pacing & Micro-Storyboard', 'Atmospheric Foley Design', 'Golden Hour Art Direction'],
+    objective:
+      'اختبار قدرة الإلقاء الصوتي المصري والمؤثرات الصوتية الطبيعية على إيقاف التمرير وبناء علاقة عاطفية فورية مع المستمع في 20 ثانية.',
+    concept:
+      'اللحظة الذهبية: الانتقال من صخب النهار إلى هدوء المغيب على الشاطئ، مصحوباً بحديث هادئ يلامس الوجدان.',
+    myRole:
+      'كاتب السيناريو ومصمم شريط الصوت المقترح — صياغة النص، توزيع التوقيتات بالثواني، وهندسة الأجواء الشاطئية المحيطة.',
+    tools: ['Script Timing (20s)', 'Sound Bed Design', 'Synthetic Audio Demo', 'Moodboard Storyboard'],
+    voiceoverScript: [
+      { time: '00:00 - 00:03', ar: 'في آخر اليوم، لما الشمس تلمس البحر..', en: 'At the end of the day, when the sun kisses the sea..' },
+      { time: '00:03 - 00:07', ar: 'بنفتكر إن أحلى الحكايات بتبدأ من لحظة هدوء.', en: 'We remember that the best stories start with a quiet breath.' },
+      { time: '00:07 - 00:13', ar: 'خطوة على الرمل، وضحكة من بعيد..', en: 'A step on the sand, distant laughter..' },
+      { time: '00:13 - 00:20', ar: 'ووقت نعيشه على مهله.', en: 'And time lived gently, without rush.' },
+    ],
+    storyboard: [
+      { scene: '01 (00:00 - 00:03)', visual: 'Day winds down, sunset glow over horizon', focus: 'Atmosphere setting' },
+      { scene: '02 (00:03 - 00:07)', visual: 'Footsteps toward the gentle shore waves', focus: 'Human touch & presence' },
+      { scene: '03 (00:07 - 00:13)', visual: 'A shared quiet smile, wind in the hair', focus: 'Relatable emotion' },
+      { scene: '04 (00:13 - 00:20)', visual: 'Golden light reflection & brand lock-up', focus: 'Brand resonance & CTA' },
+    ],
+    process: [
+      { step: '01. كتابة النص الشاعري البسيط', detail: 'اختيار مفردات مصرية يومية أصيلة ومؤثرة دون استعلاء أو مبالغة بيعية.' },
+      { step: '02. تصميم الستوري بورد في 20 ثانية', detail: 'تقسيم المشاهد زمنياً لضمان تطابق نبرة الصوت مع حركة الأمواج وإضاءة الغروب.' },
+      { step: '03. هندسة المؤثرات الصوتية', detail: 'اقتراح تراك صوتي ناعم يمزج بين هدير البحر الخافت ونسيم الهواء الخفيف.' },
+      { step: '04. مراجعة الإسناد والشفافية', detail: 'توضيح أن المفهوم تجريبي ولم يُنسب لمنتج محدد قبل التعاقد والاعتماد الرسمي.' },
+    ],
+    finalResult:
+      'نموذج سرد قصصي مصري مكتمل العناصر الإعلانية يبرز إتقان كتابة الفويس أوفر والتناغم الصوتي والبصري.',
+    image: v7Poster,
+    aspectRatio: '16:9',
+    guardrailNote: 'Synthetic narration concept · Not a real brand voice, published film or client result. Confirm category, product truth and CTA before live use.',
+    stats: [
+      { label: 'Status', value: 'Spec Concept' },
+      { label: 'Duration', value: '20s Storyboard' },
+      { label: 'Dialect', value: 'Egyptian Arabic VO' },
+    ],
+    featured: false,
+  },
 ];
 
 export const SERVICES_DATA: ServiceCategory[] = [

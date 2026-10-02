@@ -52,6 +52,9 @@ export interface Project {
   pdfFileName?: string;
   deckFileName?: string;
   driveFolderUrl?: string;
+  evidenceStatus?: 'Drive-backed' | 'Coursework' | 'Spec Concept' | 'Video Sample';
+  evidenceLabelAr?: string;
+  guardrailNote?: string;
 }
 
 export interface Article {

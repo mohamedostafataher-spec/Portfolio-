@@ -20,6 +20,7 @@ import {
   Trash2,
   CheckCircle2,
   Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 import { Project } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -343,13 +344,46 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-black/20 to-black/40" />
 
-                  {/* Top Subtle Typographic Kicker */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono">
-                    <span className="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-amber-300 font-bold">
-                      {project.clientOrSpec}
-                    </span>
+                  {/* Top Subtle Typographic Kicker & Evidence Status */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono gap-1.5 z-10">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {project.evidenceStatus ? (
+                        <span
+                          className={`px-2 py-0.5 rounded-md backdrop-blur-md border font-bold text-[10px] ${
+                            project.evidenceStatus === 'Drive-backed'
+                              ? 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40'
+                              : project.evidenceStatus === 'Coursework'
+                              ? 'bg-blue-950/80 text-blue-300 border-blue-500/40'
+                              : project.evidenceStatus === 'Spec Concept'
+                              ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
+                              : 'bg-purple-950/80 text-purple-300 border-purple-500/40'
+                          }`}
+                        >
+                          {isAr ? project.evidenceLabelAr || project.evidenceStatus : project.evidenceStatus}
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-amber-300 font-bold text-[10px]">
+                          {project.clientOrSpec}
+                        </span>
+                      )}
+                    </div>
 
-                    {hasVideo && <AudioMotionVisualizer isPlaying={true} bars={4} />}
+                    <div className="flex items-center gap-1">
+                      {project.driveFolderUrl && (
+                        <a
+                          href={project.driveFolderUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="px-2 py-0.5 rounded bg-zinc-900/90 hover:bg-zinc-800 text-amber-400 border border-white/10 text-[10px] flex items-center gap-1 transition-colors"
+                          title="Open Verified Google Drive Folder"
+                        >
+                          <span>Drive</span>
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </a>
+                      )}
+                      {hasVideo && <AudioMotionVisualizer isPlaying={true} bars={4} />}
+                    </div>
                   </div>
 
                   {/* Central Play or Inspect Button */}

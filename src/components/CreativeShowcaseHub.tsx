@@ -39,6 +39,7 @@ import v7SocialPost from '../assets/images/v7_social_post.jpg';
 import v7SummerPoster from '../assets/images/v7_summer_poster.jpg';
 import spiroPoster from '../assets/images/spiro_spathis_poster.jpg';
 import buffaloPoster from '../assets/images/buffalo_burger_poster.jpg';
+import foodDeliveryPoster from '../assets/images/food_delivery_poster.jpg';
 import babaGehPoster from '../assets/images/baba_geh_poster.jpg';
 import babaGehThumb1 from '../assets/images/baba_geh_thumb1.jpg';
 import babaGehThumb2 from '../assets/images/baba_geh_thumb2.jpg';
@@ -384,7 +385,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
       projectId: 'talabat-delivery-tvc',
       badgeAr: 'إعلان كوميدي وإخراج ريلز',
       badgeEn: 'Humor Script & Fast Cuts',
-      image: buffaloPoster,
+      image: foodDeliveryPoster,
       stats: 'Fast Paced · Dialogue Foley · 4K',
       hookAr: 'حل ورطة الجوع المفاجئ في البيت المصري بمجرد رنة جرس المندوب',
       videoUrl: '/videos/food_delivery_ad.mp4',

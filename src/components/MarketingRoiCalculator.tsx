@@ -236,9 +236,15 @@ export const MarketingRoiCalculator: React.FC = () => {
 
               <div className="flex items-center gap-6 shrink-0">
                 <div className="text-right rtl:text-left">
-                  <div className="text-xs text-zinc-400 font-mono">ESTIMATED ROAS</div>
+                  <div className="text-[10px] text-amber-400 font-mono font-bold tracking-wider uppercase flex items-center gap-1 justify-end rtl:justify-start">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                    <span>ILLUSTRATIVE ESTIMATE</span>
+                  </div>
                   <div className="text-2xl font-mono font-black text-emerald-400">
-                    {estimatedRoas}x
+                    ~{estimatedRoas}x ROAS
+                  </div>
+                  <div className="text-[10px] text-zinc-400 font-mono">
+                    {isAr ? 'تقدير استرشادي وفق معايير السوق' : 'Planning benchmark only'}
                   </div>
                 </div>
 
@@ -250,6 +256,13 @@ export const MarketingRoiCalculator: React.FC = () => {
                   <span>{isAr ? 'ابدأ الخطة عبر واتساب' : 'Launch with Mohamed'}</span>
                 </button>
               </div>
+            </div>
+
+            {/* Scope / Audit Note */}
+            <div className="p-3.5 rounded-xl bg-zinc-950/60 border border-white/5 text-[11px] font-mono text-zinc-500 text-center">
+              {isAr
+                ? 'ملاحظة الشفافية: هذا النموذج مقترح لأغراض التخطيط الاستراتيجي ومسار التحويل (Discover → Imagine → Verify → Order). الأرقام تقديرات استرشادية وليست نتائج حملات منشورة.'
+                : 'Transparency note: Proposed measurement framework for planning. Metrics are illustrative benchmarks based on market data, not verified account results.'}
             </div>
           </div>
         </div>

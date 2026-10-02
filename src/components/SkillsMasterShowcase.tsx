@@ -39,6 +39,7 @@ import v7SummerPoster from '../assets/images/v7_summer_poster.jpg'; // 5 علا�
 import v7SocialPost from '../assets/images/v7_social_post.jpg'; // الناقص كان V7
 import spiroPoster from '../assets/images/spiro_spathis_poster.jpg'; // Spiro Spathis
 import buffaloPoster from '../assets/images/buffalo_burger_poster.jpg'; // Buffalo Burger
+import foodDeliveryPoster from '../assets/images/food_delivery_poster.jpg'; // Talabat Food Delivery
 import babaGehThumb1 from '../assets/images/baba_geh_thumb1.jpg'; // Baba Geh baby
 import babaGehThumb2 from '../assets/images/baba_geh_thumb2.jpg'; // Baba Geh bag
 import vid32Thumb from '../assets/images/VID-20260504-WA0032_thumb.jpg';
@@ -90,7 +91,16 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
       setIsPlayingAudio(false);
     } else {
       setActiveAudioTrack(trackNumber);
-      audioRef.current.currentTime = trackNumber === 1 ? 0 : 23;
+      if (trackNumber === 1) {
+        audioRef.current.src = '/audio/voice_over_1_product_aligned_qiyam.wav';
+      } else if (trackNumber === 2) {
+        audioRef.current.src = '/audio/voice_over_2_fresh_3_occasions_qiyam.wav';
+      } else if (trackNumber === 3) {
+        audioRef.current.src = '/audio/voice_over_1_product_aligned_qiyam.wav';
+      } else {
+        audioRef.current.src = '/audio/voice_over_2_fresh_3_occasions_qiyam.wav';
+      }
+      audioRef.current.currentTime = 0;
       audioRef.current
         .play()
         .then(() => setIsPlayingAudio(true))
@@ -484,7 +494,7 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                   duration: 'Commercial',
                   hookAr: 'عائلة مصرية في ورطة الجوع تنقذها رنة جرس الطلب في ثوانٍ.',
                   url: '/videos/food_delivery_ad.mp4',
-                  img: buffaloPoster,
+                  img: foodDeliveryPoster,
                 },
                 {
                   id: 'spiro-spathis',
@@ -736,7 +746,7 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                   </div>
 
                   {/* Track 2 Selector & Play */}
-                  <div className="p-3.5 rounded-2xl bg-zinc-950/80 border border-white/5 flex items-center justify-between">
+                  <div className="p-3.5 rounded-2xl bg-zinc-950/80 border border-white/5 flex items-center justify-between mb-3">
                     <div>
                       <div className="text-xs font-bold text-white">AI Voice-Over 2 · Three Occasions</div>
                       <span className="text-[10px] font-mono text-zinc-400">Duration: 32 sec · 3 مشاوير في يوم واحد</span>
@@ -759,6 +769,64 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                         <>
                           <Play className="w-3.5 h-3.5 fill-current" />
                           <span>{isAr ? 'تشغيل 32 ثانية' : 'Play 32s'}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Track 3: Baba Gah Synthetic Character Demo */}
+                  <div className="p-3.5 rounded-2xl bg-zinc-950/80 border border-white/5 flex items-center justify-between mb-3">
+                    <div>
+                      <div className="text-xs font-bold text-white">Baba Gah · Synthetic Character Demo</div>
+                      <span className="text-[10px] font-mono text-zinc-400">Spec Character VO · تجربة أداء صوتي للشخصية</span>
+                    </div>
+
+                    <button
+                      onClick={() => handleToggleAudio(3)}
+                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                        activeAudioTrack === 3 && isPlayingAudio
+                          ? 'bg-amber-400 text-black'
+                          : 'bg-zinc-800 hover:bg-amber-500 hover:text-black text-white'
+                      }`}
+                    >
+                      {activeAudioTrack === 3 && isPlayingAudio ? (
+                        <>
+                          <Pause className="w-3.5 h-3.5 fill-current" />
+                          <span>{isAr ? 'إيقاف' : 'Pause'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>{isAr ? 'تشغيل العينة' : 'Play Demo'}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Track 4: Golden Sun Synthetic Narration Demo */}
+                  <div className="p-3.5 rounded-2xl bg-zinc-950/80 border border-white/5 flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold text-white">Golden Sun · Synthetic Narration Demo</div>
+                      <span className="text-[10px] font-mono text-zinc-400">Sunset Storytelling · «في آخر اليوم لما الشمس تلمس البحر»</span>
+                    </div>
+
+                    <button
+                      onClick={() => handleToggleAudio(4)}
+                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                        activeAudioTrack === 4 && isPlayingAudio
+                          ? 'bg-amber-400 text-black'
+                          : 'bg-zinc-800 hover:bg-amber-500 hover:text-black text-white'
+                      }`}
+                    >
+                      {activeAudioTrack === 4 && isPlayingAudio ? (
+                        <>
+                          <Pause className="w-3.5 h-3.5 fill-current" />
+                          <span>{isAr ? 'إيقاف' : 'Pause'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>{isAr ? 'تشغيل 20 ثانية' : 'Play 20s'}</span>
                         </>
                       )}
                     </button>

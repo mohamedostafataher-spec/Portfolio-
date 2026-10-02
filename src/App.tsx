@@ -14,6 +14,8 @@ import { TopAdminBar } from './components/TopAdminBar';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { SkillsMasterShowcase } from './components/SkillsMasterShowcase';
+import { ProjectShowcaseHub } from './components/ProjectShowcaseHub';
+import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
 import { MarketingRoiCalculator } from './components/MarketingRoiCalculator';
 import { MasterPortfolioSection } from './components/MasterPortfolioSection';
 import { CreativeShowcaseHub } from './components/CreativeShowcaseHub';
@@ -38,13 +40,14 @@ export function PortfolioApp() {
 
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      const saved = localStorage.getItem('mm_portfolio_projects_v8');
+      const saved = localStorage.getItem('mm_portfolio_projects_v9');
       if (saved) {
         const parsed: Project[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
           const hasLatestRealProjects =
-            parsed.some((p) => p.id === 'baba-geh-pro-edition') &&
-            parsed.some((p) => p.id === 'furniture-facebook-page-funnel');
+            parsed.some((p) => p.id === 'level-fitness-spec') &&
+            parsed.some((p) => p.id === 'wojooh-tourism-spec') &&
+            parsed.some((p) => p.id === 'baba-geh-pro-edition');
           if (hasLatestRealProjects) {
             return parsed;
           }
@@ -68,7 +71,7 @@ export function PortfolioApp() {
   // Persist projects to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('mm_portfolio_projects_v8', JSON.stringify(projects));
+      localStorage.setItem('mm_portfolio_projects_v9', JSON.stringify(projects));
     } catch {
       // ignore
     }
@@ -181,6 +184,15 @@ export function PortfolioApp() {
           projects={projects}
           onSelectProject={(proj) => setSelectedProject(proj)}
         />
+
+        {/* INDEPENDENT PROJECTS DEDICATED SHOWCASE (CALM & SEPARATED UX) */}
+        <ProjectShowcaseHub
+          projects={projects}
+          onSelectProject={(proj) => setSelectedProject(proj)}
+        />
+
+        {/* MASTER GOOGLE DRIVE FILES & ASSETS VAULT */}
+        <GoogleDriveMasterVault />
 
         {/* INTERACTIVE MARKETING FUNNEL & ROI ESTIMATOR */}
         <MarketingRoiCalculator />

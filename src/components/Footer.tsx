@@ -97,6 +97,59 @@ export const Footer: React.FC = () => {
             <ArrowUp className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Verified Google Drive Folders Row */}
+        <div className="w-full pt-8 mt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+          <span className="text-zinc-500 uppercase tracking-widest text-[10px]">
+            {isAr ? 'روابط مجلدات Google Drive الرسمية:' : 'VERIFIED GOOGLE DRIVE FOLDERS:'}
+          </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-400 hover:text-amber-300 transition-colors"
+            >
+              Master Drive
+            </a>
+            <span className="text-zinc-700">&bull;</span>
+            <a
+              href="https://drive.google.com/drive/folders/10e2orh2oRMlZ3jGFm5nyZukMMVKtj25A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              QAIM Folder
+            </a>
+            <span className="text-zinc-700">&bull;</span>
+            <a
+              href="https://drive.google.com/drive/folders/1zYaljKNwH5XvD5V_Irsfcas-FZ1MsHrq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              TAKAA Folder
+            </a>
+            <span className="text-zinc-700">&bull;</span>
+            <a
+              href="https://drive.google.com/drive/folders/1fyGsWAhwiEdt_qkshdB9eCzsX1ldZ4Sh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              V7 Folder
+            </a>
+            <span className="text-zinc-700">&bull;</span>
+            <a
+              href="https://drive.google.com/drive/folders/19xsfCc4ThGEilh9GoEQSaQgo5TARk00C"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors"
+            >
+              Baba Gah Folder
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

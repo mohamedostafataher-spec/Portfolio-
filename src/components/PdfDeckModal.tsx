@@ -53,9 +53,9 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
       if (e.key === 'ArrowRight') {
-        setCurrentPage((p) => (p < 21 ? p + 1 : 1));
+        setCurrentPage((p) => (p < 25 ? p + 1 : 1));
       } else if (e.key === 'ArrowLeft') {
-        setCurrentPage((p) => (p > 1 ? p - 1 : 21));
+        setCurrentPage((p) => (p > 1 ? p - 1 : 25));
       } else if (e.key === 'Escape') {
         onClose();
       }
@@ -339,9 +339,78 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
     },
     {
       page: 20,
-      section: '17 / WORKFLOW',
+      section: '19 / CASE STUDY · LEVEL FITNESS',
+      titleEn: 'First rep, not perfect rep',
+      titleAr: 'أول عدة هي الأهم، مش العدة المثالية',
+      quoteEn: 'Spec campaign plan based on the project name in your note. No Level-specific brief, media, location or ad-account data was found in Drive.',
+      quoteAr: 'خطة حملة إعلانية مقترحة مبنية على ملخص فكرة النادي. لا توجد بيانات حساب إعلاني أو موقع فعلي مسبق.',
+      items: [
+        'OBJECTIVE: Generate qualified trial-session enquiries through WhatsApp; confirm the real location, schedule and offer before launch.',
+        'AUDIENCE: Adults 18+ in the gym’s actual catchment area, split into beginner and returning-member messages.',
+        'CREATIVE: “Your first rep counts.” Show a welcoming coach, manageable first session. No body-shaming.',
+        'META STRUCTURE: Lead / WhatsApp objective; local prospecting plus warm engagers. Test two hooks.',
+        'HOOK: «ابدأ بخطوة صغيرة»',
+        'CTA: «اسأل عن أول زيارة»',
+        'MEASURE: Qualified enquiries, reply time and visit rate from real Ads Manager data.',
+      ],
+      image: takaaCapcutPoster,
+    },
+    {
+      page: 21,
+      section: '20 / CASE STUDY · WOJOOH',
+      titleEn: 'Tourism, told through local eyes',
+      titleAr: 'السياحة بعيون أهل البلد',
+      quoteEn: 'Self-initiated strategy concept based on your outline; no original brand brief, destination data or official campaign assets were found in Drive.',
+      quoteAr: 'مفهوم استراتيجي ذاتي المبادرة لسياحة التجربة المصرية؛ سلسلة محتوى قصير يدور حول مرشد محلي.',
+      items: [
+        'INSIGHT: Visitors remember the textures of a place—small routes, daily rituals and local voices—not only a checklist of landmarks.',
+        'BIG IDEA: “See the city through the people who live it.” A short-form series built around a local guide and one human-scale discovery per episode.',
+        'CHANNELS: Reels / TikTok for discovery, a searchable route page for intent, creator partnerships.',
+        'MEASURE: Qualified route saves, map clicks, guide-page visits and verified bookings.',
+        'GUARDRAIL: Spec concept · validate destination, access, safety, permissions and brand identity before use.',
+      ],
+      image: qaimEditorial1,
+    },
+    {
+      page: 22,
+      section: '21 / CASE STUDY · GOLDEN SUN',
+      titleEn: 'A story built around the last light',
+      titleAr: 'قصة مبنية حول آخر خيوط الضوء (غروب الشمس)',
+      quoteEn: 'Spec video-story treatment from the name and storytelling requirement only; product category and actual brand brief were not provided.',
+      quoteAr: 'معالجة فيديو وسرد قصصي صيفي مفاهيمي مبني على الاسم فقط مع سيناريو فويس أوفر مصري دافئ.',
+      items: [
+        '0–3s: Day winds down; footsteps toward the shore.',
+        '3–7s: Golden light on the water, a shared quiet moment.',
+        '7–17s: Relatable human story and serene summer ambience.',
+        '17–20s: Brand lock-up placeholder and save/share CTA.',
+        'VOICEOVER: «في آخر اليوم، لما الشمس تلمس البحر، بنفتكر إن أحلى الحكايات بتبدأ من لحظة هدوء... خطوة على الرمل، وضحكة من بعيد، ووقت نعيشه على مهله.»',
+        'MEASURE: Suggested sound bed: soft shore ambience and light wind. Track 3-second hold, completion, saves.',
+      ],
+      image: v7SummerPoster,
+    },
+    {
+      page: 23,
+      section: '22 / DRIVE PROJECT INDEX & TOOLS',
+      titleEn: 'Every supplied project has a place',
+      titleAr: 'لكل مشروع معتمد مكانه الموثق في الدرايف',
+      quoteEn: 'A compact index of the original Drive work, with coursework and campaign concepts identified accurately.',
+      quoteAr: 'فهرس مكثف لكافة مشاريع جوجل درايف مع التمييز الصارم بين الأعمال المعتمدة والتكليفات والمفاهيم المقترحة.',
+      items: [
+        'QAIM: Menswear · SOSTAC actions/control, social content, four-video campaign plan & two AI VO files.',
+        'TAKAA: Fictional energy drink · Instagram setup, AI commercial concept, carousel and CapCut edit.',
+        'V7 CREAM SODA: Summer Edition brand deck and proposed seasonal campaign system.',
+        'H&M EGYPT: Academic digital situation, marketing strategy and SOSTAC coursework; no brand employment claimed.',
+        'DEPI / ADIDAS: Marketing fundamentals assignment. Academic analysis, not an Adidas campaign.',
+        'FACEBOOK PAGE: Furniture/upholstery business page-creation assignment; personal phone/email omitted.',
+        'TOOLS: CapCut, Canva, SOSTAC, STP, SWOT, PESTLE, Meta Business Suite.',
+      ],
+      image: takaaCreativeCampaign,
+    },
+    {
+      page: 24,
+      section: '23 / WORKFLOW',
       titleEn: 'A repeatable creative loop',
-      titleAr: 'حلقة إبداعية قابلة للتكرار',
+      titleAr: 'حلقة إبداعية قابلة للتكرار (من الفكرة إلى القياس)',
       quoteEn: 'A simple working method that keeps strategy, production and measurement connected.',
       quoteAr: 'طريقة عمل واضحة تحافظ على ترابط الاستراتيجية، الإنتاج، والقياس الفعلي.',
       items: [
@@ -349,15 +418,15 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
         '02 · INSIGHT: Identify the real question, friction or occasion behind the content.',
         '03 · CONCEPT: Define one idea and a format that can carry it.',
         '04 · CREATE: Write, storyboard, design and edit; keep details accurate.',
-        '05 · REVIEW: Check claims, names, price, stock, rights and readability.',
+        '05 · REVIEW: Check claims, names, price, stock, rights and mobile readability.',
         '06 · LEARN: Set a baseline, compare meaningful signals, then iterate or scale.',
         'CORE PRINCIPLE: “No metric becomes a result until it is measured.”',
       ],
       image: takaaCreativeCampaign,
     },
     {
-      page: 21,
-      section: 'CONTACT',
+      page: 25,
+      section: '24 / CONTACT',
       titleEn: 'Let’s talk about the next brief.',
       titleAr: 'فلنتحدث عن ملخص مشروعك الإعلاني القادم.',
       quoteEn: 'Digital marketing · creative content · AI-assisted product stories.',
@@ -395,11 +464,11 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
               <div className="text-xs font-bold text-white flex items-center gap-2">
                 <span>Mohamed Mostafa Taher Salem — Master Deck</span>
                 <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 font-mono">
-                  21 Pages
+                  25 Pages
                 </span>
               </div>
               <div className="text-[11px] text-zinc-400 font-mono">
-                Slide {currentPage} of 21 · {currentSlide.section}
+                Slide {currentPage} of 25 · {currentSlide.section}
               </div>
             </div>
           </div>
@@ -501,7 +570,7 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
           {/* Controls */}
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setCurrentPage((p) => (p > 1 ? p - 1 : 21))}
+              onClick={() => setCurrentPage((p) => (p > 1 ? p - 1 : 25))}
               className="px-3.5 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition-colors flex items-center gap-1 cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -509,11 +578,11 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
             </button>
 
             <span className="text-xs font-mono text-zinc-400 px-2">
-              {currentPage} / 21
+              {currentPage} / 25
             </span>
 
             <button
-              onClick={() => setCurrentPage((p) => (p < 21 ? p + 1 : 1))}
+              onClick={() => setCurrentPage((p) => (p < 25 ? p + 1 : 1))}
               className="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold transition-colors flex items-center gap-1 cursor-pointer"
             >
               <span>{isAr ? 'التالي' : 'Next'}</span>

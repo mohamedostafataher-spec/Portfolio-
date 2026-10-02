@@ -170,7 +170,7 @@ export const Hero: React.FC<HeroProps> = ({
               className="w-full sm:w-auto px-5 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold text-xs sm:text-sm border border-amber-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/5"
             >
               <FileText className="w-4 h-4 text-amber-400" />
-              <span>{isAr ? 'عرض كتيب الـ PDF (21 صفحة)' : 'View 21-Page PDF Deck'}</span>
+              <span>{isAr ? 'عرض كتيب الـ PDF الماستر (25 صفحة)' : 'View 25-Page Master PDF Deck'}</span>
             </button>
           )}
         </motion.div>
