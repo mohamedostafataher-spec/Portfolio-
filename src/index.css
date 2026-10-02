@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Syne', 'Outfit', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-arabic {
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Ambient glow utilities */
+.glow-amber-subtle {
+  box-shadow: 0 0 50px -10px rgba(245, 158, 11, 0.12);
+}
+
+.glow-amber-card:hover {
+  box-shadow: 0 0 40px -8px rgba(245, 158, 11, 0.18);
+}
