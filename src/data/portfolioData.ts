@@ -35,6 +35,7 @@ import takaaCarousel1 from '../assets/images/takaa_carousel_1.jpg';
 import takaaCreativeCampaign from '../assets/images/takaa_creative_campaign.jpg';
 import takaaCapcutPoster from '../assets/images/takaa_capcut_poster.jpg';
 import foodDeliveryPoster from '../assets/images/food_delivery_poster.jpg';
+import breadfastCover from '../assets/images/breadfast_campaign_cover.jpg';
 import babaGehPoster from '../assets/images/baba_geh_poster.jpg';
 import babaGehThumb1 from '../assets/images/baba_geh_thumb1.jpg';
 import babaGehThumb2 from '../assets/images/baba_geh_thumb2.jpg';
@@ -874,11 +875,40 @@ export const INITIAL_PROJECTS: Project[] = [
     featured: true,
   },
   {
+    id: 'breadfast-campaign',
+    tracks: ['Videos', 'Content Creation'],
+    title: 'Breadfast — Breakfast, Delivered When Your Morning Starts Late',
+    clientOrSpec: 'Spec Project',
+    subtitle: 'Spec Advertising Campaign · Food Delivery · Short-form Video',
+    category: 'Food Advertising',
+    tagline: 'Your morning can start late, but breakfast does not have to.',
+    description: 'A short-form Egyptian breakfast delivery concept built around a late morning, a missed breakfast and a fast product payoff.',
+    skills: ['Creative Advertising', 'Video Storytelling', 'Product Reveal', 'Voice-over Direction', 'CTA Structure'],
+    objective: 'Create an Egyptian breakfast delivery advertisement built around a relatable morning problem.',
+    concept: 'A young man wakes up late, rushes out without breakfast, stays connected with his friends, and eventually catches up with a Breadfast delivery.',
+    myRole: 'Creative Concept, Story Editing, Voice-over Direction, Music Direction, Video Editing, Motion Zooms, Product Reveal and CTA Structure.',
+    tools: ['CapCut Pro', 'Canva Pro', 'AI Creative Tools', 'Audio Editing'],
+    process: [
+      { step: '01. Relatable Morning Problem', detail: 'A young man wakes up late and rushes out without breakfast.' },
+      { step: '02. Dynamic Voice-over & Dialogue', detail: 'Egyptian colloquial dialogue, opening voice-over, and original music.' },
+      { step: '03. Delivery Payoff & CTA', detail: 'Breadfast delivery bag reveal, fresh breakfast payoff, and clear call-to-action.' },
+    ],
+    finalResult: 'A relatable Egyptian morning story turned into a food-delivery campaign. The edit uses natural dialogue, fast pacing, subtle digital zooms, original music and a product-focused ending to move from problem to payoff.',
+    image: breadfastCover,
+    aspectRatio: '9:16',
+    stats: [
+      { label: 'Format', value: 'Short-form Video 9:16' },
+      { label: 'Language', value: 'Egyptian Arabic Dialogue' },
+      { label: 'Payoff', value: 'Fresh Breakfast CTA' },
+    ],
+    featured: true,
+  },
+  {
     id: 'talabat-delivery-tvc',
     tracks: ['Videos', 'Dubbing & Audio'],
-    title: 'Talabat (طلبات)',
+    title: 'Talabat (طلبات) — «يوم واحد من غير طلبات»',
     clientOrSpec: 'Commercial Campaign',
-    subtitle: '«يوم واحد من غير طلبات» • High-Velocity Food Delivery TVC',
+    subtitle: 'High-Velocity Food Delivery TVC • إعلان تجاري سريع لتطبيق طلبات',
     category: 'Food Advertising',
     tagline: 'في ثواني.. الطلب على بابك مع طلبات.',
     description:
@@ -890,7 +920,7 @@ export const INITIAL_PROJECTS: Project[] = [
       'مونتاج كوميدي وسريع لمواقف يومية مصرية مألوفة — الثلاجة الفاضية، خناقات الأكل العائلية، وسهرات المذاكرة — تُحل جميعها بظهور مندوب طلبات بسترته البرتقالية المنقذة.',
     myRole:
       'كاتب الاسكريبت ومونتير الفيديو الإعلاني — ابتكار الهوك السريع، هندسة أصوات تحمير الأكل والقرمشة، والمونتاج الإيقاعي السريع.',
-    tools: ['CapCut', 'AI Video Tools', 'Egyptian Colloquial Copywriting', 'Macro Food Foley'],
+    tools: ['CapCut Pro', 'Canva Pro', 'AI Video Tools', 'Egyptian Colloquial Copywriting', 'Macro Food Foley'],
     process: [
       { step: '01. الرؤية الإنسانية والفكاهة', detail: 'رصد نقاط الاحتكاك اليومية في البيت المصري وتأخير وجبات الغداء والعشاء.' },
       { step: '02. الهوك والمونتاج السريع', detail: 'بناء تسلسل سردي يبدأ بالصدمة، يتصاعد مع الجوع، وينتهي بالحل السعيد.' },
@@ -907,6 +937,7 @@ export const INITIAL_PROJECTS: Project[] = [
       { label: 'Pacing', value: 'Fast Cut Macro Editing' },
     ],
     featured: true,
+    driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
   },
   {
     id: 'baba-geh-campaign',

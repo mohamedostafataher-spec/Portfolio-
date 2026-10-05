@@ -71,57 +71,77 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
     { key: 'Visuals', labelAr: 'المعرض البصري والبوسترات', labelEn: 'Visuals & Lookbooks' },
   ];
 
-  // Smart filtering logic
-  const filteredProjects = projects.filter((p) => {
-    if (activeCategory === 'All') return true;
+  // Core 6 projects requested to lead the portfolio
+  const coreSixIds = [
+    'qaim-fashion-growth',
+    'breadfast-campaign',
+    'v7-cream-soda-summer',
+    'takaa-energy-launch',
+    'baba-geh-campaign',
+    'buffalo-burger-commercial',
+  ];
 
-    if (activeCategory === 'Paid Ads') {
-      return (
-        p.id.includes('funnel') ||
-        p.id.includes('depi') ||
-        p.skills.some((s) => s.toLowerCase().includes('ad') || s.toLowerCase().includes('funnel'))
-      );
-    }
+  // Smart filtering logic with priority ordering
+  const filteredProjects = projects
+    .filter((p) => {
+      if (activeCategory === 'All') return true;
 
-    if (activeCategory === 'Carousels') {
-      return (
-        p.id.includes('carousel') ||
-        p.category === 'Brand Presentation & Deck' ||
-        (p.deckSlides && p.deckSlides.length > 0) ||
-        p.skills.some((s) => s.toLowerCase().includes('carousel'))
-      );
-    }
+      if (activeCategory === 'Paid Ads') {
+        return (
+          p.id.includes('funnel') ||
+          p.id.includes('depi') ||
+          p.skills.some((s) => s.toLowerCase().includes('ad') || s.toLowerCase().includes('funnel'))
+        );
+      }
 
-    if (activeCategory === 'CapCut') {
-      return (
-        p.id.includes('capcut') ||
-        p.id.includes('baba-geh') ||
-        p.category === 'Short-Form Video' ||
-        p.tools.some((t) => t.toLowerCase().includes('capcut')) ||
-        p.aspectRatio === '9:16'
-      );
-    }
+      if (activeCategory === 'Carousels') {
+        return (
+          p.id.includes('carousel') ||
+          p.category === 'Brand Presentation & Deck' ||
+          (p.deckSlides && p.deckSlides.length > 0) ||
+          p.skills.some((s) => s.toLowerCase().includes('carousel'))
+        );
+      }
 
-    if (activeCategory === 'Strategy') {
-      return (
-        p.category === 'Marketing Strategy' ||
-        p.category === 'Market Research & Audit' ||
-        (p.tracks && p.tracks.includes('Marketing Strategy')) ||
-        (p.deckSlides && p.deckSlides.length > 0)
-      );
-    }
+      if (activeCategory === 'CapCut') {
+        return (
+          p.id.includes('capcut') ||
+          p.id.includes('baba-geh') ||
+          p.id.includes('breadfast') ||
+          p.category === 'Short-Form Video' ||
+          p.tools.some((t) => t.toLowerCase().includes('capcut')) ||
+          p.aspectRatio === '9:16'
+        );
+      }
 
-    if (activeCategory === 'Visuals') {
-      return (
-        p.category === 'Photography' ||
-        p.category === 'Food Advertising' ||
-        (p.tracks && p.tracks.includes('Photography')) ||
-        (p.galleryImages && p.galleryImages.length > 1)
-      );
-    }
+      if (activeCategory === 'Strategy') {
+        return (
+          p.category === 'Marketing Strategy' ||
+          p.category === 'Market Research & Audit' ||
+          (p.tracks && p.tracks.includes('Marketing Strategy')) ||
+          (p.deckSlides && p.deckSlides.length > 0)
+        );
+      }
 
-    return true;
-  });
+      if (activeCategory === 'Visuals') {
+        return (
+          p.category === 'Photography' ||
+          p.category === 'Food Advertising' ||
+          (p.tracks && p.tracks.includes('Photography')) ||
+          (p.galleryImages && p.galleryImages.length > 1)
+        );
+      }
+
+      return true;
+    })
+    .sort((a, b) => {
+      const idxA = coreSixIds.indexOf(a.id);
+      const idxB = coreSixIds.indexOf(b.id);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return 0;
+    });
 
   return (
     <section id="work" className="py-24 relative bg-[#07070a] border-t border-white/5">
@@ -180,53 +200,63 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
             {[
               {
                 num: '01',
-                id: 'baba-geh-campaign',
-                nameAr: 'BABA GAH (بابا جه)',
-                nameEn: 'BABA GAH',
-                typeAr: 'إعلان تجاري وسينمائي كوميدي (Creative TVC & Viral Pacing)',
-                typeEn: 'Creative Advertising / TVC',
-                msgAr: 'الرسالة: التفكير الإبداعي وهندسة الضحكة (Creative Thinking)',
-                msgEn: 'Message: Creative Thinking & Viral Pacing',
+                id: 'qaim-fashion-growth',
+                nameAr: 'QAIM MENSWEAR (قِيَم للأزياء)',
+                nameEn: 'QAIM MENSWEAR',
+                typeAr: 'استراتيجية محتوى وهندسة إنستجرام (Content Strategy & Instagram Architecture)',
+                typeEn: 'Content Strategy & Instagram Architecture',
+                msgAr: 'التخطيط الاستراتيجي، الكاروسيل، وهندسة الهوك لتوجيه المبيعات',
+                msgEn: 'Content strategy, Instagram structure, carousel concepts, and hooks.',
               },
               {
                 num: '02',
-                id: 'furniture-brand-funnel',
-                nameAr: 'LOCAL FURNITURE STORE (حملة براند الأثاث)',
-                nameEn: 'LOCAL FURNITURE STORE',
-                typeAr: 'إعلانات ممولة ومسارات تحويل مبيعات Meta Ads (+185 Leads)',
-                typeEn: 'Performance Marketing / Meta Ads',
-                msgAr: 'الرسالة: التسويق المالي وتوليد العملاء المحتملين (Performance Marketing)',
-                msgEn: 'Message: Performance Marketing & Lead Gen',
+                id: 'breadfast-campaign',
+                nameAr: 'BREADFAST (بريدفاست مصر)',
+                nameEn: 'BREADFAST',
+                typeAr: 'حملة توصيل الفطور وسرد قصصي بالفيديو (Breakfast Delivery Campaign)',
+                typeEn: 'Breakfast Delivery Campaign',
+                msgAr: 'ممكن تتأخر، لكن الفطار لا • فكرة إعلانية، فويس أوفر مصري، ومونتاج سريع',
+                msgEn: 'A short-form Egyptian breakfast delivery concept built around a late morning and fast payoff.',
               },
               {
                 num: '03',
-                id: 'hm-egypt-growth-strategy',
-                nameAr: 'H&M EGYPT (إتش آند إم مصر)',
-                nameEn: 'H&M EGYPT',
-                typeAr: 'حملة متكاملة للجامعات ودراسة سوق 7.5 مليار دولار (Integrated Campaign)',
-                typeEn: 'Integrated Campus Campaign',
-                msgAr: 'الرسالة: التخطيط التسويقي وأبحاث السوق (Campaign Planning)',
-                msgEn: 'Message: Campaign Planning & Market Sizing',
+                id: 'v7-cream-soda-summer',
+                nameAr: 'V7 CREAM SODA (في سفن صودا صيفية)',
+                nameEn: 'V7 CREAM SODA',
+                typeAr: 'التوجيه البصري وسرد قصص الحملات (Visual Direction & Campaign Storytelling)',
+                typeEn: 'Visual Direction & Campaign Storytelling',
+                msgAr: 'بناء فكرة حملة، تسلسل المشاهد، والتفكير الإعلاني التلفزيوني والرقمي',
+                msgEn: 'Campaign concepts, scene sequencing, visual direction, and storytelling.',
               },
               {
                 num: '04',
-                id: 'qaim-fashion-growth',
-                nameAr: 'QAIM MENSWEAR (قيم للأزياء)',
-                nameEn: 'QAIM MENSWEAR',
-                typeAr: 'استراتيجية نمو SOSTAC وتدقيق حساب 62K وفويس أوفر (Growth Strategy)',
-                typeEn: 'SOSTAC Growth Strategy & Audio Directing',
-                msgAr: 'الرسالة: الاستراتيجية والابتكار والإخراج الصوتي (Strategy + Innovation)',
-                msgEn: 'Message: Strategy + Innovation & Audio Directing',
+                id: 'takaa-energy-launch',
+                nameAr: 'TAKAA ENERGY DRINK (تاكة لمشروب الطاقة)',
+                nameEn: 'TAKAA ENERGY DRINK',
+                typeAr: 'إبداع بالذكاء الاصطناعي وفيديو قصير (AI Creative & Short-form Video)',
+                typeEn: 'AI Creative & Short-form Video',
+                msgAr: 'إنتاج إبداعي بالذكاء الاصطناعي، فيديوهات ريلز، وسرد منتج بصري',
+                msgEn: 'AI creative production, short-form video, and product-focused storytelling.',
               },
               {
                 num: '05',
-                id: 'takaa-capcut-viral-template',
-                nameAr: 'TAKAA & V7 (تاكة وفي سفن)',
-                nameEn: 'TAKAA & V7 SUMMER',
-                typeAr: 'تسويق فيديو وإطلاق علامات تجارية وماتش-كت سينمائي (Video Marketing)',
-                typeEn: 'Video Marketing / Storytelling',
-                msgAr: 'الرسالة: إخراج الفيديو والسرد القصصي (Video & Storytelling)',
-                msgEn: 'Message: Video Marketing & Storytelling',
+                id: 'baba-geh-campaign',
+                nameAr: 'BABA GAH (بابا جه)',
+                nameEn: 'BABA GAH',
+                typeAr: 'إعلانات كوميدية وفيديو حملة (Comedic Advertising & Video Campaign)',
+                typeEn: 'Comedic Advertising & Video Campaign',
+                msgAr: 'كتابة فكرة إعلانية، كوميديا الموقف، وفهم الجمهور المصري',
+                msgEn: 'Comedic ad writing, Egyptian cultural humor, and social-first video storytelling.',
+              },
+              {
+                num: '06',
+                id: 'buffalo-burger-commercial',
+                nameAr: 'BUFFALO BURGER (بافلو برجر)',
+                nameEn: 'BUFFALO BURGER',
+                typeAr: 'إعلانات تجارية للطعام والماكرو (Commercial Food Advertising)',
+                typeEn: 'Commercial Food Advertising',
+                msgAr: 'تقديم سينمائي للمنتج، إعلانات مقربة سريعة (Macro Foley & Sizzle)',
+                msgEn: 'Cinematic product presentation, commercial video thinking, and food advertising.',
               },
             ].map((item) => {
               const matchedProj = projects.find((p) => p.id === item.id) || projects[0];

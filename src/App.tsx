@@ -13,16 +13,13 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { TopAdminBar } from './components/TopAdminBar';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { SkillsMasterShowcase } from './components/SkillsMasterShowcase';
-import { ProjectShowcaseHub } from './components/ProjectShowcaseHub';
-import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
-import { MarketingRoiCalculator } from './components/MarketingRoiCalculator';
 import { MasterPortfolioSection } from './components/MasterPortfolioSection';
-import { CreativeShowcaseHub } from './components/CreativeShowcaseHub';
-import { MotionGraphicsDecorations } from './components/MotionGraphicsDecorations';
-import { About } from './components/About';
+import { CapabilitiesSection } from './components/CapabilitiesSection';
 import { CreativeProcess } from './components/CreativeProcess';
+import { About } from './components/About';
 import { ContactSection } from './components/ContactSection';
+import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
+import { MotionGraphicsDecorations } from './components/MotionGraphicsDecorations';
 import { Footer } from './components/Footer';
 import { QuickFloatingAction } from './components/QuickFloatingAction';
 
@@ -40,15 +37,13 @@ export function PortfolioApp() {
 
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      const saved = localStorage.getItem('mm_portfolio_projects_v9');
+      const saved = localStorage.getItem('mm_portfolio_projects_v11');
       if (saved) {
         const parsed: Project[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const hasLatestRealProjects =
-            parsed.some((p) => p.id === 'level-fitness-spec') &&
-            parsed.some((p) => p.id === 'wojooh-tourism-spec') &&
-            parsed.some((p) => p.id === 'baba-geh-pro-edition');
-          if (hasLatestRealProjects) {
+          const hasBreadfast = parsed.some((p) => p.id === 'breadfast-campaign');
+          const hasTalabat = parsed.some((p) => p.id === 'talabat-delivery-tvc');
+          if (hasBreadfast && hasTalabat) {
             return parsed;
           }
         }
@@ -71,7 +66,7 @@ export function PortfolioApp() {
   // Persist projects to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('mm_portfolio_projects_v9', JSON.stringify(projects));
+      localStorage.setItem('mm_portfolio_projects_v11', JSON.stringify(projects));
     } catch {
       // ignore
     }
@@ -179,24 +174,6 @@ export function PortfolioApp() {
           }}
         />
 
-        {/* 6 CORE SKILLS SHOWCASE (VERIFIED FROM 21-PAGE PDF) */}
-        <SkillsMasterShowcase
-          projects={projects}
-          onSelectProject={(proj) => setSelectedProject(proj)}
-        />
-
-        {/* INDEPENDENT PROJECTS DEDICATED SHOWCASE (CALM & SEPARATED UX) */}
-        <ProjectShowcaseHub
-          projects={projects}
-          onSelectProject={(proj) => setSelectedProject(proj)}
-        />
-
-        {/* MASTER GOOGLE DRIVE FILES & ASSETS VAULT */}
-        <GoogleDriveMasterVault />
-
-        {/* INTERACTIVE MARKETING FUNNEL & ROI ESTIMATOR */}
-        <MarketingRoiCalculator />
-
         {/* 04 — SELECTED WORK & 05 — CASE STUDIES */}
         <MasterPortfolioSection
           projects={projects}
@@ -209,20 +186,33 @@ export function PortfolioApp() {
           onResetProjects={handleResetProjects}
         />
 
-        {/* 06 — CONTENT LAB (Reels, Carousels, Audio, 4K Visuals) */}
-        <CreativeShowcaseHub
-          projects={projects}
-          onSelectProject={(proj) => setSelectedProject(proj)}
-        />
+        {/* 02 — CAPABILITIES (4 PILLARS) */}
+        <CapabilitiesSection />
 
-        {/* 02 — INTRO (WHO AM I) & 08 — WHY ME & 09 — TOOLS & 10 — EDUCATION */}
-        <About />
-
-        {/* 07 — MY PROCESS (FROM IDEA TO IMPACT) */}
+        {/* 03 — PROCESS (FROM IDEA TO IMPACT) */}
         <CreativeProcess />
 
-        {/* 11 — CONTACT */}
+        {/* 04 — ABOUT & CREDENTIALS */}
+        <About />
+
+        {/* 05 — CONTACT */}
         <ContactSection initialServiceOrProject={contactInitialService} />
+
+        {/* 06 — ADDITIONAL WORK & ARCHIVE */}
+        <div id="archive" className="border-t border-white/5 pt-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-xs font-mono text-zinc-400">
+              {isAr ? 'أعمال استراتيجية إضافية وملفات المساقات والأرشيف' : 'Additional strategy work, experiments and supporting files are available in the archive.'}
+            </span>
+            <button
+              onClick={() => setIsPdfModalOpen(true)}
+              className="text-xs font-mono text-amber-400 hover:text-amber-300 underline underline-offset-4 cursor-pointer"
+            >
+              {isAr ? 'عرض كتيب البورتفوليو الكامل (25 صفحة PDF)' : 'View Full Portfolio PDF (25 Pages)'}
+            </button>
+          </div>
+          <GoogleDriveMasterVault />
+        </div>
       </main>
 
       {/* Footer */}

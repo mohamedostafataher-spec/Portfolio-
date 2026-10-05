@@ -30,13 +30,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { nameEn: 'Cover', nameAr: 'الرئيسية', href: '#home' },
-    { nameEn: '6 Skills', nameAr: 'المهارات', href: '#skills-portfolio' },
-    { nameEn: 'Projects', nameAr: 'المشاريع', href: '#projects-breakdown' },
-    { nameEn: 'Drive Vault', nameAr: 'أرشيف الدرايف', href: '#drive-vault' },
-    { nameEn: 'Case Studies', nameAr: 'دراسات الحالة', href: '#work' },
-    { nameEn: 'Content Lab', nameAr: 'مختبر المحتوى', href: '#creative-hub' },
-    { nameEn: 'Workflow', nameAr: 'حلقة العمل', href: '#process' },
+    { nameEn: 'Home', nameAr: 'الرئيسية', href: '#home' },
+    { nameEn: 'Selected Work', nameAr: 'المشاريع المختارة', href: '#work' },
+    { nameEn: 'Capabilities', nameAr: 'القدرات والمهارات', href: '#capabilities' },
+    { nameEn: 'Process', nameAr: 'حلقة العمل', href: '#process' },
+    { nameEn: 'About', nameAr: 'عن محمد', href: '#about' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
 

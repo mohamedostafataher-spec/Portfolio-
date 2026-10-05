@@ -117,23 +117,21 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
         </motion.div>
 
-        {/* COVER: SIGNATURE STATEMENT FROM PDF PAGE 1 */}
+        {/* COVER: SIGNATURE STATEMENT */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="max-w-2xl mx-auto my-3 p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-md"
+          className="max-w-2xl mx-auto my-4 p-4 sm:p-5 rounded-2xl bg-zinc-900/60 border border-white/10 backdrop-blur-md"
         >
-          <p className="font-display text-base sm:text-xl font-bold text-white tracking-tight leading-relaxed italic">
-            &ldquo;
+          <p className="font-display text-sm sm:text-base md:text-lg font-medium text-zinc-200 tracking-tight leading-relaxed">
             {isAr
-              ? 'أحوّل حقائق المنتجات وأسئلة الجمهور إلى قصص محتوى اجتماعي مفيدة وسهلة الفهم ومحفزة للقرار.'
-              : 'Strategy, social content, AI-assisted creative, short-form video and voice-over samples — built around clear ideas and honest evidence.'}
-            &rdquo;
+              ? 'أطوّر أفكار الحملات الإعلانية، المحتوى الاجتماعي، المواد البصرية بالذكاء الاصطناعي، ومفاهيم الفيديو القصير المصممة حول أهداف تسويقية واضحة للجمهور.'
+              : 'I develop campaign ideas, social content, AI-assisted visuals and short-form video concepts designed around clear audience and communication goals.'}
           </p>
         </motion.div>
 
-        {/* Action Buttons */}
+        {/* Action Buttons: Exactly 3 Buttons as requested */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,166 +139,37 @@ export const Hero: React.FC<HeroProps> = ({
           className="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto my-4"
         >
           <button
-            onClick={() => scrollToSkill('skills-portfolio')}
+            onClick={onExploreWork}
             className="w-full sm:w-auto px-7 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm transition-all shadow-xl shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer group"
           >
-            <span>{isAr ? 'استعراض الـ 6 مهارات العملية' : 'Explore 6 Skills Portfolio'}</span>
+            <span>{isAr ? 'استعراض المشاريع المختارة' : 'View Selected Work'}</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
 
           <button
-            onClick={handleWhatsApp}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            onClick={onOpenResume}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm border border-white/10 hover:border-amber-500/40 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-400" />
-            <span>{isAr ? 'واتساب مباشر: 01110095403' : 'WhatsApp: +20 111 009 5403'}</span>
+            <FileText className="w-4 h-4 text-amber-400" />
+            <span>{isAr ? 'تحميل السيرة الذاتية (CV)' : 'Download CV'}</span>
           </button>
 
           <button
-            onClick={onOpenResume}
-            className="w-full sm:w-auto px-5 py-3 rounded-xl bg-zinc-900/70 hover:bg-zinc-800 text-zinc-300 hover:text-white font-semibold text-xs sm:text-sm border border-white/10 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            onClick={onOpenContact}
+            className="w-full sm:w-auto px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-emerald-400 font-bold text-sm border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <FileText className="w-4 h-4 text-amber-400" />
-            <span>{isAr ? 'السيرة الذاتية (CV)' : 'Download CV'}</span>
+            <MessageCircle className="w-4 h-4 text-emerald-400" />
+            <span>{isAr ? 'تواصل معي' : 'Contact Me'}</span>
           </button>
-
-          {onOpenPdfDeck && (
-            <button
-              onClick={onOpenPdfDeck}
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 font-bold text-xs sm:text-sm border border-amber-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-amber-500/5"
-            >
-              <FileText className="w-4 h-4 text-amber-400" />
-              <span>{isAr ? 'عرض كتيب الـ PDF الماستر (25 صفحة)' : 'View 25-Page Master PDF Deck'}</span>
-            </button>
-          )}
-        </motion.div>
-
-        {/* ===================================================================== */}
-        {/* THE 6 SKILLS TILES (AS REQUESTED IN USER PROMPT) */}
-        {/* ===================================================================== */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="w-full max-w-4xl pt-6"
-        >
-          <div className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 mb-3 text-center flex items-center justify-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span>{isAr ? 'اضغط على أي مهارة للانتقال المباشر لأعمالها' : 'SELECT A SKILL TO INSPECT VERIFIED WORK'}</span>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {/* Tile 01: CONTENT */}
-            <div
-              onClick={() => scrollToSkill('skill-content')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={qaimEditorial1}
-                alt="Content Creation"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">01 · CONTENT</span>
-                <h4 className="text-xs font-bold text-white truncate">QAIM Carousels & Hooks</h4>
-              </div>
-            </div>
-
-            {/* Tile 02: AI CREATIVE */}
-            <div
-              onClick={() => scrollToSkill('skill-ai')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={takaaCreativeCampaign}
-                alt="AI Content"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">02 · AI CREATIVE</span>
-                <h4 className="text-xs font-bold text-white truncate">TAKAA &ldquo;Take the Tweak&rdquo;</h4>
-              </div>
-            </div>
-
-            {/* Tile 03: VIDEO */}
-            <div
-              onClick={() => scrollToSkill('skill-video')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={babaGehThumb1}
-                alt="Video Production"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">03 · VIDEO & REELS</span>
-                <h4 className="text-xs font-bold text-white truncate">Baba Gah & Buffalo TVC</h4>
-              </div>
-            </div>
-
-            {/* Tile 04: DUBBING & AUDIO */}
-            <div
-              onClick={() => scrollToSkill('skill-audio')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={spiroPoster}
-                alt="Dubbing and Audio"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">04 · DUBBING & AUDIO</span>
-                <h4 className="text-xs font-bold text-white truncate">Egyptian Arabic VO & Audio</h4>
-              </div>
-            </div>
-
-            {/* Tile 05: PHOTO / VISUAL */}
-            <div
-              onClick={() => scrollToSkill('skill-visual')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={v7SummerPoster}
-                alt="Visual Direction"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">05 · VISUAL DIRECTION</span>
-                <h4 className="text-xs font-bold text-white truncate">V7 Summer Edition 2026</h4>
-              </div>
-            </div>
-
-            {/* Tile 06: DIGITAL MARKETING */}
-            <div
-              onClick={() => scrollToSkill('skill-marketing')}
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/60 cursor-pointer shadow-lg transition-all"
-            >
-              <img
-                src={qaimEditorial2}
-                alt="Digital Marketing"
-                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 text-left rtl:text-right">
-                <span className="text-[10px] font-mono text-amber-400 font-bold block">06 · MARKETING & ADS</span>
-                <h4 className="text-xs font-bold text-white truncate">SOSTAC Strategy & Funnels</h4>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
 
       {/* Down Scroll Anchor */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2">
         <a
-          href="#skills-portfolio"
+          href="#work"
           className="p-2 rounded-full text-zinc-500 hover:text-white transition-colors"
-          aria-label="Scroll down to Skills"
+          aria-label="Scroll down to Selected Work"
         >
           <ArrowDown className="w-4 h-4 animate-bounce" />
         </a>
