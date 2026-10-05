@@ -87,29 +87,19 @@ export const Navbar: React.FC<NavbarProps> = ({
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 bg-zinc-900/70 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+        <nav className="hidden lg:flex items-center gap-1 bg-zinc-900/50 p-1 rounded-full border border-white/5 backdrop-blur-md">
           {navLinks.map((link) => (
             <a
               key={link.nameEn}
               href={link.href}
-              className="px-3.5 py-1.5 text-xs font-medium text-zinc-300 hover:text-white hover:bg-white/5 rounded-full transition-all"
+              className="px-4 py-2 text-xs font-bold text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-all"
             >
               {isAr ? link.nameAr : link.nameEn}
             </a>
           ))}
-          {onOpenPdfDeck && (
-            <button
-              onClick={onOpenPdfDeck}
-              className="px-3 py-1.5 text-xs font-semibold text-amber-300 hover:text-amber-200 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-full transition-all flex items-center gap-1.5 cursor-pointer font-mono"
-            >
-              <FileText className="w-3.5 h-3.5 text-amber-400" />
-              <span>{isAr ? 'كتيب الـ PDF (25 صفحة)' : '25-Page PDF'}</span>
-            </button>
-          )}
-
           <button
             onClick={onOpenResume}
-            className="px-3 py-1.5 text-xs font-semibold text-amber-400 hover:text-amber-300 hover:bg-amber-400/10 rounded-full transition-all flex items-center gap-1 cursor-pointer"
+            className="px-4 py-2 text-xs font-bold text-amber-400 hover:text-amber-300 hover:bg-amber-400/5 rounded-full transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>CV</span>

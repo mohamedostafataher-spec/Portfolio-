@@ -34,13 +34,17 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface ProjectModalProps {
   project: Project | null;
+  allProjects?: Project[];
   onClose: () => void;
+  onSelectProject?: (project: Project) => void;
   onOpenContact: (projectTitle?: string) => void;
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
+  allProjects = [],
   onClose,
+  onSelectProject,
   onOpenContact,
 }) => {
   const { isAr } = useLanguage();
@@ -52,6 +56,24 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const [selectedGalleryImg, setSelectedGalleryImg] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const currentIndex = project ? allProjects.findIndex(p => p.id === project.id) : -1;
+  const hasNext = currentIndex < allProjects.length - 1;
+  const hasPrev = currentIndex > 0;
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasNext && onSelectProject) {
+      onSelectProject(allProjects[currentIndex + 1]);
+    }
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasPrev && onSelectProject) {
+      onSelectProject(allProjects[currentIndex - 1]);
+    }
+  };
 
   const videoUrlToUse = project?.videoUrl || project?.videoPreviewUrl;
   const videoInfo = parseVideoUrl(videoUrlToUse);
@@ -108,137 +130,99 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       />
 
       <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-left my-auto">
-        {/* Sticky Close Button */}
-        <button
-          onClick={onClose}
-          id="close-project-modal"
-          className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-black/75 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-white/10 backdrop-blur-md transition-all cursor-pointer shadow-lg"
-          aria-label="Close modal"
-        >
-          <X className="w-5 h-5" />
-        </button>
-
-        {/* Top Navigation Tabs */}
-        <div className="sticky top-0 z-20 px-6 pt-4 pb-3 bg-[#101014]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-2 flex-wrap">
-            {project.evidenceStatus ? (
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-bold font-mono border ${
-                  project.evidenceStatus === 'Drive-backed'
-                    ? 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40'
-                    : project.evidenceStatus === 'Coursework'
-                    ? 'bg-blue-950/80 text-blue-300 border-blue-500/40'
-                    : project.evidenceStatus === 'Spec Concept'
-                    ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
-                    : 'bg-purple-950/80 text-purple-300 border-purple-500/40'
-                }`}
-              >
-                {isAr ? project.evidenceLabelAr || project.evidenceStatus : project.evidenceStatus}
-              </span>
-            ) : (
-              <span className="px-3 py-1 rounded-full bg-amber-500 text-black text-xs font-bold uppercase tracking-wider">
-                {project.clientOrSpec}
-              </span>
-            )}
-            <span className="text-zinc-400 text-xs font-mono hidden sm:inline">
-              // {project.category}
-            </span>
-            {project.driveFolderUrl && (
-              <a
-                href={project.driveFolderUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 text-blue-300 text-xs font-bold transition-all shadow-sm"
-                title="Google Drive Folder"
-              >
-                <FolderOpen className="w-3.5 h-3.5 text-blue-400" />
-                <span>{isAr ? 'مجلد Google Drive المعتمد' : 'Drive Folder'}</span>
-              </a>
-            )}
-          </div>
-
-          <div className="flex items-center gap-1.5 p-1 rounded-full bg-zinc-900 border border-white/10 text-xs">
-            {hasVideo && (
-              <button
-                onClick={() => setActiveTab('video')}
-                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === 'video'
-                    ? 'bg-amber-500 text-black shadow-md'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Video className="w-3.5 h-3.5" />
-                <span>{isAr ? 'فيديو العمل' : 'Watch Video'}</span>
-              </button>
-            )}
-
+        {/* Sticky Close & Navigation Button */}
+        <div className="absolute top-4 right-4 z-30 flex items-center gap-2">
+          {hasPrev && (
             <button
-              onClick={() => setActiveTab('case-study')}
-              className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                activeTab === 'case-study'
-                  ? 'bg-amber-500 text-black shadow-md'
-                  : 'text-zinc-400 hover:text-white'
-              }`}
+              onClick={handlePrev}
+              className="p-2.5 rounded-full bg-black/75 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-white/10 backdrop-blur-md transition-all cursor-pointer shadow-lg"
+              title="Previous Project"
             >
-              <FileText className="w-3.5 h-3.5" />
-              <span>{isAr ? 'تفاصيل الخطة' : 'Case Study'}</span>
+              <ChevronLeft className="w-5 h-5" />
             </button>
+          )}
+          {hasNext && (
+            <button
+              onClick={handleNext}
+              className="p-2.5 rounded-full bg-black/75 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-white/10 backdrop-blur-md transition-all cursor-pointer shadow-lg"
+              title="Next Project"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+          <button
+            onClick={onClose}
+            id="close-project-modal"
+            className="p-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black border border-white/10 backdrop-blur-md transition-all cursor-pointer shadow-lg"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
-            {project.deckSlides && project.deckSlides.length > 0 && (
+        {/* Top Navigation Tabs - Optimized for Mobile */}
+        <div className="sticky top-0 z-20 px-4 sm:px-6 pt-4 pb-3 bg-[#101014]/95 backdrop-blur-md border-b border-white/10 overflow-hidden">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2 flex-wrap max-w-[80%]">
+              {project.evidenceStatus && (
+                <span className={`px-3 py-1 rounded-full text-[10px] font-bold font-mono border ${
+                  project.evidenceStatus === 'Drive-backed' ? 'bg-emerald-950/80 text-emerald-300 border-emerald-500/40' : 
+                  project.evidenceStatus === 'Coursework' ? 'bg-blue-950/80 text-blue-300 border-blue-500/40' : 
+                  project.evidenceStatus === 'Spec Concept' ? 'bg-amber-950/80 text-amber-300 border-amber-500/40' : 
+                  'bg-purple-950/80 text-purple-300 border-purple-500/40'
+                }`}>
+                  {isAr ? project.evidenceLabelAr || project.evidenceStatus : project.evidenceStatus}
+                </span>
+              )}
+              <span className="text-zinc-400 text-[10px] font-mono hidden sm:inline truncate">
+                // {project.category}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-zinc-900 border border-white/10 text-[10px] sm:text-xs overflow-x-auto no-scrollbar">
+              {hasVideo && (
+                <button
+                  onClick={() => setActiveTab('video')}
+                  className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                    activeTab === 'video' ? 'bg-amber-500 text-black' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  <Video className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'فيديو' : 'Video'}</span>
+                </button>
+              )}
               <button
-                onClick={() => setActiveTab('deck')}
-                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === 'deck'
-                    ? 'bg-amber-500 text-black shadow-md'
-                    : 'text-zinc-400 hover:text-white'
+                onClick={() => setActiveTab('case-study')}
+                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                  activeTab === 'case-study' ? 'bg-amber-500 text-black' : 'text-zinc-400 hover:text-white'
                 }`}
               >
-                <Presentation className="w-3.5 h-3.5" />
-                <span>{isAr ? 'عرض السلايدات (Deck)' : 'Strategy Deck'}</span>
+                <FileText className="w-3.5 h-3.5" />
+                <span>{isAr ? 'الخطة' : 'Study'}</span>
               </button>
-            )}
-
-            {project.galleryImages && project.galleryImages.length > 0 && (
-              <button
-                onClick={() => setActiveTab('gallery')}
-                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === 'gallery'
-                    ? 'bg-amber-500 text-black shadow-md'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <ImageIcon className="w-3.5 h-3.5" />
-                <span>{isAr ? 'اللوك بوك والتصاميم' : 'Visual Gallery'}</span>
-              </button>
-            )}
-
-            {hasVoiceover && (
-              <button
-                onClick={() => setActiveTab('commercial-reel')}
-                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === 'commercial-reel'
-                    ? 'bg-amber-500 text-black shadow-md'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <Film className="w-3.5 h-3.5" />
-                <span>{isAr ? 'السيناريو والصوت' : 'TVC Script'}</span>
-              </button>
-            )}
-
-            {hasStoryboard && (
-              <button
-                onClick={() => setActiveTab('storyboard')}
-                className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
-                  activeTab === 'storyboard'
-                    ? 'bg-amber-500 text-black shadow-md'
-                    : 'text-zinc-400 hover:text-white'
-                }`}
-              >
-                <ListOrdered className="w-3.5 h-3.5" />
-                <span>{isAr ? 'الستوري بورد' : 'Storyboard'}</span>
-              </button>
-            )}
+              {project.deckSlides && project.deckSlides.length > 0 && (
+                <button
+                  onClick={() => setActiveTab('deck')}
+                  className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                    activeTab === 'deck' ? 'bg-amber-500 text-black' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  <Presentation className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'عرض' : 'Deck'}</span>
+                </button>
+              )}
+              {project.galleryImages && project.galleryImages.length > 0 && (
+                <button
+                  onClick={() => setActiveTab('gallery')}
+                  className={`px-3 py-1.5 rounded-full font-semibold transition-all flex items-center gap-1.5 cursor-pointer shrink-0 ${
+                    activeTab === 'gallery' ? 'bg-amber-500 text-black' : 'text-zinc-400 hover:text-white'
+                  }`}
+                >
+                  <ImageIcon className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'صور' : 'Gallery'}</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
 

@@ -187,177 +187,42 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
           )}
         </div>
 
-        {/* 04 — SELECTED WORK (MENU SHOWROOM) */}
-        <div className="mb-16">
-          <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight mb-2">
-            {isAr ? 'المشاريع المختارة (SELECTED WORK)' : 'SELECTED WORK MENU'}
+        {/* 04 — SELECTED WORK (UNIFIED CLEAN GRID) */}
+        <div className="mb-12">
+          <h2 className="font-display text-4xl sm:text-6xl font-black text-white tracking-tight mb-4">
+            {isAr ? 'المشاريع المختارة' : 'Selected Work'}
           </h2>
-          <p className="text-zinc-400 text-sm sm:text-base max-w-2xl leading-relaxed mb-8">
-            {isAr
-              ? 'كل مشروع هنا يؤكد مهارة تسويقية محددة: من التفكير الإبداعي، وإعلانات الأداء، وحتى تخطيط الحملات والسرد القصصي.'
-              : 'Each project is curated to demonstrate a specific discipline: Creative Thinking, Performance Marketing, Integrated Campaigns, and Brand Strategy.'}
-          </p>
-
-          {/* Menu Rows */}
-          <div className="space-y-3">
-            {[
-              {
-                num: '01',
-                id: 'qaim-fashion-growth',
-                nameAr: 'QAIM MENSWEAR (قِيَم للأزياء)',
-                nameEn: 'QAIM MENSWEAR',
-                typeAr: 'استراتيجية محتوى وهندسة إنستجرام (Content Strategy & Instagram Architecture)',
-                typeEn: 'Content Strategy & Instagram Architecture',
-                msgAr: 'التخطيط الاستراتيجي، الكاروسيل، وهندسة الهوك لتوجيه المبيعات',
-                msgEn: 'Content strategy, Instagram structure, carousel concepts, and hooks.',
-              },
-              {
-                num: '02',
-                id: 'breadfast-campaign',
-                nameAr: 'BREADFAST (بريدفاست مصر)',
-                nameEn: 'BREADFAST',
-                typeAr: 'حملة توصيل الفطور وسرد قصصي بالفيديو (Breakfast Delivery Campaign)',
-                typeEn: 'Breakfast Delivery Campaign',
-                msgAr: 'ممكن تتأخر، لكن الفطار لا • فكرة إعلانية، فويس أوفر مصري، ومونتاج سريع',
-                msgEn: 'A short-form Egyptian breakfast delivery concept built around a late morning and fast payoff.',
-              },
-              {
-                num: '03',
-                id: 'v7-cream-soda-summer',
-                nameAr: 'V7 CREAM SODA (في سفن صودا صيفية)',
-                nameEn: 'V7 CREAM SODA',
-                typeAr: 'التوجيه البصري وسرد قصص الحملات (Visual Direction & Campaign Storytelling)',
-                typeEn: 'Visual Direction & Campaign Storytelling',
-                msgAr: 'بناء فكرة حملة، تسلسل المشاهد، والتفكير الإعلاني التلفزيوني والرقمي',
-                msgEn: 'Campaign concepts, scene sequencing, visual direction, and storytelling.',
-              },
-              {
-                num: '04',
-                id: 'takaa-energy-launch',
-                nameAr: 'TAKAA ENERGY DRINK (تاكة لمشروب الطاقة)',
-                nameEn: 'TAKAA ENERGY DRINK',
-                typeAr: 'إبداع بالذكاء الاصطناعي وفيديو قصير (AI Creative & Short-form Video)',
-                typeEn: 'AI Creative & Short-form Video',
-                msgAr: 'إنتاج إبداعي بالذكاء الاصطناعي، فيديوهات ريلز، وسرد منتج بصري',
-                msgEn: 'AI creative production, short-form video, and product-focused storytelling.',
-              },
-              {
-                num: '05',
-                id: 'baba-geh-campaign',
-                nameAr: 'BABA GAH (بابا جه)',
-                nameEn: 'BABA GAH',
-                typeAr: 'إعلانات كوميدية وفيديو حملة (Comedic Advertising & Video Campaign)',
-                typeEn: 'Comedic Advertising & Video Campaign',
-                msgAr: 'كتابة فكرة إعلانية، كوميديا الموقف، وفهم الجمهور المصري',
-                msgEn: 'Comedic ad writing, Egyptian cultural humor, and social-first video storytelling.',
-              },
-              {
-                num: '06',
-                id: 'buffalo-burger-commercial',
-                nameAr: 'BUFFALO BURGER (بافلو برجر)',
-                nameEn: 'BUFFALO BURGER',
-                typeAr: 'إعلانات تجارية للطعام والماكرو (Commercial Food Advertising)',
-                typeEn: 'Commercial Food Advertising',
-                msgAr: 'تقديم سينمائي للمنتج، إعلانات مقربة سريعة (Macro Foley & Sizzle)',
-                msgEn: 'Cinematic product presentation, commercial video thinking, and food advertising.',
-              },
-              {
-                num: '07',
-                id: 'talabat-delivery-tvc',
-                nameAr: 'TALABAT EGYPT (طلبات مصر)',
-                nameEn: 'TALABAT EGYPT',
-                typeAr: 'إعلان تلفزيوني ورقمي سريع (High-Velocity Food Delivery TVC)',
-                typeEn: 'High-Velocity Food Delivery TVC',
-                msgAr: '«يوم واحد من غير طلبات» • فكرة إعلانية، هندسة أصوات ماكرو، ومونتاج سريع',
-                msgEn: 'High-velocity commercial spot built around craving, family humor and instant relief.',
-              },
-            ].map((item) => {
-              const matchedProj = projects.find((p) => p.id === item.id) || projects[0];
-
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => onSelectProject(matchedProj)}
-                  className="group p-4 sm:p-5 rounded-2xl bg-zinc-900/50 hover:bg-zinc-800/80 border border-white/5 hover:border-amber-500/40 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer"
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="font-mono text-xl sm:text-2xl font-black text-zinc-600 group-hover:text-amber-400 transition-colors shrink-0">
-                      {item.num}
-                    </span>
-
-                    <div className="w-14 h-14 rounded-xl overflow-hidden bg-black shrink-0 border border-white/10 hidden sm:block">
-                      <img src={matchedProj.image} alt={matchedProj.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <h3 className="font-display text-base sm:text-lg font-bold text-white group-hover:text-amber-300 transition-colors">
-                          {isAr ? item.nameAr : item.nameEn}
-                        </h3>
-                        <span className="text-zinc-600 hidden sm:inline">&bull;</span>
-                        <span className="text-xs text-amber-400 font-mono">
-                          {isAr ? item.typeAr : item.typeEn}
-                        </span>
-                      </div>
-                      <p className="text-xs text-zinc-400 mt-1 font-mono">
-                        {isAr ? item.msgAr : item.msgEn}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 shrink-0 self-end md:self-auto">
-                    <span className="text-xs font-bold text-zinc-400 group-hover:text-white transition-colors">
-                      {isAr ? 'فتح دراسة الحالة' : 'View Case Study'}
-                    </span>
-                    <div className="w-8 h-8 rounded-full bg-white/5 group-hover:bg-amber-500 text-zinc-400 group-hover:text-black flex items-center justify-center transition-all">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* 05 — CASE STUDIES & ALL CAMPAIGNS HEADER */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 pt-10 border-t border-white/10">
-          <div>
-            <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest mb-2">
-              {isAr ? '05 — دراسات الحالة وأرشيف الحملات' : '05 — CASE STUDIES & CAMPAIGN ARCHIVE'}
-            </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-black text-white tracking-tight">
-              {isAr ? 'جميع الحملات ودراسات الحالة المفصلة' : 'Detailed Case Studies & Archive'}
-            </h2>
-            <p className="text-zinc-400 text-sm mt-1 max-w-xl">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <p className="text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed">
               {isAr
-                ? 'تصفح تفاصيل كل حملة: المشكلة، رؤية المستهلك، الفكرة، المخرجات، والنتائج بالأرقام.'
-                : 'Browse the complete challenge, consumer insight, creative idea, strategy, output, and KPIs.'}
+                ? 'تصفح حملات إعلانية متكاملة، فيديوهات تجارية، واستراتيجيات نمو مبنية على الأرقام والإبداع.'
+                : 'A curated collection of integrated ad campaigns, commercial films, and data-driven growth strategies.'}
             </p>
-          </div>
 
-          {/* Segmented Filter Bar (Clean, Zero Slop) */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-900/80 border border-white/5 backdrop-blur-md">
-            {filterTabs.map((tab) => {
-              const isActive = activeCategory === tab.key;
-              return (
-                <button
-                  key={tab.key}
-                  onClick={() => onCategoryChange(tab.key)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-amber-500 text-black shadow-md shadow-amber-500/20'
-                      : 'text-zinc-400 hover:text-white hover:bg-zinc-800/60'
-                  }`}
-                >
-                  {isAr ? tab.labelAr : tab.labelEn}
-                </button>
-              );
-            })}
+            {/* Segmented Filter Bar (Clean, Zero Slop) */}
+            <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-900/80 border border-white/5 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
+              {filterTabs.map((tab) => {
+                const isActive = activeCategory === tab.key;
+                return (
+                  <button
+                    key={tab.key}
+                    onClick={() => onCategoryChange(tab.key)}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                      isActive
+                        ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
+                        : 'text-zinc-400 hover:text-white hover:bg-zinc-800/60'
+                    }`}
+                  >
+                    {isAr ? tab.labelAr : tab.labelEn}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Unified Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, idx) => {
             const hasVideo = !!(project.videoUrl || project.videoPreviewUrl);
             const hasDeck = !!(project.deckSlides && project.deckSlides.length > 0);

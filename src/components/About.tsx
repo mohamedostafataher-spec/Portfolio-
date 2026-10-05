@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
-import { useAvatar } from '../context/AvatarContext';
 
 interface AboutProps {
   onOpenResume?: () => void;
@@ -30,7 +29,6 @@ export const About: React.FC<AboutProps> = ({
   onOpenPdfDeck,
 }) => {
   const { isAr } = useLanguage();
-  const { avatarUrl } = useAvatar();
 
   const handleWhatsApp = () => {
     const phone = '201110095403';
@@ -78,103 +76,73 @@ export const About: React.FC<AboutProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* TWO-COLUMN ABOUT SHOWCASE (MATCHING REFERENCE VIDEO 00:05) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+        {/* ABOUT CONTENT (CENTERED WITHOUT PHOTO) */}
+        <div className="max-w-4xl mx-auto mb-20 text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-[0.2em] mb-4">
+            <span className="w-8 h-[1px] bg-amber-500/50"></span>
+            <span>{isAr ? 'عن محمد طاهر' : '02 / ABOUT ME'}</span>
+            <span className="w-8 h-[1px] bg-amber-500/50"></span>
+          </div>
           
-          {/* LEFT: BRANDED PORTRAIT IN GLOWING BADGE */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative">
-              {/* Outer Amber Rim Glow */}
-              <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-amber-500/25 via-orange-500/15 to-transparent blur-xl" />
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-300 opacity-80" />
-
-              {/* Portrait Image Frame */}
-              <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-3xl overflow-hidden border-4 border-[#121215] bg-[#18181b] shadow-2xl p-1">
-                <img
-                  src={avatarUrl}
-                  alt="Mohamed Mostafa Taher"
-                  className="w-full h-full object-cover object-top rounded-2xl"
-                />
-              </div>
-
-              {/* Verified Pill */}
-              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-black/95 border border-amber-500/50 backdrop-blur-md shadow-xl flex items-center gap-1.5 whitespace-nowrap z-20">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span className="text-xs font-mono font-bold text-white">DEPI Certified Marketer</span>
-              </div>
+          <h2 className="font-display text-4xl sm:text-6xl font-black text-white tracking-tight mb-4">
+            {isAr ? 'قصة نجاح رقمية' : 'A Digital Success Story'}
+          </h2>
+          
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <div className="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 backdrop-blur-md shadow-xl flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">DEPI Certified Marketer</span>
             </div>
           </div>
 
-          {/* RIGHT: STORY, CREDENTIALS & ACTION BUTTONS */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
-            
-            <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest mb-2">
-                <span>02 / ABOUT ME</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-                {isAr ? 'عن محمد طاهر' : 'About Me'}
-              </h2>
-              <p className="text-amber-400 font-mono text-sm sm:text-base font-bold mt-1">
-                {isAr ? 'مسوق رقمي ومخرج إبداعي وميديا باير' : 'Digital Marketer & Creative Director'}
-              </p>
-            </div>
-
-            {/* BIO TEXT */}
-            <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+          <div className="space-y-6 text-zinc-300 text-base sm:text-xl leading-relaxed font-light">
+            <p>
               {isAr
                 ? 'أنا محمد مصطفى طاهر، مسوق رقمي ومخرج إبداعي مقيم في القاهرة، مصر. متخصص في هندسة الحملات الإعلانية المدفوعة، كتابة وصناعة الفيديوهات التجارية، وتخطيط استراتيجيات النمو للعلامات التجارية وفق نموذج SOSTAC العالمي.'
                 : 'I am Mohamed Mostafa Taher, a data-driven Digital Marketer & Creative Director based in Cairo, Egypt. Specializing in high-converting paid media campaigns, viral short-form commercials, and full-funnel growth architecture.'}
             </p>
 
-            <p className="text-zinc-400 text-sm leading-relaxed">
+            <p className="text-zinc-400 text-sm sm:text-lg">
               {isAr
                 ? 'طالب بجامعة العاصمة (كلية الآداب) وحاصل على شهادة الذكاء الاصطناعي والمهارات المهنية من ALX ومعتمد من مبادرة مصر الرقمية (DEPI). قمت بتخطيط وتنفيذ حملات وفيديوهات إعلانية لمشاريع بارزة تشمل: قيم للأزياء، بريدفاست، في سفن صودا، تاكة، بابا جه، بافلو برجر، وطلبات مصر.'
                 : 'Student at Capital University (Faculty of Arts), ALX AI & Professional Skills certified, and accredited by the Digital Egypt Pioneers Initiative (DEPI). Strategized and produced impactful campaigns for brands including QAIM Menswear, Breadfast, V7 Soda, TAKAA Energy Drink, Baba Geh, Buffalo Burger, and Talabat Egypt.'}
             </p>
-
-            {/* Quick Credentials Pills */}
-            <div className="flex flex-wrap gap-2 pt-1 justify-center lg:justify-start text-xs font-mono">
-              <span className="px-3 py-1 rounded-lg bg-zinc-800 border border-white/5 text-zinc-300">
-                🎓 Capital University (2027)
-              </span>
-              <span className="px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300">
-                ✨ ALX AI Certified
-              </span>
-              <span className="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
-                🤝 Resala Volunteer
-              </span>
-            </div>
-
-            {/* ACTION BUTTONS (LIKE VIDEO 00:08) */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-              <button
-                onClick={onOpenResume}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-extrabold text-sm transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2 cursor-pointer transform hover:scale-105"
-              >
-                <FileText className="w-4 h-4" />
-                <span>{isAr ? 'عرض وتحميل السيرة الذاتية (CV)' : 'Download CV / Resume'}</span>
-              </button>
-
-              <button
-                onClick={onOpenPdfDeck}
-                className="px-5 py-3 rounded-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-sm border border-white/10 hover:border-amber-500/40 transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <span>{isAr ? 'عرض الكتيب الشامل (PDF)' : 'View Full Deck (25 Pages)'}</span>
-                <ArrowUpRight className="w-4 h-4 text-amber-400" />
-              </button>
-
-              <button
-                onClick={handleWhatsApp}
-                className="px-5 py-3 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-bold text-sm border border-emerald-500/30 transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>{isAr ? 'محادثة واتساب سريعة' : 'Quick WhatsApp Chat'}</span>
-              </button>
-            </div>
-
           </div>
 
+          {/* Quick Credentials Pills */}
+          <div className="flex flex-wrap gap-3 mt-10 justify-center font-mono">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
+              <GraduationCap className="w-4 h-4 text-amber-500" />
+              <span>Capital University (2027)</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span>ALX AI Certified</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
+              <HeartHandshake className="w-4 h-4 text-emerald-500" />
+              <span>Resala Volunteer</span>
+            </div>
+          </div>
+
+          {/* ACTION BUTTONS */}
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-12">
+            <button
+              onClick={onOpenResume}
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-extrabold text-sm transition-all shadow-xl shadow-amber-500/25 flex items-center gap-2 cursor-pointer transform hover:scale-105"
+            >
+              <FileText className="w-5 h-5" />
+              <span>{isAr ? 'عرض السيرة الذاتية (CV)' : 'Download CV / Resume'}</span>
+            </button>
+
+            <button
+              onClick={onOpenPdfDeck}
+              className="px-7 py-4 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-sm border border-white/10 transition-all flex items-center gap-2 cursor-pointer"
+            >
+              <span>{isAr ? 'عرض الكتيب الشامل (PDF)' : 'View Full Deck'}</span>
+              <ArrowUpRight className="w-4 h-4 text-amber-400" />
+            </button>
+          </div>
         </div>
 
         {/* 4 MARKETING PILLARS GRID */}

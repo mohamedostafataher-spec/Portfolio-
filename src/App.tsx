@@ -9,7 +9,6 @@ import { INITIAL_PROJECTS } from './data/portfolioData';
 
 import { OwnerProvider, useOwner } from './context/OwnerContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
-import { AvatarProvider } from './context/AvatarContext';
 
 import { TopAdminBar } from './components/TopAdminBar';
 import { Navbar } from './components/Navbar';
@@ -233,7 +232,9 @@ export function PortfolioApp() {
       {/* Interactive Case Study Modal */}
       <ProjectModal
         project={selectedProject}
+        allProjects={projects}
         onClose={() => setSelectedProject(null)}
+        onSelectProject={(proj) => setSelectedProject(proj)}
         onOpenContact={(title) => handleOpenContact(`Campaign: ${title}`)}
       />
 
@@ -287,9 +288,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <OwnerProvider>
-        <AvatarProvider>
-          <PortfolioApp />
-        </AvatarProvider>
+        <PortfolioApp />
       </OwnerProvider>
     </LanguageProvider>
   );

@@ -175,22 +175,12 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
                   <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
                     {isAr ? service.descAr : service.descEn}
                   </p>
-
-                  {/* Highlights Bullet List */}
-                  <div className="pt-2 space-y-2 border-t border-white/5">
-                    {service.highlights.map((h, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-zinc-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                        <span className="line-clamp-1">{isAr ? h.ar : h.en}</span>
-                      </div>
-                    ))}
-                  </div>
                 </div>
 
                 {/* BOTTOM BUTTON: GET STARTED (MATCHING REFERENCE VIDEO) */}
                 <button
                   onClick={() => handleServiceClick(isAr ? service.titleAr : service.titleEn)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-zinc-800 hover:bg-amber-500 text-zinc-200 hover:text-black font-bold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/5 hover:border-amber-500 group-hover:shadow-md"
+                  className="w-full py-3 px-4 rounded-xl bg-zinc-800 hover:bg-amber-500 text-zinc-200 hover:text-black font-bold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/5 hover:border-amber-500 group-hover:shadow-md"
                 >
                   <span>{isAr ? 'ابدأ الآن' : 'Get Started'}</span>
                   <Arrow className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

@@ -84,50 +84,31 @@ export const CreativeProcess: React.FC = () => {
         </div>
 
         {/* 6 Steps Flow Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
               <div
                 key={idx}
-                className="p-5 rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl"
+                className="p-4 rounded-2xl bg-zinc-900/50 border border-white/5 hover:border-amber-500/40 transition-all group"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-2xl font-black text-zinc-600 group-hover:text-amber-400 transition-colors">
-                      {step.number}
-                    </span>
-                    <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                  </div>
-
-                  <h3 className="font-display text-sm font-bold text-white mb-2">
-                    {isAr ? step.titleAr : step.titleEn}
-                  </h3>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-xl font-black text-zinc-600 group-hover:text-amber-400 transition-colors">
+                    {step.number}
+                  </span>
+                  <Icon className="w-4 h-4 text-amber-500/60" />
                 </div>
 
-                <p className="text-xs text-zinc-400 leading-relaxed pt-3 border-t border-white/5">
+                <h3 className="font-display text-xs font-bold text-white mb-2 uppercase tracking-wider">
+                  {isAr ? step.titleAr : step.titleEn}
+                </h3>
+
+                <p className="text-[10px] text-zinc-500 leading-relaxed line-clamp-3">
                   {isAr ? step.descAr : step.descEn}
                 </p>
               </div>
             );
           })}
-        </div>
-
-        {/* Rule Banner from PDF Page 20 */}
-        <div className="mt-12 p-6 rounded-2xl bg-zinc-950/80 border border-white/10 max-w-3xl mx-auto text-center space-y-2">
-          <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-            {isAr ? 'المبدأ الحاكم' : 'CORE PRINCIPLE'}
-          </div>
-          <p className="text-base sm:text-lg font-bold text-white italic">
-            &ldquo;{isAr ? 'لا يصبح أي مؤشر نتيجة حقيقية حتى يتم قياسه فعلياً.' : 'No metric becomes a result until it is measured.'}&rdquo;
-          </p>
-          <p className="text-xs text-zinc-400 max-w-xl mx-auto">
-            {isAr
-              ? 'الخطط في دراسات الحالة تحدد ما يجب قياسه؛ ويتم فصل البيانات المخططة عن نتائج الحملات المعتمدة.'
-              : 'The plans in these case studies define what to measure; verified evidence is maintained honestly.'}
-          </p>
         </div>
       </div>
     </section>
