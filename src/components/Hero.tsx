@@ -6,7 +6,6 @@ import {
   Sparkles,
   MessageCircle,
   Instagram,
-  Linkedin,
   FolderGit2,
   Mail,
   BookOpen,
@@ -19,6 +18,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAvatar } from '../context/AvatarContext';
+import { useOwner } from '../context/OwnerContext';
 
 interface HeroProps {
   onOpenContact: () => void;
@@ -35,7 +35,8 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenPdfDeck,
 }) => {
   const { isAr } = useLanguage();
-  const { avatarUrl, updateAvatar, isCustom, resetAvatar } = useAvatar();
+  const { avatarUrl, updateAvatar, resetAvatar } = useAvatar();
+  const { isOwnerMode } = useOwner();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
@@ -73,6 +74,7 @@ export const Hero: React.FC<HeroProps> = ({
         setUploadSuccess(true);
         setTimeout(() => setUploadSuccess(false), 3000);
       }
+      e.target.value = '';
     }
   };
 
@@ -89,21 +91,22 @@ export const Hero: React.FC<HeroProps> = ({
       id="home"
       className="relative min-h-screen pt-24 sm:pt-32 pb-16 flex items-center justify-center overflow-hidden"
     >
-      {/* Hidden File Input for 100% native photo upload without modifications */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        className="hidden"
-        aria-label="Upload original photo"
-      />
+      {/* Hidden File Input for owner only */}
+      {isOwnerMode && (
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          className="hidden"
+        />
+      )}
 
       {/* Success Notification */}
       {uploadSuccess && (
         <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-emerald-500 text-black px-5 py-2.5 rounded-full font-bold shadow-2xl flex items-center gap-2 text-xs sm:text-sm animate-bounce">
           <CheckCircle2 className="w-4 h-4" />
-          <span>{isAr ? 'تم تطبيق صورتك الأصلية بنجاح 100% بدون أي تعديل!' : 'Original photo applied with 100% fidelity!'}</span>
+          <span>{isAr ? 'تم تحديث صورتك بنجاح!' : 'Photo updated successfully!'}</span>
         </div>
       )}
 
@@ -113,25 +116,37 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        {/* MOBILE TOP PORTRAIT: Preserves the exact photo as uploaded */}
+        {/* MOBILE TOP PORTRAIT: Preserves the exact photo with glowing frame */}
         <div className="flex lg:hidden flex-col items-center mb-6">
           <div className="relative group">
             <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-amber-500/30 to-orange-500/20 blur-md animate-pulse" />
-            <div className="relative w-40 h-52 rounded-2xl overflow-hidden border-2 border-amber-500/60 p-1 bg-zinc-950 shadow-2xl">
+            <div className="relative w-44 h-56 rounded-2xl overflow-hidden border-2 border-amber-500/60 p-1 bg-zinc-950 shadow-2xl">
               <img
                 src={avatarUrl}
                 alt="Mohamed Taher"
                 className="w-full h-full object-cover object-top rounded-xl"
               />
-              {/* Direct photo upload trigger button */}
-              <button
-                onClick={() => fileInputRef.current?.click()}
-                className="absolute inset-x-0 bottom-0 bg-black/80 hover:bg-black text-white text-[11px] font-bold py-1.5 flex items-center justify-center gap-1.5 transition-all cursor-pointer backdrop-blur-sm"
-                title="اضغط لاختيار صورتك الأصلية مباشرة من هاتفك"
-              >
-                <Camera className="w-3.5 h-3.5 text-amber-400" />
-                <span>{isAr ? 'رفع الصورة الأصلية' : 'Upload Original'}</span>
-              </button>
+              {/* Owner-only upload button */}
+              {isOwnerMode && (
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-4 transition-opacity">
+                  <button
+                    onClick={() => fileInputRef.current?.click()}
+                    className="p-4 rounded-full bg-amber-500 text-black shadow-2xl cursor-pointer transform active:scale-90 transition-transform flex flex-col items-center gap-1"
+                    title={isAr ? 'تحديث الصورة' : 'Update Photo'}
+                  >
+                    <Camera className="w-6 h-6" />
+                    <span className="text-[9px] font-bold uppercase">{isAr ? 'تغيير' : 'Change'}</span>
+                  </button>
+                  <button
+                    onClick={resetAvatar}
+                    className="p-4 rounded-full bg-zinc-900/90 text-white border border-white/20 shadow-2xl cursor-pointer transform active:scale-90 transition-transform flex flex-col items-center gap-1"
+                    title={isAr ? 'استعادة الأصلية' : 'Restore Original'}
+                  >
+                    <RefreshCw className="w-6 h-6" />
+                    <span className="text-[9px] font-bold uppercase">{isAr ? 'الأصلية' : 'Reset'}</span>
+                  </button>
+                </div>
+              )}
             </div>
             
             <div className="absolute -top-2 -right-2 px-2.5 py-0.5 rounded-full bg-black/90 border border-amber-500/50 text-[10px] font-mono font-bold text-amber-300 whitespace-nowrap shadow-md">
@@ -174,7 +189,7 @@ export const Hero: React.FC<HeroProps> = ({
               transition={{ duration: 0.5, delay: 0.15 }}
               className="text-xs sm:text-sm font-mono text-zinc-400 font-medium mb-3"
             >
-              {isAr ? 'محمد مصطفى طاهر سالم' : 'Mohamed Moostafa Taher Salem'}
+              {isAr ? 'محمد مصطفى طاهر سالم' : 'Mohamed Mostafa Taher Salem'}
             </motion.p>
 
             {/* TYPEWRITER ROLE */}
@@ -215,7 +230,7 @@ export const Hero: React.FC<HeroProps> = ({
                 : 'Bridging creative storytelling with performance marketing. I architect full-funnel ad campaigns, viral video commercials, and strategic brand positioning that scale revenues across the MENA region.'}
             </motion.p>
 
-            {/* 4 ORANGE CIRCULAR SOCIAL ICONS (MATCHING NEMO'S VIDEO) */}
+            {/* 4 ORANGE CIRCULAR SOCIAL ICONS */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -259,14 +274,14 @@ export const Hero: React.FC<HeroProps> = ({
               </a>
             </motion.div>
 
-            {/* ACTION BUTTONS (MATCHING NEMO'S ORANGE PILL BUTTONS) */}
+            {/* ACTION BUTTONS */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full sm:w-auto"
             >
-              {/* PRIMARY: My Portfolio (Opens Flipbook / Deck Modal) */}
+              {/* PRIMARY: My Portfolio */}
               <button
                 onClick={onOpenPdfDeck || onExploreWork}
                 className="px-7 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-extrabold text-sm sm:text-base transition-all shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer transform hover:scale-105"
@@ -296,7 +311,7 @@ export const Hero: React.FC<HeroProps> = ({
 
           </div>
 
-          {/* DESKTOP RIGHT COLUMN: LARGE BRANDED PORTRAIT (MATCHING EXACT REFERENCE VIDEO) */}
+          {/* DESKTOP RIGHT COLUMN: LARGE BRANDED PORTRAIT */}
           <div className="hidden lg:flex lg:col-span-5 justify-center items-center relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -308,23 +323,33 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-amber-500/25 via-orange-500/15 to-transparent blur-2xl animate-pulse" />
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-300 opacity-80 blur-sm" />
 
-              {/* Portrait Frame (Preserves exact photo and jacket) */}
+              {/* Portrait Frame */}
               <div className="relative w-72 xl:w-80 aspect-[3/4] rounded-3xl overflow-hidden border-4 border-[#18181b] bg-[#121215] shadow-2xl p-1.5">
                 <img
                   src={avatarUrl}
                   alt="Mohamed Mostafa Taher Salem"
                   className="w-full h-full object-cover object-top rounded-2xl"
                 />
-
-                {/* Hover/Tap Button to Upload Original Photo File Directly */}
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="absolute inset-x-2 bottom-2 bg-black/85 hover:bg-black text-white text-xs font-bold py-2.5 rounded-xl border border-white/20 flex items-center justify-center gap-2 transition-all cursor-pointer backdrop-blur-md shadow-xl"
-                  title="اضغط لاختيار صورتك الأصلية كما هي بدون أي تعديل"
-                >
-                  <Camera className="w-4 h-4 text-amber-400" />
-                  <span>{isAr ? 'رفع الصورة الأصلية (ملفك المباشر)' : 'Upload Original Photo'}</span>
-                </button>
+                
+                {/* Owner-only upload button (Desktop) */}
+                {isOwnerMode && (
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-4">
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-sm flex items-center gap-2 cursor-pointer transition-transform hover:scale-105 shadow-xl"
+                    >
+                      <Camera className="w-5 h-5" />
+                      <span>{isAr ? 'تغيير الصورة الشخصية' : 'Change Profile Photo'}</span>
+                    </button>
+                    <button
+                      onClick={resetAvatar}
+                      className="px-6 py-3 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 text-white font-bold text-sm flex items-center gap-2 cursor-pointer transition-transform hover:scale-105 border border-white/10 shadow-xl"
+                    >
+                      <RefreshCw className="w-5 h-5" />
+                      <span>{isAr ? 'استعادة الصورة الأصلية' : 'Restore Original Photo'}</span>
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Floating Top Badge: DEPI Certified */}
@@ -358,17 +383,6 @@ export const Hero: React.FC<HeroProps> = ({
                   <span className="text-xs font-bold text-emerald-400 block">5M+ Views & ROAS</span>
                 </div>
               </motion.div>
-
-              {/* Reset if custom */}
-              {isCustom && (
-                <button
-                  onClick={resetAvatar}
-                  className="absolute -top-3 right-0 p-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white border border-white/10 z-30"
-                  title="استعادة الصورة الافتراضية"
-                >
-                  <RefreshCw className="w-3 h-3" />
-                </button>
-              )}
 
             </motion.div>
           </div>

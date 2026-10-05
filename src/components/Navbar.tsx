@@ -59,7 +59,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         <a
           href="#home"
           id="brand-logo"
-          className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none"
+          onClick={(e) => {
+            // If user clicks the logo while holding Alt or long clicks (simulated by checking if it's already auth)
+            // Or just allow clicking MT logo to trigger login if not authenticated
+            if (!isOwnerAuthenticated) {
+              e.preventDefault();
+              openLoginModal();
+            }
+          }}
+          className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none cursor-pointer"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 flex items-center justify-center font-display font-black text-base sm:text-lg text-amber-400 group-hover:border-amber-400/60 transition-colors shadow-inner">
             MT
