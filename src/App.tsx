@@ -9,6 +9,7 @@ import { INITIAL_PROJECTS } from './data/portfolioData';
 
 import { OwnerProvider, useOwner } from './context/OwnerContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { AvatarProvider } from './context/AvatarContext';
 
 import { TopAdminBar } from './components/TopAdminBar';
 import { Navbar } from './components/Navbar';
@@ -164,7 +165,7 @@ export function PortfolioApp() {
 
       {/* Clean, Streamlined & Professional Master Layout */}
       <main className="flex-1 relative z-10">
-        {/* HERO */}
+        {/* 01 — HERO */}
         <Hero
           onOpenContact={() => handleOpenContact('Commercial Collaboration')}
           onExploreWork={handleExploreWork}
@@ -176,7 +177,19 @@ export function PortfolioApp() {
           }}
         />
 
-        {/* 04 — SELECTED WORK & 05 — CASE STUDIES */}
+        {/* 02 — ABOUT & CREDENTIALS */}
+        <About
+          onOpenResume={() => setIsResumeModalOpen(true)}
+          onOpenContact={() => handleOpenContact('Commercial Collaboration')}
+          onOpenPdfDeck={() => setIsPdfModalOpen(true)}
+        />
+
+        {/* 03 — OUR SERVICES (4 MARKETING PILLARS) */}
+        <CapabilitiesSection
+          onSelectService={(serviceName) => handleOpenContact(serviceName)}
+        />
+
+        {/* 04 — LATEST PROJECTS / SELECTED WORK */}
         <MasterPortfolioSection
           projects={projects}
           activeCategory={activeCategory}
@@ -188,16 +201,10 @@ export function PortfolioApp() {
           onResetProjects={handleResetProjects}
         />
 
-        {/* 02 — CAPABILITIES (4 PILLARS) */}
-        <CapabilitiesSection />
-
-        {/* 03 — PROCESS (FROM IDEA TO IMPACT) */}
+        {/* 05 — PROCESS (FROM IDEA TO IMPACT) */}
         <CreativeProcess />
 
-        {/* 04 — ABOUT & CREDENTIALS */}
-        <About />
-
-        {/* 05 — CONTACT */}
+        {/* 06 — CONTACT ME */}
         <ContactSection initialServiceOrProject={contactInitialService} />
 
         {/* 06 — ADDITIONAL WORK & ARCHIVE */}
@@ -280,7 +287,9 @@ export default function App() {
   return (
     <LanguageProvider>
       <OwnerProvider>
-        <PortfolioApp />
+        <AvatarProvider>
+          <PortfolioApp />
+        </AvatarProvider>
       </OwnerProvider>
     </LanguageProvider>
   );

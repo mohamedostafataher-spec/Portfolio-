@@ -31,10 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { nameEn: 'Home', nameAr: 'الرئيسية', href: '#home' },
-    { nameEn: 'Selected Work', nameAr: 'المشاريع المختارة', href: '#work' },
-    { nameEn: 'Capabilities', nameAr: 'القدرات والمهارات', href: '#capabilities' },
-    { nameEn: 'Process', nameAr: 'حلقة العمل', href: '#process' },
     { nameEn: 'About', nameAr: 'عن محمد', href: '#about' },
+    { nameEn: 'Services', nameAr: 'الخدمات', href: '#services' },
+    { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
 
@@ -63,18 +62,18 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none"
         >
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 flex items-center justify-center font-display font-black text-base sm:text-lg text-amber-400 group-hover:border-amber-400/60 transition-colors shadow-inner">
-            MM
+            MT
           </div>
           <div className="flex flex-col">
             <span className="font-display font-bold text-sm sm:text-base tracking-tight text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5">
-              {isAr ? 'محمد مصطفى' : 'Mohamed Mostafa'}
+              {isAr ? 'محمد طاهر' : 'Mohamed Taher'}
               {isOwnerMode && (
                 <Crown className="w-3.5 h-3.5 text-amber-400" title="Owner Mode Active" />
               )}
             </span>
             <span className="text-[10px] sm:text-[11px] font-medium text-zinc-400 tracking-wider uppercase flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {isAr ? 'تسويق رقمي & ذكاء اصطناعي' : 'Digital Marketing & AI'}
+              {isAr ? 'مسوق رقمي ومخرج إبداعي' : 'Marketer & Creative Director'}
             </span>
           </div>
         </a>

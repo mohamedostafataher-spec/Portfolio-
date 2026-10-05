@@ -25,8 +25,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [formName, setFormName] = useState('');
   const [formEmail, setFormEmail] = useState('');
+  const [formPhone, setFormPhone] = useState('');
   const [formService, setFormService] = useState(
-    initialServiceOrProject || 'AI Commercial / Video Production'
+    initialServiceOrProject || 'Performance Marketing / Media Buying'
   );
   const [formMessage, setFormMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -48,8 +49,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
 
   const handleWhatsAppDirect = () => {
     const text = isAr
-      ? `مرحباً أستاذ محمد، أنا ${formName || 'عميل محتمل'}. أود التواصل معك لمناقشة مشروع: ${formService}.`
-      : `Hi Mohamed, I'm ${formName || 'a potential client'}. I'd like to discuss a project regarding: ${formService}.`;
+      ? `مرحباً أستاذ محمد، أنا ${formName || 'عميل محتمل'}${formPhone ? ` (${formPhone})` : ''}. أود التواصل معك لمناقشة مشروع: ${formService}.\n${formMessage ? `تفاصيل: ${formMessage}` : ''}`
+      : `Hi Mohamed, I'm ${formName || 'a potential client'}${formPhone ? ` (${formPhone})` : ''}. I'd like to discuss a project regarding: ${formService}.\n${formMessage ? `Details: ${formMessage}` : ''}`;
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -58,7 +59,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     setSubmitted(true);
     const subject = encodeURIComponent(`Project Inquiry: ${formService} - ${formName}`);
     const body = encodeURIComponent(
-      `Hi Mohamed,\n\nMy name is ${formName} (${formEmail}).\n\nI'm reaching out regarding: ${formService}\n\nProject details:\n${formMessage}\n\nLooking forward to hearing from you!`
+      `Hi Mohamed,\n\nMy name is ${formName} (${formEmail}).\nPhone/WhatsApp: ${formPhone || 'Not provided'}\n\nI'm reaching out regarding: ${formService}\n\nProject details:\n${formMessage}\n\nLooking forward to hearing from you!`
     );
     window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
   };
@@ -265,24 +266,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                   <div>
                     <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
-                      {isAr ? 'الاسم أو الشركة *' : 'Your Name / Company *'}
+                      {isAr ? 'الاسم أو الشركة *' : 'Your Name *'}
                     </label>
                     <input
                       type="text"
                       required
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
-                      placeholder={isAr ? 'مثال: أحمد رجب / شركة س' : 'e.g. Sarah Jenkins'}
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                      placeholder={isAr ? 'مثال: أحمد رجب' : 'e.g. Sarah Jenkins'}
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-500 transition-colors"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
-                      {isAr ? 'البريد الإلكتروني *' : 'Your Email *'}
+                      {isAr ? 'البريد الإلكتروني *' : 'Email Address *'}
                     </label>
                     <input
                       type="email"
@@ -290,7 +291,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       value={formEmail}
                       onChange={(e) => setFormEmail(e.target.value)}
                       placeholder="name@company.com"
-                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-zinc-300 mb-1.5">
+                      {isAr ? 'رقم الهاتف / واتساب' : 'Mobile / WhatsApp'}
+                    </label>
+                    <input
+                      type="tel"
+                      value={formPhone}
+                      onChange={(e) => setFormPhone(e.target.value)}
+                      placeholder="+20 1..."
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-zinc-800/80 border border-white/10 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-500 transition-colors"
                     />
                   </div>
                 </div>

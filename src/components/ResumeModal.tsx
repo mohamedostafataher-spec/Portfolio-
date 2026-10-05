@@ -4,11 +4,12 @@ import {
   Printer,
   Download,
   Mail,
-  Linkedin,
-  Sparkles,
-  Award,
-  BookOpen,
+  Phone,
+  Globe,
   Briefcase,
+  GraduationCap,
+  Award,
+  Heart,
   CheckCircle,
   ExternalLink,
 } from 'lucide-react';
@@ -38,24 +39,25 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
         aria-label="Close modal overlay"
       />
 
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10 print:bg-white print:text-black print:p-0 print:border-none">
+        
         {/* Top Control Bar */}
-        <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
+        <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8 print:hidden">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-300">
-              Curriculum Vitae &bull; Updated 2026
+              Official Curriculum Vitae &bull; Mohamed Salem
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white border border-white/10 text-xs font-medium flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-md"
               title="Print or Save as PDF"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>Print / Download PDF</span>
             </button>
             <button
               onClick={onClose}
@@ -67,197 +69,208 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
           </div>
         </div>
 
-        {/* CV Document Body */}
-        <div className="space-y-8 print:text-black">
+        {/* CV Document Body (Matching exact uploaded resume) */}
+        <div className="space-y-7 print:text-black">
+          
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-6 border-b border-white/5">
-            <div>
-              <h1 className="font-display text-3xl sm:text-4xl font-black text-white tracking-tight">
-                Mohamed Mostafa
-              </h1>
-              <p className="text-amber-400 font-semibold text-sm sm:text-base mt-1">
-                Digital Marketing Specialist &amp; AI Content Creator
-              </p>
-              <p className="text-zinc-400 text-xs mt-1">
-                Cairo, Egypt &bull; Available for Remote &amp; On-Site Collaborations
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-1.5 text-xs text-zinc-400 sm:text-right font-mono">
-              <a
-                href="mailto:mohamedostafataher@gmail.com"
-                className="hover:text-amber-400 transition-colors"
-              >
-                mohamedostafataher@gmail.com
+          <div className="pb-6 border-b border-white/10 print:border-zinc-300">
+            <h1 className="font-display text-2xl sm:text-3xl font-black text-white print:text-black tracking-tight uppercase">
+              Mohamed Moostafa Taher Salem
+            </h1>
+            <p className="text-amber-400 print:text-amber-700 font-bold text-sm sm:text-base mt-1">
+              Digital Marketing | Creative Strategy | Social Media
+            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-400 print:text-zinc-600 mt-2 font-mono">
+              <span>Cairo, Egypt</span>
+              <span>&bull;</span>
+              <a href="tel:+2001110095403" className="hover:text-amber-400">(+20) 01110095403</a>
+              <span>&bull;</span>
+              <a href="mailto:mohamedostafataher@gmail.com" className="hover:text-amber-400">mohamedostafataher@gmail.com</a>
+              <span>&bull;</span>
+              <a href="https://mohamedmostafa-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-amber-400 print:text-blue-700 hover:underline">
+                mohamedmostafa-one.vercel.app
               </a>
-              <span>LinkedIn: Mohamed Mostafa</span>
-              <span className="text-emerald-400 font-bold">Open to Commercial &amp; Full-Time Roles</span>
             </div>
           </div>
 
-          {/* Executive Summary */}
+          {/* Profile */}
           <div>
-            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 mb-2 flex items-center gap-2">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Executive Profile</span>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-2">
+              Profile
             </h2>
-            <p className="text-zinc-300 text-sm leading-relaxed">
-              Results-driven Digital Marketing &amp; Creative Video Specialist accredited by the Digital Egypt Pioneers Initiative (DEPI / MCIT - ID: 21172333). Specialized in bridging data-informed marketing frameworks (SOSTAC, SCQA, Audience Personas, Meta Ad Funnels) with cinematic AI video production, colloquial storytelling, and high-velocity short-form content.
+            <p className="text-zinc-300 print:text-zinc-800 text-xs sm:text-sm leading-relaxed">
+              Digital Marketing enthusiast with a strong interest in creative strategy, social media, content creation and performance marketing. Experienced in developing campaign concepts, social media ideas and AI-powered creative content. Combining marketing thinking with creativity to build engaging campaigns designed around clear objectives.
             </p>
           </div>
 
-          {/* Core Competencies */}
+          {/* Selected Projects */}
           <div>
-            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
-              <CheckCircle className="w-3.5 h-3.5" />
-              <span>Core Competencies</span>
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; SOSTAC Strategy &amp; SCQA
-              </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; AI Commercial Production
-              </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; CapCut &amp; Viral Pop-Reveals
-              </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; Sound Design &amp; Match Cuts
-              </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; Meta (FB &amp; IG) Acquisition Funnels
-              </div>
-              <div className="p-2.5 rounded-xl bg-zinc-900/60 border border-white/5 text-zinc-300">
-                &bull; Brand Deck Presentations
-              </div>
-            </div>
-          </div>
-
-          {/* Selected Creative & Practical Projects */}
-          <div>
-            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 mb-4 flex items-center gap-2">
-              <Briefcase className="w-3.5 h-3.5" />
-              <span>Key Campaigns &amp; Commercial Concepts (2025 — 2026)</span>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-3">
+              Selected Projects
             </h2>
             <div className="space-y-4">
-              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-white/5 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-white text-sm">
-                    Spiro Spathis — “الأصل بيكمل معانا”
+              
+              <div className="p-3.5 rounded-xl bg-zinc-900/50 print:bg-zinc-100 border border-white/5 print:border-zinc-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
+                  <h3 className="font-bold text-white print:text-black text-sm">
+                    QAIM Menswear &mdash; Content Strategy &amp; Instagram Architecture
+                  </h3>
+                  <span className="text-[11px] font-mono text-amber-400 print:text-amber-800">
+                    Content &amp; Social Strategy
                   </span>
-                  <span className="text-xs font-mono text-amber-400">Concept Campaign</span>
                 </div>
-                <p className="text-xs text-zinc-400">
-                  High-energy cinematic Egyptian heritage soda commercial. Crafted macro condensation visual aesthetics, crisp bottle cap Foley soundscapes, and rhythmic editing celebrating Egyptian cultural pride.
-                </p>
+                <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                  <li>Developed content direction and Instagram architecture for a menswear brand.</li>
+                  <li>Created carousel concepts, hooks and social-first storytelling to strengthen brand presence.</li>
+                  <li>Structured content ideas around audience engagement and consistent visual communication.</li>
+                </ul>
               </div>
 
-              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-white/5 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-white text-sm">
-                    V7 Cream Soda — “Every Generation Has Its Summer”
+              <div className="p-3.5 rounded-xl bg-zinc-900/50 print:bg-zinc-100 border border-white/5 print:border-zinc-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
+                  <h3 className="font-bold text-white print:text-black text-sm">
+                    TAKAA Energy Drink &mdash; AI Creative &amp; Short-form Video
+                  </h3>
+                  <span className="text-[11px] font-mono text-amber-400 print:text-amber-800">
+                    AI Creative &amp; Video
                   </span>
-                  <span className="text-xs font-mono text-amber-400">19-Slide Deck &amp; Reel</span>
                 </div>
-                <p className="text-xs text-zinc-400">
-                  Constructed match-cut transitions and generative audio soundscapes bridging 3 eras of Egyptian coastal summers (Ras El Bar, Agami, and Sahel).
-                </p>
+                <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                  <li>Developed an AI-assisted creative concept for an energy drink campaign.</li>
+                  <li>Created short-form video direction and visual storytelling for social media.</li>
+                  <li>Combined product-focused messaging with fast-paced, platform-native content.</li>
+                </ul>
               </div>
 
-              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-white/5 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-white text-sm">
-                    QAIM (قيم) — Fashion Storytelling &amp; SOSTAC Strategy
+              <div className="p-3.5 rounded-xl bg-zinc-900/50 print:bg-zinc-100 border border-white/5 print:border-zinc-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
+                  <h3 className="font-bold text-white print:text-black text-sm">
+                    V7 Cream Soda &mdash; Visual Direction &amp; Campaign Storytelling
+                  </h3>
+                  <span className="text-[11px] font-mono text-amber-400 print:text-amber-800">
+                    Visual Direction
                   </span>
-                  <span className="text-xs font-mono text-amber-400">E-Commerce Strategy</span>
                 </div>
-                <p className="text-xs text-zinc-400">
-                  Full SOSTAC audit and SCQA campaign roadmap for a 62K follower brand with 96% positive rating. Shifted content focus to “Sell the lifestyle and the solution, not only the product” boosting organic engagement by +20%.
-                </p>
+                <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                  <li>Developed a summer campaign concept built around product storytelling and generational moments.</li>
+                  <li>Created a scene-by-scene creative structure for a social/TVC-style campaign.</li>
+                  <li>Translated the campaign idea into a cohesive visual and content system.</li>
+                </ul>
               </div>
 
-              <div className="p-4 rounded-2xl bg-zinc-900/40 border border-white/5 space-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-white text-sm">
-                    Baba Geh (بابا جه) — Social & Comedy Campaign
+              <div className="p-3.5 rounded-xl bg-zinc-900/50 print:bg-zinc-100 border border-white/5 print:border-zinc-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
+                  <h3 className="font-bold text-white print:text-black text-sm">
+                    Baba Gah &amp; Buffalo Burger &mdash; Commercial Video Campaigns
+                  </h3>
+                  <span className="text-[11px] font-mono text-amber-400 print:text-amber-800">
+                    Video &amp; Advertising
                   </span>
-                  <span className="text-xs font-mono text-amber-400">Viral Short-Form & TVC</span>
                 </div>
-                <p className="text-xs text-zinc-400">
-                  Engineered viral hooks, comedic punchline timing, and dynamic audio-dialogue synchronization for the high-engagement «بابا جه» campaign with custom sound Foley effects.
-                </p>
+                <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                  <li>Created comedic and cinematic advertising concepts for food and consumer brands.</li>
+                  <li>Developed scene directions, short-form storytelling and AI-assisted visual ideas.</li>
+                  <li>Produced campaign-ready concepts for video and social media execution.</li>
+                </ul>
               </div>
+
             </div>
           </div>
 
-          {/* Tools & Technologies */}
+          {/* Professional Experience */}
           <div>
-            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
-              <Award className="w-3.5 h-3.5" />
-              <span>Technical &amp; Creative Toolset</span>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-3">
+              Professional Experience
             </h2>
-            <p className="text-xs text-zinc-300 leading-relaxed">
-              <strong className="text-white">Video &amp; Motion:</strong> CapCut Pro, Match-Cut Direction, Foley Sound Engineering &bull;{' '}
-              <strong className="text-white">Generative Media:</strong> AI Video Generation, Prompt Schemas, Midjourney, Flux &bull;{' '}
-              <strong className="text-white">Marketing &amp; Strategy:</strong> SOSTAC Framework, SCQA Narrative, Meta Ads Manager, Canva Brand Decks.
-            </p>
-          </div>
+            <div className="space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-white print:text-black">
+                <span>Production Worker &mdash; Golden Sun</span>
+                <span className="font-mono text-zinc-400 print:text-zinc-600">Cairo, Egypt | 5 months</span>
+              </div>
+              <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                <li>Supported daily production operations while maintaining workflow and quality requirements.</li>
+                <li>Collaborated with team members in a structured, deadline-driven environment.</li>
+                <li>Demonstrated consistency, attention to detail, punctuality and adherence to workplace standards.</li>
+              </ul>
 
-          {/* Education & Accreditations */}
-          <div>
-            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 mb-3 flex items-center gap-2">
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Accreditations &amp; Education</span>
-            </h2>
-            <div className="space-y-3 text-xs">
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between flex-wrap gap-2 text-zinc-200">
-                <div>
-                  <div className="font-bold text-white flex items-center gap-1.5">
-                    <span>Digital Egypt Pioneers Initiative (DEPI) • وزارة الاتصالات وتكنولوجيا المعلومات</span>
-                  </div>
-                  <div className="text-zinc-400 text-[11px]">
-                    Specialist ID: <span className="text-amber-400 font-mono font-bold">21172333</span> &bull; Digital Marketing &amp; Creative Strategy
-                  </div>
-                </div>
-                <a
-                  href="/documents/DEPI_Digital_Marketing_Certification_Work.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs flex items-center gap-1 transition-all"
-                >
-                  <Download className="w-3 h-3" />
-                  <span>View Official DEPI Capstone Report (PDF)</span>
-                </a>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-white print:text-black pt-2">
+                <span>General Worker &mdash; Napoiles</span>
+                <span className="font-mono text-zinc-400 print:text-zinc-600">Cairo, Egypt | 2024&ndash;2025</span>
               </div>
-
-              <div className="flex items-center justify-between text-zinc-300 px-1">
-                <span>Google Digital Garage — Digital Marketing Fundamentals</span>
-                <span className="font-mono text-emerald-400">Certified</span>
-              </div>
-              <div className="flex items-center justify-between text-zinc-300 px-1">
-                <span>HubSpot Academy — Inbound &amp; Content Marketing</span>
-                <span className="font-mono text-emerald-400">Certified</span>
-              </div>
+              <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-700 space-y-1">
+                <li>Supported daily operations and coordinated effectively with team members and supervisors.</li>
+                <li>Maintained workplace organization, followed procedures and handled assigned tasks reliably.</li>
+              </ul>
             </div>
           </div>
 
-          {/* Footer Call to Action */}
-          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-zinc-500">
-              Ready to create something impactful for your brand?
-            </span>
-            <button
-              onClick={() => {
-                onClose();
-                onOpenContact();
-              }}
-              className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-lg shadow-amber-500/20"
-            >
-              <span>Hire Me / Let's Connect</span>
-            </button>
+          {/* Education */}
+          <div>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-2">
+              Education
+            </h2>
+            <div className="text-xs text-zinc-300 print:text-zinc-800">
+              <strong className="text-white print:text-black">Capital University</strong> &mdash; Faculty of Arts, Geography Department | <span className="font-mono text-zinc-400">Expected Graduation: 2027</span>
+            </div>
           </div>
+
+          {/* Courses & Certifications */}
+          <div>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-2">
+              Courses &amp; Certifications
+            </h2>
+            <ul className="list-disc list-inside text-xs text-zinc-300 print:text-zinc-800 space-y-1">
+              <li><strong>ALX</strong> &mdash; AI &amp; Professional Skills</li>
+              <li><strong>Surveying Course</strong> &mdash; Field Training &amp; Balance Device Operation</li>
+              <li><strong>DEPI</strong> &mdash; Digital Egypt Pioneers Initiative (Ministry of Communications &amp; IT)</li>
+            </ul>
+          </div>
+
+          {/* Volunteering */}
+          <div>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-2">
+              Volunteering
+            </h2>
+            <div className="text-xs text-zinc-300 print:text-zinc-800 space-y-1">
+              <div className="flex justify-between font-bold text-white print:text-black">
+                <span>Volunteer &mdash; Resala Organization</span>
+                <span className="font-mono text-zinc-400 print:text-zinc-600">2022&ndash;2025</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Organized activities for children and supported people with special needs.</li>
+                <li>Developed teamwork, communication and responsibility skills.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Core Skills */}
+          <div>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-amber-400 print:text-amber-800 mb-2">
+              Core Skills
+            </h2>
+            <div className="space-y-2 text-xs text-zinc-300 print:text-zinc-800">
+              <p>
+                <strong className="text-white print:text-black">Digital Marketing:</strong> Digital Marketing Strategy &bull; Campaign Strategy &bull; Audience Research &bull; Content Strategy &bull; Social Media Marketing &bull; Meta Ads Manager &bull; Campaign Setup &bull; Performance Analysis &bull; Google Analytics
+              </p>
+              <p>
+                <strong className="text-white print:text-black">Creative &amp; Production:</strong> Creative Concepts &bull; Campaign Ideas &bull; Copywriting &bull; Art Direction &bull; AI Creative Production &bull; Video Marketing &bull; Reels &amp; Short-form Content &bull; Storytelling
+              </p>
+              <p>
+                <strong className="text-white print:text-black">Tools:</strong> Canva Pro &bull; CapCut Pro &bull; Adobe Premiere Pro &bull; Adobe Photoshop &bull; ChatGPT &bull; AI Creative Tools
+              </p>
+              <p>
+                <strong className="text-white print:text-black">Languages:</strong> Arabic &mdash; Native &bull; English &mdash; B1/B2 &bull; Dutch &mdash; A1
+              </p>
+            </div>
+          </div>
+
+          {/* Footer note */}
+          <div className="pt-4 border-t border-white/5 text-[11px] font-mono text-zinc-500 text-center">
+            Mohamed Salem &bull; Digital Marketing CV
+          </div>
+
         </div>
+
       </div>
     </div>
   );
