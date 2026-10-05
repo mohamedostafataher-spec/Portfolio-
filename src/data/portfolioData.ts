@@ -19,6 +19,7 @@ const v7Video = '/videos/v7_summer_commercial.mp4';
 const qaimVideo = '/videos/qaim_fashion_campaign.mp4';
 const takaaVideo = '/videos/takaa_instagram_ad.mp4';
 const foodDeliveryVideo = '/videos/food_delivery_ad.mp4';
+const breadfastVideo = '/videos/breadfast_delivery_campaign.mp4';
 
 // Real Posters and Image Assets
 import spiroPoster from '../assets/images/spiro_spathis_poster.jpg';
@@ -36,6 +37,7 @@ import takaaCreativeCampaign from '../assets/images/takaa_creative_campaign.jpg'
 import takaaCapcutPoster from '../assets/images/takaa_capcut_poster.jpg';
 import foodDeliveryPoster from '../assets/images/food_delivery_poster.jpg';
 import breadfastCover from '../assets/images/breadfast_campaign_cover.jpg';
+import breadfastVideoPoster from '../assets/images/breadfast_video_poster.jpg';
 import babaGehPoster from '../assets/images/baba_geh_poster.jpg';
 import babaGehThumb1 from '../assets/images/baba_geh_thumb1.jpg';
 import babaGehThumb2 from '../assets/images/baba_geh_thumb2.jpg';
@@ -894,14 +896,16 @@ export const INITIAL_PROJECTS: Project[] = [
       { step: '03. Delivery Payoff & CTA', detail: 'Breadfast delivery bag reveal, fresh breakfast payoff, and clear call-to-action.' },
     ],
     finalResult: 'A relatable Egyptian morning story turned into a food-delivery campaign. The edit uses natural dialogue, fast pacing, subtle digital zooms, original music and a product-focused ending to move from problem to payoff.',
-    image: breadfastCover,
+    image: breadfastVideoPoster,
+    videoUrl: breadfastVideo,
     aspectRatio: '9:16',
     stats: [
-      { label: 'Format', value: 'Short-form Video 9:16' },
+      { label: 'Format', value: 'Vertical Reel 9:16' },
       { label: 'Language', value: 'Egyptian Arabic Dialogue' },
       { label: 'Payoff', value: 'Fresh Breakfast CTA' },
     ],
     featured: true,
+    driveFolderUrl: 'https://drive.google.com/drive/folders/1FFCqWudCQE0cM_b6rpe9IJRHWllAFpX6',
   },
   {
     id: 'talabat-delivery-tvc',
@@ -937,7 +941,7 @@ export const INITIAL_PROJECTS: Project[] = [
       { label: 'Pacing', value: 'Fast Cut Macro Editing' },
     ],
     featured: true,
-    driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
+    driveFolderUrl: 'https://drive.google.com/drive/folders/1v0rs3UAwaxY8sOckbHlWB3y-J9_AVSvf',
   },
   {
     id: 'baba-geh-campaign',

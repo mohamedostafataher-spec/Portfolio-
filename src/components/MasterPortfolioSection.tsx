@@ -71,14 +71,15 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
     { key: 'Visuals', labelAr: 'المعرض البصري والبوسترات', labelEn: 'Visuals & Lookbooks' },
   ];
 
-  // Core 6 projects requested to lead the portfolio
-  const coreSixIds = [
+  // Core 7 projects requested to lead the portfolio
+  const coreSevenIds = [
     'qaim-fashion-growth',
     'breadfast-campaign',
     'v7-cream-soda-summer',
     'takaa-energy-launch',
     'baba-geh-campaign',
     'buffalo-burger-commercial',
+    'talabat-delivery-tvc',
   ];
 
   // Smart filtering logic with priority ordering
@@ -90,6 +91,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
         return (
           p.id.includes('funnel') ||
           p.id.includes('depi') ||
+          p.id.includes('talabat') ||
           p.skills.some((s) => s.toLowerCase().includes('ad') || s.toLowerCase().includes('funnel'))
         );
       }
@@ -108,6 +110,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
           p.id.includes('capcut') ||
           p.id.includes('baba-geh') ||
           p.id.includes('breadfast') ||
+          p.id.includes('talabat') ||
           p.category === 'Short-Form Video' ||
           p.tools.some((t) => t.toLowerCase().includes('capcut')) ||
           p.aspectRatio === '9:16'
@@ -135,8 +138,8 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
       return true;
     })
     .sort((a, b) => {
-      const idxA = coreSixIds.indexOf(a.id);
-      const idxB = coreSixIds.indexOf(b.id);
+      const idxA = coreSevenIds.indexOf(a.id);
+      const idxB = coreSevenIds.indexOf(b.id);
       if (idxA !== -1 && idxB !== -1) return idxA - idxB;
       if (idxA !== -1) return -1;
       if (idxB !== -1) return 1;
@@ -257,6 +260,16 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                 typeEn: 'Commercial Food Advertising',
                 msgAr: 'تقديم سينمائي للمنتج، إعلانات مقربة سريعة (Macro Foley & Sizzle)',
                 msgEn: 'Cinematic product presentation, commercial video thinking, and food advertising.',
+              },
+              {
+                num: '07',
+                id: 'talabat-delivery-tvc',
+                nameAr: 'TALABAT EGYPT (طلبات مصر)',
+                nameEn: 'TALABAT EGYPT',
+                typeAr: 'إعلان تلفزيوني ورقمي سريع (High-Velocity Food Delivery TVC)',
+                typeEn: 'High-Velocity Food Delivery TVC',
+                msgAr: '«يوم واحد من غير طلبات» • فكرة إعلانية، هندسة أصوات ماكرو، ومونتاج سريع',
+                msgEn: 'High-velocity commercial spot built around craving, family humor and instant relief.',
               },
             ].map((item) => {
               const matchedProj = projects.find((p) => p.id === item.id) || projects[0];

@@ -37,7 +37,20 @@ export const GoogleDriveMasterVault: React.FC = () => {
   const [activeMedia, setActiveMedia] = useState<{ url: string; title: string; type: string } | null>(null);
 
   const vaultItems: VaultItem[] = [
-    // 1. VIDEOS (9 MP4 files)
+    // 1. VIDEOS
+    {
+      id: 'v_breadfast',
+      titleAr: 'إعلان بريدفاست الصباحي — فطارك ميتأخرش (مونتاج وإخراج متقن)',
+      titleEn: 'Breadfast Breakfast Delivery Campaign (Precision Edit)',
+      projectAr: 'بريدفاست مصر (Breadfast)',
+      projectEn: 'Breadfast Egypt',
+      type: 'video',
+      ext: 'MP4',
+      sizeLabel: '40 MB',
+      durationOrPages: '64 sec',
+      url: '/videos/breadfast_delivery_campaign.mp4',
+      driveFolderUrl: 'https://drive.google.com/drive/folders/1FFCqWudCQE0cM_b6rpe9IJRHWllAFpX6',
+    },
     {
       id: 'v1',
       titleAr: 'إعلان تاكة كاب كات بوب ريفيل السريع',
@@ -75,7 +88,7 @@ export const GoogleDriveMasterVault: React.FC = () => {
       sizeLabel: '7.5 MB',
       durationOrPages: '68 sec',
       url: '/videos/food_delivery_ad.mp4',
-      driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
+      driveFolderUrl: 'https://drive.google.com/drive/folders/1v0rs3UAwaxY8sOckbHlWB3y-J9_AVSvf',
     },
     {
       id: 'v4',

@@ -37,13 +37,15 @@ export function PortfolioApp() {
 
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      const saved = localStorage.getItem('mm_portfolio_projects_v11');
+      const saved = localStorage.getItem('mm_portfolio_projects_v12');
       if (saved) {
         const parsed: Project[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const hasBreadfast = parsed.some((p) => p.id === 'breadfast-campaign');
+          const hasRealBreadfast = parsed.some(
+            (p) => p.id === 'breadfast-campaign' && p.videoUrl === '/videos/breadfast_delivery_campaign.mp4'
+          );
           const hasTalabat = parsed.some((p) => p.id === 'talabat-delivery-tvc');
-          if (hasBreadfast && hasTalabat) {
+          if (hasRealBreadfast && hasTalabat) {
             return parsed;
           }
         }
@@ -66,7 +68,7 @@ export function PortfolioApp() {
   // Persist projects to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('mm_portfolio_projects_v11', JSON.stringify(projects));
+      localStorage.setItem('mm_portfolio_projects_v12', JSON.stringify(projects));
     } catch {
       // ignore
     }

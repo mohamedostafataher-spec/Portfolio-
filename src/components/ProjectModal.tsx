@@ -50,6 +50,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   const [displayFormat, setDisplayFormat] = useState<'landscape' | 'vertical'>('landscape');
   const [selectedGalleryImg, setSelectedGalleryImg] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState<boolean>(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const videoUrlToUse = project?.videoUrl || project?.videoPreviewUrl;
@@ -60,7 +61,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     setActiveScriptIdx(0);
     setCurrentSlideIndex(0);
     setSelectedGalleryImg(null);
+    setIsPaused(true);
     setDisplayFormat(project?.aspectRatio === '9:16' ? 'vertical' : 'landscape');
+
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.load();
+    }
 
     if (videoUrlToUse) {
       setActiveTab('video');
@@ -246,18 +253,35 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               }`}
             >
               {videoInfo.isDirect ? (
-                <video
-                  ref={videoRef}
-                  src={videoInfo.embedUrl}
-                  controls
-                  autoPlay
-                  playsInline
-                  poster={project.image}
-                  className="w-full h-full object-contain rounded-lg shadow-2xl bg-black"
-                >
-                  <source src={videoInfo.embedUrl} />
-                  Your browser does not support video playback.
-                </video>
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <video
+                    ref={videoRef}
+                    controls
+                    playsInline
+                    preload="auto"
+                    poster={project.image}
+                    onPlay={() => setIsPaused(false)}
+                    onPause={() => setIsPaused(true)}
+                    className="w-full h-full object-contain rounded-lg shadow-2xl bg-black"
+                  >
+                    <source src={videoInfo.embedUrl} type="video/mp4" />
+                    Your browser does not support video playback.
+                  </video>
+                  {isPaused && (
+                    <button
+                      onClick={() => {
+                        if (videoRef.current) {
+                          videoRef.current.play().catch(() => {});
+                          setIsPaused(false);
+                        }
+                      }}
+                      className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-amber-500 hover:bg-amber-400 text-black flex items-center justify-center shadow-2xl transition-transform hover:scale-110 z-20 cursor-pointer pointer-events-auto"
+                      aria-label="Play video"
+                    >
+                      <Play className="w-8 h-8 fill-current ml-1" />
+                    </button>
+                  )}
+                </div>
               ) : (
                 <iframe
                   src={videoInfo.embedUrl}
