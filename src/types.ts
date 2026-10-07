@@ -27,6 +27,8 @@ export interface Project {
   objective: string;
   concept: string;
   myRole: string;
+  whatIDid?: string[];
+  projectType?: string;
   tools: string[];
   process: { step: string; detail: string }[];
   finalResult: string;

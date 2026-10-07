@@ -76,26 +76,50 @@ export const About: React.FC<AboutProps> = ({
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* ABOUT CONTENT (CENTERED WITHOUT PHOTO) */}
+        {/* ABOUT CONTENT (CENTERED WITH PHOTO) */}
         <div className="max-w-4xl mx-auto mb-20 text-center">
+          
+          {/* Circular Photo for About */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative inline-block mb-10"
+          >
+            <div className="absolute -inset-4 bg-amber-500/10 blur-3xl rounded-full" />
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl rotate-3 border border-white/10 p-2 bg-zinc-900 group">
+              <div className="w-full h-full rounded-xl overflow-hidden -rotate-3 transition-transform group-hover:rotate-0 duration-500">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1Fw6HZYS0JZ0QAByDjCCXPwGH4jApy_5l" 
+                  alt="Mohamed Mostafa Taher"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Floating Decorative Elements */}
+              <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-black shadow-lg shadow-amber-500/30">
+                <Sparkles className="w-4 h-4" />
+              </div>
+            </div>
+          </motion.div>
+
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-[0.2em] mb-4">
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
             <span>{isAr ? 'عن محمد طاهر' : '02 / ABOUT ME'}</span>
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
           </div>
           
-          <h2 className="font-display text-4xl sm:text-6xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl sm:text-6xl font-black text-white tracking-tight mb-4">
             {isAr ? 'قصة نجاح رقمية' : 'A Digital Success Story'}
           </h2>
           
           <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 backdrop-blur-md shadow-xl flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">DEPI Certified Marketer</span>
+            <div className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 backdrop-blur-md shadow-xl flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-wider">DEPI Certified Marketer</span>
             </div>
           </div>
 
-          <div className="space-y-6 text-zinc-300 text-base sm:text-xl leading-relaxed font-light">
+          <div className="space-y-6 text-zinc-300 text-sm sm:text-xl leading-relaxed font-light px-2">
             <p>
               {isAr
                 ? 'أنا محمد مصطفى طاهر، مسوق رقمي ومخرج إبداعي مقيم في القاهرة، مصر. متخصص في هندسة الحملات الإعلانية المدفوعة، كتابة وصناعة الفيديوهات التجارية، وتخطيط استراتيجيات النمو للعلامات التجارية وفق نموذج SOSTAC العالمي.'

@@ -60,28 +60,26 @@ export const Navbar: React.FC<NavbarProps> = ({
           href="#home"
           id="brand-logo"
           onClick={(e) => {
-            // If user clicks the logo while holding Alt or long clicks (simulated by checking if it's already auth)
-            // Or just allow clicking MT logo to trigger login if not authenticated
             if (!isOwnerAuthenticated) {
               e.preventDefault();
               openLoginModal();
             }
           }}
-          className="group flex items-center gap-2.5 sm:gap-3 focus:outline-none cursor-pointer"
+          className="group flex items-center gap-2 sm:gap-3 focus:outline-none cursor-pointer overflow-hidden"
         >
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 flex items-center justify-center font-display font-black text-base sm:text-lg text-amber-400 group-hover:border-amber-400/60 transition-colors shadow-inner">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 border border-amber-500/30 flex items-center justify-center font-display font-black text-xs sm:text-lg text-amber-400 group-hover:border-amber-400/60 transition-colors shadow-inner shrink-0">
             MT
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold text-sm sm:text-base tracking-tight text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5">
+          <div className="flex flex-col min-w-0">
+            <span className="font-display font-bold text-[13px] sm:text-base tracking-tight text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5 truncate">
               {isAr ? 'محمد طاهر' : 'Mohamed Taher'}
               {isOwnerMode && (
-                <Crown className="w-3.5 h-3.5 text-amber-400" title="Owner Mode Active" />
+                <Crown className="w-3 h-3 text-amber-400 shrink-0" title="Owner Mode Active" />
               )}
             </span>
-            <span className="text-[10px] sm:text-[11px] font-medium text-zinc-400 tracking-wider uppercase flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {isAr ? 'مسوق رقمي ومخرج إبداعي' : 'Marketer & Creative Director'}
+            <span className="text-[9px] sm:text-[11px] font-medium text-zinc-400 tracking-wider uppercase flex items-center gap-1.5 truncate">
+              <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              {isAr ? 'مسوق رقمي' : 'Marketer'}
             </span>
           </div>
         </a>

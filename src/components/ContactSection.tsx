@@ -73,24 +73,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-28 relative bg-[#09090b] border-t border-white/5">
+    <section id="contact" className="py-16 sm:py-28 relative bg-[#09090b] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Tag */}
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">
+          <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">
             {isAr ? 'تواصل معي • CONTACT' : 'CONTACT'}
           </span>
-          <div className="h-px bg-amber-500/20 w-16" />
+          <div className="h-px bg-amber-500/20 w-12 sm:w-16" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <span className="text-xs font-mono text-amber-400 uppercase tracking-widest block mb-2">
-                Digital marketing · creative content · AI-assisted product stories
+              <span className="text-[10px] sm:text-xs font-mono text-amber-400 uppercase tracking-widest block mb-2">
+                Digital marketing · creative content · AI product stories
               </span>
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              <h2 className="font-display text-2xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight px-0.5">
                 {isAr ? (
                   <>
                     فلنتحدث عن{' '}
@@ -108,7 +108,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 )}
               </h2>
 
-              <p className="text-zinc-300 text-sm sm:text-base mt-4 leading-relaxed">
+              <p className="text-zinc-300 text-xs sm:text-base mt-4 leading-relaxed">
                 {isAr
                   ? 'متاح للمشاريع المستقلة والاستشارات التسويقية والتعاون مع الوكالات والعلامات التجارية.'
                   : 'Available for freelance projects, marketing consulting, and brand collaborations.'}

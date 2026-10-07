@@ -200,23 +200,28 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
             </p>
 
             {/* Segmented Filter Bar (Clean, Zero Slop) */}
-            <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-900/80 border border-white/5 backdrop-blur-md overflow-x-auto no-scrollbar max-w-full">
-              {filterTabs.map((tab) => {
-                const isActive = activeCategory === tab.key;
-                return (
-                  <button
-                    key={tab.key}
-                    onClick={() => onCategoryChange(tab.key)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                      isActive
-                        ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
-                        : 'text-zinc-400 hover:text-white hover:bg-zinc-800/60'
-                    }`}
-                  >
-                    {isAr ? tab.labelAr : tab.labelEn}
-                  </button>
-                );
-              })}
+            <div className="relative max-w-full lg:max-w-none group/filter">
+              <div className="flex items-center gap-1.5 p-1.5 rounded-2xl bg-zinc-900/80 border border-white/5 backdrop-blur-md overflow-x-auto no-scrollbar scroll-smooth">
+                {filterTabs.map((tab) => {
+                  const isActive = activeCategory === tab.key;
+                  return (
+                    <button
+                      key={tab.key}
+                      onClick={() => onCategoryChange(tab.key)}
+                      className={`px-4 py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                        isActive
+                          ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
+                          : 'text-zinc-400 hover:text-white hover:bg-zinc-800/60'
+                      }`}
+                    >
+                      {isAr ? tab.labelAr : tab.labelEn}
+                    </button>
+                  );
+                })}
+              </div>
+              {/* Fade masks for horizontal scroll indication */}
+              <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-zinc-900 to-transparent pointer-events-none lg:hidden rounded-r-2xl" />
+              <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-zinc-900 to-transparent pointer-events-none lg:hidden rounded-l-2xl" />
             </div>
           </div>
         </div>
@@ -240,7 +245,8 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
               <TiltCard3D
                 key={project.id}
                 maxTilt={6}
-                className="group rounded-3xl bg-zinc-900/40 border border-white/10 hover:border-amber-500/40 transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-xl"
+                onClick={() => onSelectProject(project)}
+                className="group rounded-3xl bg-zinc-900/40 border border-white/10 hover:border-amber-500/40 transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-xl cursor-pointer"
               >
                 {/* Visual Cover */}
                 <div className="relative aspect-[16/10] overflow-hidden bg-black flex items-center justify-center">

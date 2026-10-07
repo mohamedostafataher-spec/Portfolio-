@@ -52,6 +52,7 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Marketing Strategy', 'Content Creation'],
     title: 'H&M Egypt: $7.5B E-Commerce Market Research & Competitor Audit',
     clientOrSpec: 'Strategic Blueprint',
+    projectType: 'Strategic Market Research & Competitor Audit',
     subtitle: 'Egypt Fast-Fashion Digital Landscape, Consumer Behavior & Gap Analysis',
     category: 'Market Research & Audit',
     tagline: 'تشريح دقيق لسوق الأزياء الرقمي في مصر بحجم 7.5 مليار دولار وفرص النمو الكبرى.',
@@ -64,6 +65,13 @@ export const INITIAL_PROJECTS: Project[] = [
       'تحليل تقاطعي بين حجم السوق الصاعد (+35% نمو سنوي) وبين نقاط ضعف العلامة الحالية (النشر غير المنتظم والاعتماد المفرط على الكتالوج العالمي دون محتوى محلي).',
     myRole:
       'أخصائي بحوث السوق واستراتيجي التسويق — جمع البيانات، تحليل أداء المنافسين في مواسم رمضان والجمعة البيضاء، وبناء مصفوفة الـ SWOT وشخصيات العملاء المستهدفين.',
+    whatIDid: [
+      'Analyzed $7.5B Egyptian fashion e-commerce market and demographic trends.',
+      'Conducted rigorous competitor audit against Zara, Defacto and LC Waikiki.',
+      'Identified critical brand gaps in local content localization and posting consistency.',
+      'Authored comprehensive 20+ page executive strategy report with SWOT matrix.',
+      'Delivered actionable growth recommendations for seasonal campaigns.'
+    ],
     tools: ['Market Intelligence', 'Competitor Auditing Decks', 'Meta Ad Library', 'PowerPoint Strategy Presentation'],
     deckFileName: 'HM_Egypt_Market_Research_Analysis.pptx',
     pdfDownloadUrl: '/documents/HM_Egypt_Market_Research_Report.pdf',
@@ -266,18 +274,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Marketing Strategy', 'Content Creation', 'Dubbing & Audio', 'Videos', 'Photography'],
     title: 'QAIM (قيم للـ Menswear): Complete SOSTAC & SCQA Masterplan',
     clientOrSpec: 'Client Project',
+    projectType: 'Client Strategy & Content Architecture',
     subtitle: 'Digital Presence Audit, SCQA Storytelling, 4 Weekly Tactics & Actions/Control KPIs',
     category: 'Marketing Strategy',
     tagline: 'بيع أسلوب الحياة والحل، مش بس المنتج — الخطة التسويقية الشاملة لعلامة قِيَم.',
     description:
       'استراتيجية تسويقية متكاملة الأركان طبقت أحدث المدارس العالمية (SOSTAC & SCQA). تشمل تدقيق الوضع الراهن لصفحة فيسبوك والمتجر الإلكتروني، وصياغة الرسائل الإعلانية، وتفصيل التكتيكات والإجراءات الأسبوعية ولوحة مؤشرات الأداء (KPIs)، مصحوبة بفيديو تجاري وتسجيل صوتي أصلي.',
-    skills: ['SOSTAC Masterplan', 'SCQA Storytelling', 'Action Ownership', 'KPI Dashboards', 'AI Video & Voiceover'],
+    skills: ['SOSTAC Masterplan', 'SCQA Storytelling', 'Action Ownership', 'KPI Dashboards', 'AI Video & Voiceover', 'CapCut Pro'],
     objective:
       'حل معضلة المظهر الأنيق المريح للشباب والرجال، ومضاعفة التفاعل العضوي بنسبة +20% لجمهور يتجاوز 62 ألف متابع بنسبة توصية 96%، وزيادة التحويل لطلبات الواتساب والمتجر.',
     concept:
       'إطار SCQA: Situation (شباب يبحثون عن مظهر شيك ومريح يومياً) → Complication (صعوبة إيجاد خامات جيدة تجمع الستايل والراحة) → Question (كيف تحقق ذلك؟) → Answer (تشكيلة قيم المبتكرة).',
     myRole:
       'استراتيجي التسويق الرقمي والمخرج الإبداعي — تدقيق الحسابات الرقمية، صياغة رزنامة المحتوى الأسبوعية، توجيه الأداء الصوتي (Voiceover)، وإخراج الفيديو الإعلاني ولوحة الـ KPIs.',
+    whatIDid: [
+      'Architected complete SOSTAC & SCQA content system for a 62K followers menswear brand.',
+      'Engineered interactive carousels ("One Base, Three Looks" & "Complete the Look").',
+      'Directed studio-recorded Egyptian colloquial voiceovers for product versatility.',
+      'Structured high-retention 9:16 vertical reels commercial.',
+      'Built direct link-in-bio & WhatsApp purchase funnel to reduce order friction.'
+    ],
     tools: ['SOSTAC Framework', 'SCQA Model', 'CapCut Pro', 'Voiceover Recording & Foley', 'Canva Strategy Decks'],
     audioUrl: '/audio/qaim_voiceover.wav',
     audioTitle: 'Voiceover: Product Aligned & Fresh Occasions (هندسة الصوت والإلقاء الإعلاني لعلامة قيم)',
@@ -471,18 +487,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['AI Content', 'Videos', 'Dubbing & Audio', 'Content Creation', 'Photography'],
     title: 'V7 Cream Soda: 360° Multi-Era Brand & Campaign Deck',
     clientOrSpec: 'Brand Launch',
+    projectType: 'Brand Launch & Summer Campaign Deck',
     subtitle: '«صيف في سفن: كل جيل له صيفه... وده صيفنا» • 19-Slide Strategy Deck & Commercial Film',
     category: 'Brand Presentation & Deck',
     tagline: 'كل جيل له صيفه... وده صيفنا مع V7 Cream Soda.',
     description:
       'حملة إعلانية وتسويقية متكاملة موثقة بديك استراتيجي مكون من 19 شريحة لـ V7 Cream Soda. تعتمد على تقنية الـ Match Cuts والانتقال الزمني الصوتي البصري عبر 3 أجيال من المصايف المصرية (رأس البر، العجمي، والساحل الشمالي).',
-    skills: ['Campaign Strategy', 'Match Cut Mechanics', 'Sound Identity', 'Brand Deck Design', 'Short-Form Reels'],
+    skills: ['Campaign Strategy', 'Match Cut Mechanics', 'Sound Identity', 'Brand Deck Design', 'Short-Form Reels', 'CapCut Pro'],
     objective:
       'خلق رابط عاطفي بين جيل الشباب وعلامة V7 من خلال مقارنة نوستالجية لأجواء الصيف في مصر عبر الأجيال الثلاثة وربط الانتعاش بعبوة V7 العصرية.',
     concept:
       'رحلة عبر 3 أجيال من الصيف المصري: جيل زمان في رأس البر مع راديو الشاطئ، جيل التسعينات في العجمي مع شريط الكاسيت، وجيل اليوم في الساحل مع عبوة V7 Cream Soda.',
     myRole:
       'مخطط الحملة والمخرج الإبداعي — صياغة فكرة الانتقال الزمني، كتابة الديك الإعلاني المكون من 19 شريحة استراتيجية، وهندسة الانتقالات الصوتية (Match Cuts).',
+    whatIDid: [
+      'Crafted 360° generational summer storytelling concept ("كل جيل له صيفه... وده صيفنا").',
+      'Authored 19-slide comprehensive strategy deck with market context and moodboards.',
+      'Directed match-cut visual transitions across Egyptian beach eras (Ras El Bar to Sahel).',
+      'Produced 4K product hero visuals, splashing dynamics and color palette rules.',
+      'Structured multi-platform rollout plan for TikTok, Instagram Reels and DOOH.'
+    ],
     tools: ['V7 Brand Deck', 'AI Video Generation', 'CapCut (Match-Cut Transitions)', 'Sound Design & Foley'],
     deckFileName: 'V7_Cream_Soda_Summer_Brand_Deck.pptx',
     pdfDownloadUrl: '/documents/Mohamed_Taher_Executive_Portfolio.pdf',
@@ -571,18 +595,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Content Creation', 'Videos', 'Photography', 'AI Content'],
     title: 'TAKAA Energy Drink: Brand Identity & Instagram Architecture',
     clientOrSpec: 'Brand Launch',
+    projectType: 'AI Creative Concept & CapCut Launch',
     subtitle: '«مودك ناقصه تاكة» • Brand Positioning Deck, CapCut Viral Template & 8-Slide Carousel',
     category: 'Brand Presentation & Deck',
     tagline: 'مودك مش محتاج إعادة ضبط كاملة.. هو بس ناقصه تاكة!',
     description:
       'إطلاق هوية متكاملة لمشروب طاقة مصري عصري، تشمل إعلاناً سينمائياً، قالب كاب كات فيروسي (Product Pop-Reveal)، وتصميم حساب إنستغرام مخصص للاستحواذ، وكاروسيل من 8 شرائح.',
-    skills: ['Brand Identity', 'CapCut Pop-Reveal Template', 'AI Commercial Film', 'Instagram Architecture', 'Copywriting'],
+    skills: ['Brand Identity', 'CapCut Pop-Reveal Template', 'AI Commercial Film', 'Instagram Architecture', 'Copywriting', 'CapCut Pro'],
     objective:
       'بناء براند طاقة جديد بروح مصرية خفيفة الظل وغير مبالغ فيها، موجهة للشباب والرياضيين والطلبة تحت شعار «مودك ناقصه تاكة».',
     concept:
       'تصميم قالب كاب كات بفتحة كانز سريعة وزوم خاطف (Zoom-Punch Cut) مع إعلان سينمائي يستعرض شحن الطاقة في لحظات التعب والتركيز اليومية.',
     myRole:
       'المبتكر الإبداعي للعلامة — كتابة الشعار، هندسة قالب الكاب كات الفيروسي، إنتاج الإعلان التجاري، وتصميم سلايدات الكاروسيل وهوية الحساب الرسمي.',
+    whatIDid: [
+      'Conceptualized Egyptian youth energy drink launch campaign ("مودك ناقصه تاكة").',
+      'Generated AI product commercial stills and cinematic hero visuals against Cairo landmarks.',
+      'Designed 8-frame educational carousel highlighting midday work & study slumps.',
+      'Edited high-energy 16-second CapCut template synced to energetic sound beats.',
+      'Prepared launch presentation deck detailing audience personas and tone of voice.'
+    ],
     tools: ['CapCut Viral Templates', 'Generative AI Media', 'Brand Deck Presentations', 'Social Carousel Design'],
     deckFileName: 'TAKAA_Energy_Brand_Launch_Deck.pptx',
     pdfDownloadUrl: '/documents/Mohamed_Taher_Executive_Portfolio.pdf',
@@ -735,6 +767,7 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Marketing Strategy', 'Content Creation'],
     title: 'DEPI Ministry of Communications: Digital Marketing Master Strategy',
     clientOrSpec: 'Strategic Blueprint',
+    projectType: 'Accredited Strategic Blueprint (MCIT DEPI)',
     subtitle: 'Certified Capstone: SOSTAC Framework, Budgeting, Meta Ads & Omnichannel Growth',
     category: 'Marketing Strategy',
     tagline: 'الخطة الاستراتيجية الشاملة المعتمدة من مبادرة رواد مصر الرقمية (DEPI).',
@@ -747,6 +780,13 @@ export const INITIAL_PROJECTS: Project[] = [
       'منهجية علمية صارمة تربط بين أبحاث السوق الميدانية في مصر وبين تكتيكات الحملات الرقمية على منصات ميتا وجوجل لتحقيق أعلى ربحية ممكنة.',
     myRole:
       'أخصائي التسويق الرقمي والمخطط الاستراتيجي المعتمد — كود الاعتماد الرسمي (ID: 21172333).',
+    whatIDid: [
+      'Applied certified SOSTAC framework across situation audit, objectives, and strategy.',
+      'Built media buying models and budgeting allocations for Meta and Google Ads.',
+      'Designed full-funnel TOFU/MOFU/BOFU customer journeys and retargeting logic.',
+      'Delivered capstone documentation accredited by Ministry of Communications (ID: 21172333).',
+      'Formulated KPI measurement matrix focusing on CAC reduction and ROAS scaling.'
+    ],
     tools: ['SOSTAC Strategic Model', 'Meta Ads Planner', 'Budget Allocation Sheets', 'Executive PDF Documentation'],
     deckFileName: 'DEPI_Digital_Marketing_Certification_Work.pdf',
     pdfDownloadUrl: '/documents/DEPI_Digital_Marketing_Certification_Work.pdf',
@@ -810,18 +850,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['AI Content', 'Videos', 'Dubbing & Audio'],
     title: 'Spiro Spathis (سبيرو سباتس)',
     clientOrSpec: 'Commercial Campaign',
+    projectType: 'Brand Heritage Commercial (TVC)',
     subtitle: '«الأصل بيكمل معانا» • Cinematic Egyptian Heritage TVC',
     category: 'AI Commercial',
     tagline: 'سبيرو سباتس — الأصل طعمه مبيتغيرش، وبيرجع أقوى.',
     description:
       'إعلان تجاري سينمائي عالي الطاقة لعلامة سبيرو سباتس التاريخية، يجمع بين نبض الشارع المصري، لمة الصحاب، وانتعاش الصودا الأصلية بمؤثرات صوتية ومونتاج سريع.',
-    skills: ['Creative Direction', 'AI Commercial Video', 'Sound Design & Foley', 'Brand Identity', 'Pacing & Editing'],
+    skills: ['Creative Direction', 'AI Commercial Video', 'Sound Design & Foley', 'Brand Identity', 'Pacing & Editing', 'CapCut Pro'],
     objective:
       'إعادة إحياء وتصدر علامة سبيرو سباتس كرمز للفخر والانتماء الوطني المصري عبر إعلان فيديو سريع يخاطب جيل الشباب ويربط متعة اللحظة بتجربة المنتج المنعشة.',
     concept:
       '“الأصل بيكمل معانا”: سيمفونية بصرية وصوتية بين أصوات فتح العبوات وفقاعات الصودا وتجمع الأصدقاء في شوارع القاهرة التاريخية، مصحوبة بإيقاع سريع وتلوين سينمائي مشبع.',
     myRole:
       'المخرج الإبداعي ومصمم الصوت ومونتير الإعلان — ابتكار الفكرة، توليد المشاهد السينمائية بالذكاء الاصطناعي، وهندسة شريط الصوت والمؤثرات الواقعية.',
+    whatIDid: [
+      'Developed emotional narrative celebrating 100+ years of Egyptian soda heritage.',
+      'Directed sound foley of bottle opening, fizz, and cold condensation drops.',
+      'Combined nostalgic retro visual cues with modern high-definition cinematography.',
+      'Edited 41-second TVC spot with authentic Egyptian soundtrack in CapCut Pro.',
+      'Delivered campaign assets adapted for both 16:9 widescreen and 9:16 reels.'
+    ],
     tools: ['AI Video Generation', 'CapCut (Pacing & Sound Design)', 'Adobe Audition (Sound FX)', 'Prompt Engineering'],
     process: [
       { step: '01. الفكرة والعمق الثقافي', detail: 'دراسة نوستالجيا الشارع المصري وارتباط اسم سبيرو سباتس بالهوية واللمة.' },
@@ -846,18 +894,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Videos', 'Photography'],
     title: 'Buffalo Burger (بافلو برجر)',
     clientOrSpec: 'Commercial Campaign',
+    projectType: 'Commercial Food TVC / Appetizing Reel',
     subtitle: '«The Anatomy of a Craving» • High-Velocity Fast-Casual Food TVC',
     category: 'Food Advertising',
     tagline: 'طعم أصيل ومونتاج ناري يثير الشهية من أول ثانية.',
     description:
       'إعلان تجاري سريع ومكثف لعلامة بافلو برجر، يركز على لقطات الماكرو الحارة للجبن الذائب والبرجر المشوي مع مونتاج سريع يرفع إفراز الدوبامين والرغبة الفورية في الطلب.',
-    skills: ['Food Advertising', 'Macro Food Direction', 'Visual Speed Ramping', 'Sound FX & Crunch Foley', 'Short-Form Hooks'],
+    skills: ['Food Advertising', 'Macro Food Direction', 'Visual Speed Ramping', 'Sound FX & Crunch Foley', 'Short-Form Hooks', 'CapCut Pro'],
     objective:
       'تحفيز الشهية الفورية ودفع المستخدم لطلب الوجبة مباشرة عبر منصات التواصل (Reels & TikTok) باستخدام تقنيات التصوير البطيء والانتقالات السريعة.',
     concept:
       '«The Anatomy of a Craving»: استعراض ناري لمراحل إعداد الساندوتش بلقطات مقربة جداً تُبرز تفاصيل اللحم والصلصات وتطاير بذور السمسم مع إيقاع صوتي متفجر.',
     myRole:
       'المخرج والمونتير الإعلاني — ضبط توقيتات التقطيع (0.8 ثانية لكل لقطة)، هندسة مؤثرات القرمشة والصوت، وتوليد المشاهد الحركية بدقة فائقة.',
+    whatIDid: [
+      'Directed macro food sizzle cinematography focusing on melted cheese and flame grilling.',
+      'Engineered high-fidelity Foley sound design (crunch, sizzle, sauce drip).',
+      'Crafted hunger-inducing hook in the first 1.5 seconds to stop social feed scrolling.',
+      'Edited high-retention commercial cut with rhythmic beat-synced transitions.',
+      'Structured direct ordering CTA aligned with discount promotions.'
+    ],
     tools: ['AI Video Generation', 'CapCut Pro (Speed Ramping)', 'Macro Sound Design', 'Cinematic Color Grading'],
     process: [
       { step: '01. هندسة الهوك النفسي', detail: 'بدء الفيديو فوراً بلقطة سريعة لقطع الجبن الذائب وانفجار النكهة لجذب الانتباه في أول ثانية.' },
@@ -881,14 +937,22 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Videos', 'Content Creation'],
     title: 'Breadfast — Breakfast, Delivered When Your Morning Starts Late',
     clientOrSpec: 'Spec Project',
+    projectType: 'Spec Advertising Campaign / Food Delivery Video',
     subtitle: 'Spec Advertising Campaign · Food Delivery · Short-form Video',
     category: 'Food Advertising',
     tagline: 'Your morning can start late, but breakfast does not have to.',
     description: 'A short-form Egyptian breakfast delivery concept built around a late morning, a missed breakfast and a fast product payoff.',
-    skills: ['Creative Advertising', 'Video Storytelling', 'Product Reveal', 'Voice-over Direction', 'CTA Structure'],
+    skills: ['Creative Advertising', 'Video Storytelling', 'Product Reveal', 'Voice-over Direction', 'CTA Structure', 'CapCut Pro'],
     objective: 'Create an Egyptian breakfast delivery advertisement built around a relatable morning problem.',
-    concept: 'A young man wakes up late, rushes out without breakfast, stays connected with his friends, and eventually catches up with a Breadfast delivery.',
-    myRole: 'Creative Concept, Story Editing, Voice-over Direction, Music Direction, Video Editing, Motion Zooms, Product Reveal and CTA Structure.',
+    concept: 'A young man wakes up late, rushes out without breakfast, stays connected with his friends, and eventually catches up with a fresh Breadfast delivery.',
+    myRole: 'Creative Concept, Story & Dialogue Writing, Voice-over Direction, Video Editing & Motion Zooms, and CTA Structure.',
+    whatIDid: [
+      'Scripted relatable Egyptian morning scenario with conversational hooks and natural dialogue.',
+      'Directed voice-over rhythm and sound pacing to match morning urgency.',
+      'Edited vertical commercial reel in CapCut Pro with fast cuts and dynamic motion zooms.',
+      'Designed Breadfast product reveal and fresh breakfast unboxing payoff.',
+      'Structured clear final call-to-action (CTA) driving direct app breakfast orders.'
+    ],
     tools: ['CapCut Pro', 'Canva Pro', 'AI Creative Tools', 'Audio Editing'],
     process: [
       { step: '01. Relatable Morning Problem', detail: 'A young man wakes up late and rushes out without breakfast.' },
@@ -897,7 +961,8 @@ export const INITIAL_PROJECTS: Project[] = [
     ],
     finalResult: 'A relatable Egyptian morning story turned into a food-delivery campaign. The edit uses natural dialogue, fast pacing, subtle digital zooms, original music and a product-focused ending to move from problem to payoff.',
     image: breadfastVideoPoster,
-    videoUrl: breadfastVideo,
+    videoUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
+    videoPreviewUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
     aspectRatio: '9:16',
     stats: [
       { label: 'Format', value: 'Vertical Reel 9:16' },
@@ -905,25 +970,33 @@ export const INITIAL_PROJECTS: Project[] = [
       { label: 'Payoff', value: 'Fresh Breakfast CTA' },
     ],
     featured: true,
-    driveFolderUrl: 'https://drive.google.com/drive/folders/1FFCqWudCQE0cM_b6rpe9IJRHWllAFpX6',
+    driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
   },
   {
     id: 'talabat-delivery-tvc',
     tracks: ['Videos', 'Dubbing & Audio'],
     title: 'Talabat (طلبات) — «يوم واحد من غير طلبات»',
     clientOrSpec: 'Commercial Campaign',
+    projectType: 'Commercial Campaign & Delivery TVC',
     subtitle: 'High-Velocity Food Delivery TVC • إعلان تجاري سريع لتطبيق طلبات',
     category: 'Food Advertising',
     tagline: 'في ثواني.. الطلب على بابك مع طلبات.',
     description:
       'إعلان تجاري سريع وممتع يبرز دور خدمة التوصيل كمنقذ لحظات الجوع والمواقف المفاجئة في البيت والعمل المصري.',
-    skills: ['Advertising', 'Storytelling', 'Scriptwriting', 'AI Video', 'Sound Design', 'Editing'],
+    skills: ['Advertising', 'Storytelling', 'Scriptwriting', 'AI Video', 'Sound Design', 'CapCut Pro'],
     objective:
       'التواصل مع الجمهور المصري بروح الفكاهة والسرعة، وإظهار التباين بين فوضى الجوع المفاجئ وبين الراحة الفورية بمجرد رنة جرس مندوب طلبات.',
     concept:
       'مونتاج كوميدي وسريع لمواقف يومية مصرية مألوفة — الثلاجة الفاضية، خناقات الأكل العائلية، وسهرات المذاكرة — تُحل جميعها بظهور مندوب طلبات بسترته البرتقالية المنقذة.',
     myRole:
       'كاتب الاسكريبت ومونتير الفيديو الإعلاني — ابتكار الهوك السريع، هندسة أصوات تحمير الأكل والقرمشة، والمونتاج الإيقاعي السريع.',
+    whatIDid: [
+      'Authored Egyptian colloquial TVC script around sudden hunger moments ("يوم واحد من غير طلبات").',
+      'Designed high-velocity commercial montage resolving everyday Egyptian kitchen dilemmas.',
+      'Engineered macro sound effects and comedic voice-over timing in CapCut Pro.',
+      'Edited 68-second dynamic spot with vibrant orange branding cues.',
+      'Integrated seamless delivery doorbell payoff and app call-to-action.'
+    ],
     tools: ['CapCut Pro', 'Canva Pro', 'AI Video Tools', 'Egyptian Colloquial Copywriting', 'Macro Food Foley'],
     process: [
       { step: '01. الرؤية الإنسانية والفكاهة', detail: 'رصد نقاط الاحتكاك اليومية في البيت المصري وتأخير وجبات الغداء والعشاء.' },
@@ -948,18 +1021,26 @@ export const INITIAL_PROJECTS: Project[] = [
     tracks: ['Videos', 'Dubbing & Audio', 'Content Creation', 'AI Content'],
     title: 'Baba Geh (بابا جه) — Montage & Viral Reels Cut',
     clientOrSpec: 'Commercial Campaign',
+    projectType: 'Comedy Advertising & Viral Cut',
     subtitle: '«أب للإيجار... بس بمشاعر حقيقية» • 60s Fast-Cut Viral Reel & Audio Sync',
     category: 'Short-Form Video',
     tagline: 'بابا جه — الكوميديا الذكية والمشاعر اللي بتلمس كل بيت مصري.',
     description:
       'سلسلة مقاطع وفيديوهات إعلانية وترفيهية سريعة الإيقاع لفكرة ومسلسل «بابا جه»، تركز على المفارقات الكوميدية وسيكولوجية العلاقات الأسرية، مع مونتاج سينمائي وهندسة صوتية ودوبلاج جذاب لمخاطبة منصات السوشيال ميديا والتيك توك.',
-    skills: ['Creative Video Editing', 'Comedy Pacing & Timing', 'Sound Design & Foley', 'Social Hooks Engineering', 'Dialogue Sync'],
+    skills: ['Creative Video Editing', 'Comedy Pacing & Timing', 'Sound Design & Foley', 'Social Hooks Engineering', 'Dialogue Sync', 'CapCut Pro'],
     objective:
       'تحقيق أعلى معدلات انتشار وتفاعل عاطفي وكوميدي (Viral Engagement) عبر مقاطع ريلز وفيديوهات قصيرة تبرز المفارقات الساخرة بحبكة إيقاعية مشوقة.',
     concept:
       'مفارقة «أب للإيجار»: بناء مواقف طريفة وسريعة بين متطلبات الأبناء والمواقف غير المتوقعة، مصحوبة بوقفات كوميدية دقيقة ومؤثرات صوتية تعزز التفاعل.',
     myRole:
       'المونتير الإبداعي ومصمم الصوت وهندسة الخطافات السريعة (Viral Hooks) ومزامنة الحوار والمؤثرات الصوتية الواقعية.',
+    whatIDid: [
+      'Scripted family comedic sketch rooted in relatable Egyptian household dynamics.',
+      'Edited two master cuts: 45s warm family story and 60s fast-paced comedy montage.',
+      'Engineered Foley sound effects and crisp dialogue synchronization in CapCut Pro.',
+      'Applied warm cinematic color grading tailored for Egyptian social feeds.',
+      'Optimized opening 2-second hook to maximize viewer retention and shares.'
+    ],
     tools: ['CapCut Pro', 'Adobe Premiere Pro', 'Sound Design & Foley', 'TikTok & Reels Trend Engineering'],
     process: [
       { step: '01. استخراج الخطافات الكوميدية', detail: 'انتقاء أكثر الجمل الحوارية والمواقف الساخرة ذات التأثير الفوري في أول 3 ثوانٍ.' },

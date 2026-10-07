@@ -76,9 +76,32 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        {/* MAIN CONTENT (CENTERED WITHOUT PHOTO) */}
+        {/* MAIN CONTENT (CENTERED WITH PHOTO) */}
         <div className="flex flex-col items-center text-center">
           
+          {/* Profile Photo with Animated Ring */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, type: 'spring' }}
+            className="relative mb-8"
+          >
+            <div className="absolute inset-0 bg-amber-500/20 blur-2xl rounded-full" />
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-amber-500/30 p-1.5 bg-[#09090b]">
+              <div className="w-full h-full rounded-full overflow-hidden border border-white/10 relative group">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1Fw6HZYS0JZ0QAByDjCCXPwGH4jApy_5l" 
+                  alt="Mohamed Taher Profile"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            </div>
+            
+            {/* Animated Status Indicator */}
+            <div className="absolute bottom-2 right-2 w-4 h-4 sm:w-5 sm:h-5 bg-emerald-500 rounded-full border-2 sm:border-4 border-[#09090b] shadow-lg shadow-emerald-500/20" />
+          </motion.div>
+
           {/* "Hello, It's Me" Tag */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -95,7 +118,7 @@ export const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight mb-2"
+            className="font-display text-4xl sm:text-7xl md:text-8xl font-black text-white tracking-tight mb-2 px-2"
           >
             {isAr ? 'محمد طاهر' : 'Mohamed Taher'}
           </motion.h1>
@@ -105,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-xs sm:text-sm font-mono text-zinc-400 font-medium mb-6 uppercase tracking-widest"
+            className="text-[10px] sm:text-sm font-mono text-zinc-400 font-medium mb-6 uppercase tracking-widest px-4"
           >
             {isAr ? 'محمد مصطفى طاهر سالم' : 'Mohamed Mostafa Taher Salem'}
           </motion.p>
@@ -115,12 +138,12 @@ export const Hero: React.FC<HeroProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex items-center justify-center gap-3 text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 flex-wrap"
+            className="flex items-center justify-center gap-2 sm:gap-3 text-xl sm:text-3xl md:text-4xl font-extrabold mb-6 flex-wrap px-4"
           >
-            <span className="text-zinc-400 font-mono text-xl sm:text-3xl">
+            <span className="text-zinc-400 font-mono text-lg sm:text-3xl">
               {isAr ? 'أنا' : "I'm a"}
             </span>
-            <div className="relative inline-block min-w-[240px] sm:min-w-[350px] h-[40px] sm:h-[50px] overflow-hidden text-center">
+            <div className="relative inline-block min-w-[200px] sm:min-w-[350px] h-[36px] sm:h-[50px] overflow-hidden text-center">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={roles[roleIndex]}
