@@ -27,6 +27,7 @@ import { Project } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { TiltCard3D } from './TiltCard3D';
 import { AudioMotionVisualizer } from './MotionGraphicsDecorations';
+import { parseVideoUrl } from '../utils/videoHelper';
 
 // Real Images
 import qaimEditorial1 from '../assets/images/qaim_real_editorial_1.jpg';
@@ -376,7 +377,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
       image: buffaloPoster,
       stats: 'Vertical 9:16 · Speed Ramping · Foley',
       hookAr: 'إثارة الشهية الفورية بلقطات ماكرو فائقة الدقة للجبن الذائب واللحم المشوي',
-      videoUrl: '/videos/buffalo_burger_commercial.mp4',
+      videoUrl: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
     },
     {
       id: 'talabat',
@@ -1365,14 +1366,30 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
 
               {/* Video Player */}
               <div className="relative aspect-video sm:aspect-[16/9] bg-black flex items-center justify-center">
-                <video
-                  src={activeVideo.url}
-                  controls
-                  autoPlay
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-contain"
-                />
+                {(() => {
+                  const videoInfo = parseVideoUrl(activeVideo.url);
+                  if (videoInfo && !videoInfo.isDirect) {
+                    return (
+                      <iframe
+                        src={videoInfo.embedUrl}
+                        title={activeVideo.titleEn}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    );
+                  }
+                  return (
+                    <video
+                      src={activeVideo.url}
+                      controls
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-contain"
+                    />
+                  );
+                })()}
               </div>
 
               {/* Video Details & Action Footer */}

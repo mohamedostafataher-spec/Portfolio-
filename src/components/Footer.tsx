@@ -39,17 +39,14 @@ export const Footer: React.FC = () => {
           <a href="#home" className="hover:text-amber-400 transition-colors">
             {isAr ? 'الرئيسية' : 'Home'}
           </a>
+          <a href="#work" className="hover:text-amber-400 transition-colors">
+            {isAr ? 'المشاريع' : 'Work'}
+          </a>
           <a href="#about" className="hover:text-amber-400 transition-colors">
             {isAr ? 'عني' : 'About'}
           </a>
           <a href="#services" className="hover:text-amber-400 transition-colors">
             {isAr ? 'الخدمات' : 'Services'}
-          </a>
-          <a href="#work" className="hover:text-amber-400 transition-colors">
-            {isAr ? 'الأعمال' : 'Work'}
-          </a>
-          <a href="#skills" className="hover:text-amber-400 transition-colors">
-            {isAr ? 'المهارات' : 'Skills'}
           </a>
           <a href="#process" className="hover:text-amber-400 transition-colors">
             {isAr ? 'المنهجية' : 'Process'}

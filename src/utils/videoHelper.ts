@@ -16,17 +16,39 @@ export function parseVideoUrl(url?: string): VideoInfo | null {
 
   const cleanUrl = url.trim();
 
-  // YouTube matchers:
-  // - https://www.youtube.com/watch?v=VIDEO_ID
-  // - https://youtu.be/VIDEO_ID
-  // - https://www.youtube.com/shorts/VIDEO_ID
-  // - https://www.youtube.com/embed/VIDEO_ID
-  const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=|shorts\/)|youtu\.be\/)([^"&?\/\s]{11})/;
-  const ytMatch = cleanUrl.match(youtubeRegex);
-  if (ytMatch && ytMatch[1]) {
+  // Robust YouTube ID extraction
+  let ytId: string | null = null;
+
+  const youtuBeMatch = cleanUrl.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
+  if (youtuBeMatch && youtuBeMatch[1]) {
+    ytId = youtuBeMatch[1];
+  }
+
+  if (!ytId) {
+    const watchMatch = cleanUrl.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    if (watchMatch && watchMatch[1]) {
+      ytId = watchMatch[1];
+    }
+  }
+
+  if (!ytId) {
+    const shortsMatch = cleanUrl.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
+    if (shortsMatch && shortsMatch[1]) {
+      ytId = shortsMatch[1];
+    }
+  }
+
+  if (!ytId) {
+    const embedMatch = cleanUrl.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
+    if (embedMatch && embedMatch[1]) {
+      ytId = embedMatch[1];
+    }
+  }
+
+  if (ytId) {
     return {
       type: 'youtube',
-      embedUrl: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&rel=0&modestbranding=1`,
+      embedUrl: `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1`,
       isDirect: false,
     };
   }

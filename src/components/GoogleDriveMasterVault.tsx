@@ -16,6 +16,7 @@ import {
   X,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { parseVideoUrl } from '../utils/videoHelper';
 
 interface VaultItem {
   id: string;
@@ -71,10 +72,10 @@ export const GoogleDriveMasterVault: React.FC = () => {
       projectAr: 'بافلو برجر مصر',
       projectEn: 'Buffalo Burger',
       type: 'video',
-      ext: 'MP4',
-      sizeLabel: '5.9 MB',
+      ext: 'YouTube / MP4',
+      sizeLabel: 'Full HD',
       durationOrPages: '52 sec',
-      url: '/videos/buffalo_burger_commercial.mp4',
+      url: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
       driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
     },
     {
@@ -592,13 +593,29 @@ export const GoogleDriveMasterVault: React.FC = () => {
 
             <div className="relative aspect-video bg-black flex items-center justify-center">
               {activeMedia.type === 'video' ? (
-                <video
-                  src={activeMedia.url}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-contain"
-                />
+                (() => {
+                  const videoInfo = parseVideoUrl(activeMedia.url);
+                  if (videoInfo && !videoInfo.isDirect) {
+                    return (
+                      <iframe
+                        src={videoInfo.embedUrl}
+                        title={activeMedia.title}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    );
+                  }
+                  return (
+                    <video
+                      src={activeMedia.url}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                  );
+                })()
               ) : (
                 <div className="p-8 text-center space-y-4">
                   <Volume2 className="w-12 h-12 text-amber-400 mx-auto animate-pulse" />

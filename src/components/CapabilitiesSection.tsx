@@ -127,7 +127,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
         {/* SECTION HEADER (MATCHING REFERENCE VIDEO 00:10 "Our services") */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold mb-3 uppercase tracking-widest">
-            <span>03 / SERVICES & CAPABILITIES</span>
+            <span>{isAr ? '04 / الخدمات التسويقية' : '04 / SERVICES & CAPABILITIES'}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
             {isAr ? 'خدماتي التسويقية' : 'Our Services'}

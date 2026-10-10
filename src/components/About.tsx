@@ -104,7 +104,7 @@ export const About: React.FC<AboutProps> = ({
 
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-[0.2em] mb-4">
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
-            <span>{isAr ? 'عن محمد طاهر' : '02 / ABOUT ME'}</span>
+            <span>{isAr ? '03 / عن محمد طاهر' : '03 / ABOUT ME'}</span>
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
           </div>
           

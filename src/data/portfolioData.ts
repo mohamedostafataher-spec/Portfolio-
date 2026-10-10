@@ -55,6 +55,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Strategic Market Research & Competitor Audit',
     subtitle: 'Egypt Fast-Fashion Digital Landscape, Consumer Behavior & Gap Analysis',
     category: 'Market Research & Audit',
+    duration: '20+ Pages Strategy',
+    durationAr: 'تقرير وبحث 20+ صفحة',
     tagline: 'تشريح دقيق لسوق الأزياء الرقمي في مصر بحجم 7.5 مليار دولار وفرص النمو الكبرى.',
     description:
       'دراسة وبحث سوق معمق لقطاع الأزياء السريعة في مصر لعلامة H&M. تشمل تحليل حجم التجارة الإلكترونية، دراسة سلوك المستهلك المصري، وتدقيقاً تنافسياً شاملاً ضد Zara و LC Waikiki و Defacto و Mango و Bershka.',
@@ -186,6 +188,8 @@ export const INITIAL_PROJECTS: Project[] = [
     clientOrSpec: 'Strategic Blueprint',
     subtitle: 'Solving Irregular Posting, SMART Objectives & 2.5M Monthly Youth Reach',
     category: 'Marketing Strategy',
+    duration: '4-Week Roadmap',
+    durationAr: 'خطة تنفيذية 4 أسابيع',
     tagline: 'تحويل استراتيجية المحتوى من مجرد كتالوج جامد إلى ماكينة وصول وتحويل تفاعلية.',
     description:
       'خطة استراتيجية تنفيذية لمعالجة أكبر نقاط ضعف H&M Egypt (النشر غير المنتظم وضعف التفاعل العضوي). تتضمن أهداف SMART طموحة، وإعادة بناء لجدول المحتوى بالاعتماد على صناع المحتوى المصريين.',
@@ -277,6 +281,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Client Strategy & Content Architecture',
     subtitle: 'Digital Presence Audit, SCQA Storytelling, 4 Weekly Tactics & Actions/Control KPIs',
     category: 'Marketing Strategy',
+    duration: '60s Film + Deck',
+    durationAr: 'فيديو 60 ثانية + خطة',
     tagline: 'بيع أسلوب الحياة والحل، مش بس المنتج — الخطة التسويقية الشاملة لعلامة قِيَم.',
     description:
       'استراتيجية تسويقية متكاملة الأركان طبقت أحدث المدارس العالمية (SOSTAC & SCQA). تشمل تدقيق الوضع الراهن لصفحة فيسبوك والمتجر الإلكتروني، وصياغة الرسائل الإعلانية، وتفصيل التكتيكات والإجراءات الأسبوعية ولوحة مؤشرات الأداء (KPIs)، مصحوبة بفيديو تجاري وتسجيل صوتي أصلي.',
@@ -490,6 +496,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Brand Launch & Summer Campaign Deck',
     subtitle: '«صيف في سفن: كل جيل له صيفه... وده صيفنا» • 19-Slide Strategy Deck & Commercial Film',
     category: 'Brand Presentation & Deck',
+    duration: '45s Reel + 19 Slides',
+    durationAr: 'ريلز 45 ثانية + 19 شريحة',
     tagline: 'كل جيل له صيفه... وده صيفنا مع V7 Cream Soda.',
     description:
       'حملة إعلانية وتسويقية متكاملة موثقة بديك استراتيجي مكون من 19 شريحة لـ V7 Cream Soda. تعتمد على تقنية الـ Match Cuts والانتقال الزمني الصوتي البصري عبر 3 أجيال من المصايف المصرية (رأس البر، العجمي، والساحل الشمالي).',
@@ -598,6 +606,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'AI Creative Concept & CapCut Launch',
     subtitle: '«مودك ناقصه تاكة» • Brand Positioning Deck, CapCut Viral Template & 8-Slide Carousel',
     category: 'Brand Presentation & Deck',
+    duration: '35s Reel + 8 Carousels',
+    durationAr: 'ريلز 35 ثانية + 8 كاروسيل',
     tagline: 'مودك مش محتاج إعادة ضبط كاملة.. هو بس ناقصه تاكة!',
     description:
       'إطلاق هوية متكاملة لمشروب طاقة مصري عصري، تشمل إعلاناً سينمائياً، قالب كاب كات فيروسي (Product Pop-Reveal)، وتصميم حساب إنستغرام مخصص للاستحواذ، وكاروسيل من 8 شرائح.',
@@ -691,6 +701,8 @@ export const INITIAL_PROJECTS: Project[] = [
     clientOrSpec: 'Client Project',
     subtitle: 'Service Categorization, WhatsApp Quick-Replies, Customer Reviews & Direct Lead Generation',
     category: 'Marketing Strategy',
+    duration: 'Full Funnel Setup',
+    durationAr: 'إعداد مسار بيع متكامل',
     tagline: 'بناء الحضور التجاري على فيسبوك وتأسيس مسار تحويل مباشر للطلبات.',
     description:
       'توثيق استراتيجي وتنفيذي لإنشاء وتهيئة صفحة فيسبوك تجارية احترافية لخدمات تنجيد وتجديد الأثاث المنزلي (وش جديد مصطفى للأثاث). يركز على تحسين محركات البحث الداخلية لفيسبوك، ربط قنوات الاتصال الفورية (+201115869239)، واستعراض سابقة الأعمال لزيادة المبيعات المباشرة.',
@@ -770,6 +782,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Accredited Strategic Blueprint (MCIT DEPI)',
     subtitle: 'Certified Capstone: SOSTAC Framework, Budgeting, Meta Ads & Omnichannel Growth',
     category: 'Marketing Strategy',
+    duration: 'Certified Master Capstone',
+    durationAr: 'مشروع تخرج معتمد',
     tagline: 'الخطة الاستراتيجية الشاملة المعتمدة من مبادرة رواد مصر الرقمية (DEPI).',
     description:
       'الملف التنفيذي والاستراتيجي المعتمد والمقدم ضمن مبادرة رواد مصر الرقمية (DEPI) التابعة لوزارة الاتصالات وتكنولوجيا المعلومات. يغطي دراسة السوق، تقسيم الجماهير، إدارة الميزانيات، ونماذج العائد على الاستثمار الإعلاني.',
@@ -882,6 +896,8 @@ export const INITIAL_PROJECTS: Project[] = [
     image: spiroPoster,
     videoUrl: spiroVideo,
     aspectRatio: '16:9',
+    duration: '41 sec',
+    durationAr: '41 ثانية',
     stats: [
       { label: 'Brand', value: 'Spiro Spathis' },
       { label: 'Campaign Angle', value: 'الأصل بيكمل معانا' },
@@ -897,6 +913,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Commercial Food TVC / Appetizing Reel',
     subtitle: '«The Anatomy of a Craving» • High-Velocity Fast-Casual Food TVC',
     category: 'Food Advertising',
+    duration: '30 sec Reel',
+    durationAr: 'ريلز 30 ثانية',
     tagline: 'طعم أصيل ومونتاج ناري يثير الشهية من أول ثانية.',
     description:
       'إعلان تجاري سريع ومكثف لعلامة بافلو برجر، يركز على لقطات الماكرو الحارة للجبن الذائب والبرجر المشوي مع مونتاج سريع يرفع إفراز الدوبامين والرغبة الفورية في الطلب.',
@@ -923,7 +941,8 @@ export const INITIAL_PROJECTS: Project[] = [
     finalResult:
       'إعلان رأسي عالي التحويل لمنصات إنستغرام وتيك توك يعزز مكانة بافلو برجر كخيار أول لعشاق البرجر الفاخر.',
     image: buffaloPoster,
-    videoUrl: buffaloVideo,
+    videoUrl: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
+    videoPreviewUrl: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
     aspectRatio: '9:16',
     stats: [
       { label: 'Brand', value: 'Buffalo Burger' },
@@ -931,6 +950,7 @@ export const INITIAL_PROJECTS: Project[] = [
       { label: 'Primary KPI', value: 'Appetite & Instant Orders' },
     ],
     featured: true,
+    driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
   },
   {
     id: 'breadfast-campaign',
@@ -964,6 +984,8 @@ export const INITIAL_PROJECTS: Project[] = [
     videoUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
     videoPreviewUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
     aspectRatio: '9:16',
+    duration: '64 sec',
+    durationAr: '64 ثانية',
     stats: [
       { label: 'Format', value: 'Vertical Reel 9:16' },
       { label: 'Language', value: 'Egyptian Arabic Dialogue' },
@@ -980,6 +1002,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Commercial Campaign & Delivery TVC',
     subtitle: 'High-Velocity Food Delivery TVC • إعلان تجاري سريع لتطبيق طلبات',
     category: 'Food Advertising',
+    duration: '45 sec',
+    durationAr: '45 ثانية',
     tagline: 'في ثواني.. الطلب على بابك مع طلبات.',
     description:
       'إعلان تجاري سريع وممتع يبرز دور خدمة التوصيل كمنقذ لحظات الجوع والمواقف المفاجئة في البيت والعمل المصري.',
@@ -1024,6 +1048,8 @@ export const INITIAL_PROJECTS: Project[] = [
     projectType: 'Comedy Advertising & Viral Cut',
     subtitle: '«أب للإيجار... بس بمشاعر حقيقية» • 60s Fast-Cut Viral Reel & Audio Sync',
     category: 'Short-Form Video',
+    duration: '60 sec Reel',
+    durationAr: 'ريلز 60 ثانية',
     tagline: 'بابا جه — الكوميديا الذكية والمشاعر اللي بتلمس كل بيت مصري.',
     description:
       'سلسلة مقاطع وفيديوهات إعلانية وترفيهية سريعة الإيقاع لفكرة ومسلسل «بابا جه»، تركز على المفارقات الكوميدية وسيكولوجية العلاقات الأسرية، مع مونتاج سينمائي وهندسة صوتية ودوبلاج جذاب لمخاطبة منصات السوشيال ميديا والتيك توك.',
@@ -1070,6 +1096,8 @@ export const INITIAL_PROJECTS: Project[] = [
     clientOrSpec: 'Commercial Campaign',
     subtitle: '«الكوميديا والمفارقة الأسرية» • 45s High-Pacing Storytelling Cut',
     category: 'Short-Form Video',
+    duration: '45 sec Reel',
+    durationAr: 'ريلز 45 ثانية',
     tagline: 'بابا جه — أب للإيجار... بس بضحكة ومشاعر من القلب.',
     description:
       'مونتاج درامي وكوميدي احترافي لمسلسل «بابا جه»، يركز على إيقاع المشاهد، هندسة وتوزيع الحوار الكوميدي، وانتقالات الماتش-كت السلسة بين ردود الفعل والمفارقات اليومية مع شريط صوتي فائق النقاء.',
@@ -1109,6 +1137,8 @@ export const INITIAL_PROJECTS: Project[] = [
     clientOrSpec: 'Commercial Campaign',
     subtitle: '«Zoom-Punch Pop-Reveal Mechanics» • High-Engagement Short-Form Video',
     category: 'Short-Form Video',
+    duration: '15 sec Template',
+    durationAr: 'قالب 15 ثانية',
     tagline: 'مودك ناقصه تاكة — الانتقال السريع بين الملل والانتعاش الفوري.',
     description:
       'قالب ومحتوى فيديو ريلز رأسي صُمم وفق سيكولوجية الخطافات البصرية السريعة (3-Second Hook) مع مؤثرات الانتقال الإيقاعي Zoom-Punch على تريندات التيك توك وإنستغرام ريلز.',

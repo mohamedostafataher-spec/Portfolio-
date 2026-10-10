@@ -45,6 +45,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const [isPaused, setIsPaused] = useState<boolean>(true);
   const [showDeepDiveDeck, setShowDeepDiveDeck] = useState<boolean>(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+  const [modalSlideIndex, setModalSlideIndex] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const modalScrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -103,6 +104,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   useEffect(() => {
     setIsPaused(true);
     setCurrentSlideIndex(0);
+    setModalSlideIndex(0);
     setShowDeepDiveDeck(false);
     setDisplayFormat(project?.aspectRatio === '9:16' ? 'vertical' : 'landscape');
 
@@ -219,10 +221,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="p-4 sm:p-8 md:p-10 space-y-8">
           {/* 1. PROJECT TITLE & SHORT SUBTITLE */}
           <div className="space-y-2 border-b border-white/5 pb-6">
-            <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-wider flex-wrap">
               <span>PROJECT SHOWCASE</span>
               <span>•</span>
               <span>{project.category}</span>
+              {(project.duration || project.durationAr) && (
+                <>
+                  <span>•</span>
+                  <span className="text-white bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30">
+                    {isAr ? (project.durationAr || project.duration) : project.duration}
+                  </span>
+                </>
+              )}
             </div>
 
             <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
@@ -234,20 +244,43 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             </p>
           </div>
 
-          {/* 2. [ FINAL VIDEO ] */}
-          <div className="space-y-3">
+          {/* 2. CONTEXTUAL MEDIA & DELIVERABLE SHOWCASE */}
+          <div className="space-y-4">
+            {/* Header with Format and Action Badges */}
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-amber-400 uppercase">
-                <Play className="w-3.5 h-3.5 fill-current" />
-                <span>FINAL VIDEO</span>
+                {videoInfo ? (
+                  <>
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    <span>FINAL COMMERCIAL VIDEO</span>
+                  </>
+                ) : project.galleryImages && project.galleryImages.length > 1 ? (
+                  <>
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>INTERACTIVE CAROUSEL SLIDES</span>
+                  </>
+                ) : (
+                  <>
+                    <Presentation className="w-3.5 h-3.5" />
+                    <span>STRATEGY & DELIVERABLE DECK</span>
+                  </>
+                )}
+
                 {videoInfo?.type === 'youtube' && (
-                  <span className="px-2 py-0.5 rounded bg-red-600/20 text-red-400 border border-red-500/30 text-[10px]">
-                    YouTube HD
+                  <span className="px-2 py-0.5 rounded bg-red-600/20 text-red-400 border border-red-500/30 text-[10px] flex items-center gap-1">
+                    <Play className="w-2.5 h-2.5 fill-current" />
+                    <span>YouTube HD</span>
+                  </span>
+                )}
+
+                {project.id === 'buffalo-burger-commercial' && (
+                  <span className="px-2 py-0.5 rounded bg-red-600 text-white font-bold text-[10px]">
+                    YouTube Shorts (Primary)
                   </span>
                 )}
               </div>
 
-              {/* Aspect Ratio Toggle (Landscape / Vertical) */}
+              {/* Aspect Ratio Toggle (Landscape / Vertical) if Video */}
               {videoInfo && (
                 <div className="flex items-center gap-1 p-1 rounded-xl bg-zinc-900 border border-white/10 text-xs">
                   <button
@@ -276,9 +309,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
             </div>
 
-            {/* Video Player Box */}
+            {/* Media Box: Video, Carousel Slider, or Strategy Slide */}
             <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl flex items-center justify-center">
               {videoInfo ? (
+                /* Video Player */
                 <div
                   className={`w-full relative transition-all duration-300 ${
                     displayFormat === 'vertical'
@@ -326,8 +360,73 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     />
                   )}
                 </div>
+              ) : project.galleryImages && project.galleryImages.length > 1 ? (
+                /* Interactive Multi-Image Carousel Slider */
+                (() => {
+                  const images = Array.from(new Set([project.image, ...project.galleryImages]));
+                  const activeImg = images[modalSlideIndex] || project.image;
+                  return (
+                    <div className="relative w-full aspect-[16/10] sm:aspect-video max-h-[500px] bg-zinc-950 flex flex-col justify-between overflow-hidden">
+                      <div className="relative flex-1 flex items-center justify-center overflow-hidden">
+                        <img
+                          src={activeImg}
+                          alt={`${project.title} Slide ${modalSlideIndex + 1}`}
+                          className="w-full h-full object-contain"
+                        />
+
+                        {/* Slider Prev / Next Controls */}
+                        <button
+                          onClick={() =>
+                            setModalSlideIndex((prev) =>
+                              prev === 0 ? images.length - 1 : prev - 1
+                            )
+                          }
+                          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                          title="Previous Slide"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            setModalSlideIndex((prev) => (prev + 1) % images.length)
+                          }
+                          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                          title="Next Slide"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                      </div>
+
+                      {/* Carousel Thumbnail Strip & Counter */}
+                      <div className="p-3 bg-black/80 border-t border-white/10 flex items-center justify-between gap-3">
+                        <span className="text-xs font-mono text-amber-400 font-bold">
+                          {isAr
+                            ? `شريحة ${modalSlideIndex + 1} من ${images.length}`
+                            : `Slide ${modalSlideIndex + 1} of ${images.length}`}
+                        </span>
+
+                        <div className="flex items-center gap-2 overflow-x-auto">
+                          {images.map((img, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setModalSlideIndex(idx)}
+                              className={`w-12 h-8 rounded-md overflow-hidden border transition-all cursor-pointer ${
+                                idx === modalSlideIndex
+                                  ? 'border-amber-400 scale-105'
+                                  : 'border-white/10 opacity-50 hover:opacity-100'
+                              }`}
+                            >
+                              <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()
               ) : (
-                /* Static High-Res Visual / Slide Preview if no video */
+                /* Static High-Res Visual / Slide Preview */
                 <div className="relative w-full aspect-video max-h-[460px] overflow-hidden bg-zinc-950 flex items-center justify-center">
                   <img
                     src={project.image}
@@ -354,32 +453,44 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
             </div>
 
-            {/* Video Footer Actions */}
-            <div className="flex items-center justify-between flex-wrap gap-2 text-xs text-zinc-400 px-1">
-              <span className="font-mono text-[11px] text-zinc-500">
-                {displayFormat === 'landscape' ? '16:9 Landscape' : '9:16 Vertical Reel'}
+            {/* Media Action Bar with Prominent YouTube & Secondary Drive */}
+            <div className="flex items-center justify-between flex-wrap gap-3 pt-1 text-xs">
+              <span className="font-mono text-[11px] text-zinc-400">
+                {videoInfo
+                  ? displayFormat === 'landscape'
+                    ? '16:9 Landscape Commercial'
+                    : '9:16 Vertical Reel'
+                  : project.galleryImages && project.galleryImages.length > 1
+                  ? `${project.galleryImages.length} Carousel Slides`
+                  : project.category}
               </span>
 
               <div className="flex items-center gap-3">
+                {/* Dedicated YouTube Link (Buffalo Burger & Breadfast) */}
                 {project.videoUrl && project.videoUrl.includes('youtu') && (
                   <a
                     href={project.videoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-amber-400 hover:text-amber-300 flex items-center gap-1 font-mono text-xs transition-colors"
+                    className="px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-600/20 transition-all hover:scale-105"
                   >
-                    <span>{isAr ? 'فتح على يوتيوب' : 'Watch on YouTube'}</span>
+                    <Play className="w-3 h-3 fill-current" />
+                    <span>{isAr ? 'شاهد على يوتيوب شورتس' : 'Watch on YouTube Shorts'}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                 )}
+
+                {/* Google Drive Link (Secondary Backup) */}
                 <a
                   href={driveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-zinc-400 hover:text-white flex items-center gap-1 font-mono text-xs transition-colors"
+                  className="px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 font-mono text-xs flex items-center gap-1.5 transition-colors"
+                  title="Google Drive Archive (Backup)"
                 >
-                  <span>{isAr ? 'ملف المشروع في Google Drive' : 'Drive Raw Files'}</span>
-                  <ExternalLink className="w-3 h-3" />
+                  <FolderOpen className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{isAr ? 'مجلد Drive (إضافي)' : 'Drive (Backup)'}</span>
+                  <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
               </div>
             </div>

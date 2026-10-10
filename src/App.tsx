@@ -37,18 +37,29 @@ export function PortfolioApp() {
 
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      const saved = localStorage.getItem('mm_portfolio_projects_v15');
+      const saved = localStorage.getItem('mm_portfolio_projects_v20');
       if (saved) {
         const parsed: Project[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const hasBreadfastYt = parsed.some(
-            (p) => p.id === 'breadfast-campaign' && p.videoUrl && p.videoUrl.includes('youtu')
-          );
-          if (hasBreadfastYt) {
+          const buffalo = parsed.find((p) => p.id === 'buffalo-burger-commercial');
+          if (
+            buffalo &&
+            buffalo.videoUrl &&
+            buffalo.videoUrl.includes('6y1hBgpjbUo')
+          ) {
             return parsed;
           }
         }
       }
+    } catch {
+      // ignore
+    }
+    // Also clean up any stale versions
+    try {
+      localStorage.removeItem('mm_portfolio_projects_v17');
+      localStorage.removeItem('mm_portfolio_projects_v16');
+      localStorage.removeItem('mm_portfolio_projects_v15');
+      localStorage.removeItem('mm_portfolio_projects_v14');
     } catch {
       // ignore
     }
@@ -67,7 +78,7 @@ export function PortfolioApp() {
   // Persist projects to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('mm_portfolio_projects_v15', JSON.stringify(projects));
+      localStorage.setItem('mm_portfolio_projects_v20', JSON.stringify(projects));
     } catch {
       // ignore
     }
@@ -175,19 +186,7 @@ export function PortfolioApp() {
           }}
         />
 
-        {/* 02 — ABOUT & CREDENTIALS */}
-        <About
-          onOpenResume={() => setIsResumeModalOpen(true)}
-          onOpenContact={() => handleOpenContact('Commercial Collaboration')}
-          onOpenPdfDeck={() => setIsPdfModalOpen(true)}
-        />
-
-        {/* 03 — OUR SERVICES (4 MARKETING PILLARS) */}
-        <CapabilitiesSection
-          onSelectService={(serviceName) => handleOpenContact(serviceName)}
-        />
-
-        {/* 04 — LATEST PROJECTS / SELECTED WORK */}
+        {/* 02 — LATEST PROJECTS / SELECTED WORK (Placed immediately at the top as requested) */}
         <MasterPortfolioSection
           projects={projects}
           activeCategory={activeCategory}
@@ -199,13 +198,25 @@ export function PortfolioApp() {
           onResetProjects={handleResetProjects}
         />
 
+        {/* 03 — ABOUT & CREDENTIALS */}
+        <About
+          onOpenResume={() => setIsResumeModalOpen(true)}
+          onOpenContact={() => handleOpenContact('Commercial Collaboration')}
+          onOpenPdfDeck={() => setIsPdfModalOpen(true)}
+        />
+
+        {/* 04 — OUR SERVICES (4 MARKETING PILLARS) */}
+        <CapabilitiesSection
+          onSelectService={(serviceName) => handleOpenContact(serviceName)}
+        />
+
         {/* 05 — PROCESS (FROM IDEA TO IMPACT) */}
         <CreativeProcess />
 
         {/* 06 — CONTACT ME */}
         <ContactSection initialServiceOrProject={contactInitialService} />
 
-        {/* 06 — ADDITIONAL WORK & ARCHIVE */}
+        {/* 07 — ADDITIONAL WORK & ARCHIVE */}
         <div id="archive" className="border-t border-white/5 pt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <span className="text-xs font-mono text-zinc-400">

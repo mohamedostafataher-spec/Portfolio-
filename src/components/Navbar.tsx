@@ -31,9 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { nameEn: 'Home', nameAr: 'الرئيسية', href: '#home' },
+    { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'About', nameAr: 'عن محمد', href: '#about' },
     { nameEn: 'Services', nameAr: 'الخدمات', href: '#services' },
-    { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
 

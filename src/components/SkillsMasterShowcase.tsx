@@ -27,6 +27,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { Project } from '../types';
 import { TiltCard3D } from './TiltCard3D';
+import { parseVideoUrl } from '../utils/videoHelper';
 
 // Images matching the 21-page master PDF
 import qaimEditorial1 from '../assets/images/qaim_real_editorial_1.jpg'; // Casual look & 3 looks
@@ -483,7 +484,7 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                   tag: 'Buffalo Burger · Food Sizzle',
                   duration: 'Macro Cut',
                   hookAr: 'لقطة ماكرو مقربة للجبن الذائب واللهب لتحفيز الشهية الفورية.',
-                  url: '/videos/buffalo_burger_commercial.mp4',
+                  url: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
                   img: buffaloPoster,
                 },
                 {
@@ -1123,14 +1124,30 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
               </div>
 
               <div className="relative aspect-video bg-black flex items-center justify-center">
-                <video
-                  src={activeVideo.url}
-                  controls
-                  autoPlay
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-contain"
-                />
+                {(() => {
+                  const videoInfo = parseVideoUrl(activeVideo.url);
+                  if (videoInfo && !videoInfo.isDirect) {
+                    return (
+                      <iframe
+                        src={videoInfo.embedUrl}
+                        title={activeVideo.titleEn}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    );
+                  }
+                  return (
+                    <video
+                      src={activeVideo.url}
+                      controls
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-contain"
+                    />
+                  );
+                })()}
               </div>
 
               <div className="p-5 bg-zinc-900/60 space-y-3">

@@ -42,6 +42,8 @@ export interface Project {
   reelImage?: string;
   year?: string;
   date?: string;
+  duration?: string;
+  durationAr?: string;
   metrics?: { label: string; value: string; note?: string }[];
   voiceoverScript?: { time: string; ar: string; en: string }[];
   storyboard?: { scene: string; visual: string; focus: string }[];
