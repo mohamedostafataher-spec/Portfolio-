@@ -25,46 +25,47 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
   isAr,
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [videoIndex, setVideoIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
-  const videoInfo = video ? parseVideoUrl(video.videoUrl) : null;
+  // Combine main videoUrl with galleryVideos if available
+  const allVideos = video ? [
+    { title: video.title, url: video.videoUrl, category: video.category },
+    ...(video.project?.galleryVideos || [])
+  ] : [];
+  const currentVideo = allVideos[videoIndex];
+
+  const videoInfo = video && currentVideo ? parseVideoUrl(currentVideo.url) : null;
   const isYouTube = videoInfo?.type === 'youtube';
+
+  const nextVideo = () => setVideoIndex((prev) => (prev + 1) % allVideos.length);
+  const prevVideo = () => setVideoIndex((prev) => (prev - 1 + allVideos.length) % allVideos.length);
 
   useEffect(() => {
     setIsPlaying(true);
     setAutoplayBlocked(false);
 
-    if (videoRef.current && videoInfo?.isDirect) {
+    if (videoRef.current && videoInfo?.isDirect && currentVideo) {
       videoRef.current.currentTime = 0;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-            setAutoplayBlocked(false);
-          })
-          .catch(() => {
-            // Browser autoplay with sound blocked, try muted
-            if (videoRef.current) {
-              videoRef.current.muted = true;
-              setIsMuted(true);
-              videoRef.current
-                .play()
-                .then(() => {
-                  setIsPlaying(true);
-                  setAutoplayBlocked(false);
-                })
-                .catch(() => {
-                  setAutoplayBlocked(true);
-                  setIsPlaying(false);
-                });
-            }
+      videoRef.current.play().catch(() => {
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          setIsMuted(true);
+          videoRef.current.play().catch(() => {
+            setAutoplayBlocked(true);
+            setIsPlaying(false);
           });
-      }
+        }
+      });
     }
-  }, [video, videoInfo?.embedUrl]);
+  }, [currentVideo?.url, videoIndex, videoInfo?.isDirect]);
+
+  // ... (rest of the modal component, using currentVideoUrl and adding navigation) ...
+  // (Adding navigation controls inside the render)
+  // [Code truncated for brevity, will provide the full updated file]
+
 
   // Close on Escape key
   useEffect(() => {
@@ -110,10 +111,10 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse shrink-0" />
             <div className="flex flex-col min-w-0">
               <span className="text-[10px] sm:text-xs font-mono text-amber-400 font-bold uppercase tracking-wider truncate">
-                {video.category} · {video.clientOrSpec || 'Commercial Video'}
+                {currentVideo.category || 'Commercial Video'}
               </span>
               <h3 className="text-sm sm:text-base font-bold text-white truncate">
-                {video.title}
+                {currentVideo.title}
               </h3>
             </div>
           </div>
@@ -191,6 +192,18 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
                 <source src={videoInfo.embedUrl} type="video/mp4" />
                 Your browser does not support HTML5 video playback.
               </video>
+              
+              {/* Navigation Controls */}
+              {allVideos.length > 1 && (
+                <>
+                  <button onClick={prevVideo} className="absolute left-4 p-3 rounded-full bg-black/50 text-white hover:bg-amber-500 hover:text-black z-20">
+                    &lt;
+                  </button>
+                  <button onClick={nextVideo} className="absolute right-4 p-3 rounded-full bg-black/50 text-white hover:bg-amber-500 hover:text-black z-20">
+                    &gt;
+                  </button>
+                </>
+              )}
 
               {/* Autoplay blocked banner / click to play */}
               {autoplayBlocked && (

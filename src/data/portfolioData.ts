@@ -295,6 +295,7 @@ export const INITIAL_PROJECTS: Project[] = [
       'استراتيجي التسويق الرقمي والمخرج الإبداعي — تدقيق الحسابات الرقمية، صياغة رزنامة المحتوى الأسبوعية، توجيه الأداء الصوتي (Voiceover)، وإخراج الفيديو الإعلاني ولوحة الـ KPIs.',
     whatIDid: [
       'Architected complete SOSTAC & SCQA content system for a 62K followers menswear brand.',
+      'Refined SOSTAC strategy for 2026/2027 market growth and conversion tracking.',
       'Engineered interactive carousels ("One Base, Three Looks" & "Complete the Look").',
       'Directed studio-recorded Egyptian colloquial voiceovers for product versatility.',
       'Structured high-retention 9:16 vertical reels commercial.',
@@ -686,6 +687,12 @@ export const INITIAL_PROJECTS: Project[] = [
     image: takaaVideoPoster,
     galleryImages: [takaaCarousel1, takaaCreativeCampaign, takaaCapcutPoster],
     videoUrl: takaaVideo,
+    galleryVideos: [
+      { title: 'Instagram TVC', url: '/videos/takaa_instagram_ad.mp4', category: 'TVC' },
+      { title: 'CapCut Template', url: '/videos/takaa_capcut_ad.mp4', category: 'CapCut Viral' },
+      { title: 'TikTok Reveal', url: '/videos/takaa_tiktok_reveal.mp4', category: 'TikTok' },
+      { title: 'IG Launch TVC', url: '/videos/takaa_ig_tvc.mp4', category: 'TVC' }
+    ],
     aspectRatio: '9:16',
     stats: [
       { label: 'Campaign Slogan', value: 'مودك ناقصه تاكة' },
@@ -1119,6 +1126,11 @@ export const INITIAL_PROJECTS: Project[] = [
       'فيديو ريلز عالي الجاذبية والبصرية جاهز للنشر وتحقيق معدلات تفاعل ومشاركات مضاعفة مقارنة بالمحتوى التقليدي.',
     image: takaaCapcutPoster,
     videoUrl: takaaCapcutVideo,
+    galleryVideos: [
+      { title: 'CapCut Template', url: '/videos/takaa_capcut_ad.mp4', category: 'CapCut Viral' },
+      { title: 'TikTok Reveal', url: '/videos/takaa_tiktok_reveal.mp4', category: 'TikTok' },
+      { title: 'IG Launch TVC', url: '/videos/takaa_ig_tvc.mp4', category: 'TVC' }
+    ],
     aspectRatio: '9:16',
     stats: [
       { label: 'Format', value: 'Vertical 9:16 Reels' },
