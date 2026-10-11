@@ -69,7 +69,7 @@ export const CreativeProcess: React.FC = () => {
         {/* Header matching PDF Page 20 */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase mb-3">
-            {isAr ? '17 / WORKFLOW · حلقة العمل الإبداعي' : '17 / WORKFLOW'}
+            {isAr ? '05 / WORKFLOW · حلقة وسير العمل الإبداعي' : '05 / CREATIVE WORKFLOW'}
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">

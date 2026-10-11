@@ -11,7 +11,7 @@ import { OwnerProvider, useOwner } from './context/OwnerContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 
 import { TopAdminBar } from './components/TopAdminBar';
-import { Navbar } from './components/Navbar';
+import { PortfolioHeader } from './components/PortfolioHeader';
 import { Hero } from './components/Hero';
 import { MasterPortfolioSection } from './components/MasterPortfolioSection';
 import { CapabilitiesSection } from './components/CapabilitiesSection';
@@ -37,29 +37,25 @@ export function PortfolioApp() {
 
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      const saved = localStorage.getItem('mm_portfolio_projects_v20');
+      localStorage.removeItem('mm_portfolio_projects_v28');
+      localStorage.removeItem('mm_portfolio_projects_v25');
+      localStorage.removeItem('mm_portfolio_projects_v24');
+      localStorage.removeItem('mm_portfolio_projects_v20');
+      const saved = localStorage.getItem('mm_portfolio_projects_v30');
       if (saved) {
         const parsed: Project[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const buffalo = parsed.find((p) => p.id === 'buffalo-burger-commercial');
-          if (
-            buffalo &&
-            buffalo.videoUrl &&
-            buffalo.videoUrl.includes('6y1hBgpjbUo')
-          ) {
-            return parsed;
-          }
+          // ensure no deleted spec projects exist in cache
+          const cleaned = parsed.filter(
+            (p) =>
+              p.id !== 'level-fitness-spec' &&
+              p.id !== 'wojooh-tourism-spec' &&
+              p.id !== 'golden-sun-spec' &&
+              p.id !== 'talabat-delivery-tvc'
+          );
+          return cleaned;
         }
       }
-    } catch {
-      // ignore
-    }
-    // Also clean up any stale versions
-    try {
-      localStorage.removeItem('mm_portfolio_projects_v17');
-      localStorage.removeItem('mm_portfolio_projects_v16');
-      localStorage.removeItem('mm_portfolio_projects_v15');
-      localStorage.removeItem('mm_portfolio_projects_v14');
     } catch {
       // ignore
     }
@@ -73,12 +69,12 @@ export function PortfolioApp() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
   const [contactInitialService, setContactInitialService] = useState<string>('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [activeCategory, setActiveCategory] = useState<string>('Videos');
 
   // Persist projects to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('mm_portfolio_projects_v20', JSON.stringify(projects));
+      localStorage.setItem('mm_portfolio_projects_v30', JSON.stringify(projects));
     } catch {
       // ignore
     }
@@ -164,17 +160,16 @@ export function PortfolioApp() {
         onOpenDashboard={() => setIsDashboardModalOpen(true)}
       />
 
-      {/* Main Glass Navbar */}
-      <Navbar
+      {/* Main Header / Portfolio Identity */}
+      <PortfolioHeader
         onOpenContact={() => handleOpenContact('Commercial Collaboration')}
         onOpenResume={() => setIsResumeModalOpen(true)}
         onOpenDashboard={() => setIsDashboardModalOpen(true)}
-        onOpenPdfDeck={() => setIsPdfModalOpen(true)}
       />
 
       {/* Clean, Streamlined & Professional Master Layout */}
       <main className="flex-1 relative z-10">
-        {/* 01 — HERO */}
+        {/* 01 — HERO & INTERACTIVE SHOWREEL */}
         <Hero
           onOpenContact={() => handleOpenContact('Commercial Collaboration')}
           onExploreWork={handleExploreWork}
@@ -186,7 +181,19 @@ export function PortfolioApp() {
           }}
         />
 
-        {/* 02 — LATEST PROJECTS / SELECTED WORK (Placed immediately at the top as requested) */}
+        {/* 02 — ABOUT & CREDENTIALS (Placed before projects per user instruction) */}
+        <About
+          onOpenResume={() => setIsResumeModalOpen(true)}
+          onOpenContact={() => handleOpenContact('Commercial Collaboration')}
+          onOpenPdfDeck={() => setIsPdfModalOpen(true)}
+        />
+
+        {/* 03 — MY SERVICES & ENGAGEMENT PACKAGES (4 Pillars + Starter, Growth, Custom Packs) */}
+        <CapabilitiesSection
+          onSelectService={(serviceName) => handleOpenContact(serviceName)}
+        />
+
+        {/* 04 — MASTER PROJECTS HUB (3 Dedicated Corners: Videos, Carousels, SOSTAC Decks + All Projects) */}
         <MasterPortfolioSection
           projects={projects}
           activeCategory={activeCategory}
@@ -198,19 +205,7 @@ export function PortfolioApp() {
           onResetProjects={handleResetProjects}
         />
 
-        {/* 03 — ABOUT & CREDENTIALS */}
-        <About
-          onOpenResume={() => setIsResumeModalOpen(true)}
-          onOpenContact={() => handleOpenContact('Commercial Collaboration')}
-          onOpenPdfDeck={() => setIsPdfModalOpen(true)}
-        />
-
-        {/* 04 — OUR SERVICES (4 MARKETING PILLARS) */}
-        <CapabilitiesSection
-          onSelectService={(serviceName) => handleOpenContact(serviceName)}
-        />
-
-        {/* 05 — PROCESS (FROM IDEA TO IMPACT) */}
+        {/* 05 — THE CREATIVE & STRATEGIC PROCESS (FROM BRIEF TO IMPACT) */}
         <CreativeProcess />
 
         {/* 06 — CONTACT ME */}

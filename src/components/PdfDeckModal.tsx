@@ -326,14 +326,14 @@ export const PdfDeckModal: React.FC<PdfDeckModalProps> = ({
     },
     {
       page: 19,
-      section: '16 / VIDEO · BABA GAH',
+      section: '16 / VIDEO · BABA GEH',
       titleEn: 'Family and lifestyle storytelling',
       titleAr: 'السرد القصصي العائلي والكوميديا الواقعية',
-      quoteEn: 'Two short-form video samples from the Drive folder titled Baba Gah.',
+      quoteEn: 'Two short-form video samples from the Drive folder titled Baba Geh.',
       quoteAr: 'عينتان فيديو قصيرتان لمشروع بابا جه من مجلد جوجل درايف.',
       items: [
-        'Baba Gah · family-story sample (relatable family emotion)',
-        'Baba Gah · montage sample (fast cuts & branded shopping bag reveal)',
+        'Baba Geh · family-story sample (relatable family emotion)',
+        'Baba Geh · montage sample (fast cuts & branded shopping bag reveal)',
       ],
       image: babaGehThumb1,
     },

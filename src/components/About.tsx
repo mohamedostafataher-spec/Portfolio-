@@ -104,32 +104,37 @@ export const About: React.FC<AboutProps> = ({
 
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-[0.2em] mb-4">
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
-            <span>{isAr ? '03 / عن محمد طاهر' : '03 / ABOUT ME'}</span>
+            <span>{isAr ? '02 / نبذة عني • ABOUT ME' : '02 / ABOUT ME'}</span>
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
           </div>
           
           <h2 className="font-display text-3xl sm:text-6xl font-black text-white tracking-tight mb-4">
-            {isAr ? 'قصة نجاح رقمية' : 'A Digital Success Story'}
+            {isAr ? 'الرؤية والمسار المهني' : 'Creative Vision & Trajectory'}
           </h2>
           
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 backdrop-blur-md shadow-xl flex items-center gap-2 whitespace-nowrap">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-wider">DEPI Certified Marketer</span>
+          <div className="flex items-center justify-center gap-2 mb-8 flex-wrap">
+            <div className="px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 backdrop-blur-md shadow-xl flex items-center gap-2 whitespace-nowrap">
+              <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-[10px] sm:text-xs font-mono font-bold text-white uppercase tracking-wider">
+                DEPI Trainee · Digital Egypt Pioneers (In Progress)
+              </span>
+            </div>
+            <div className="px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/10 text-zinc-300 text-[10px] sm:text-xs font-mono flex items-center gap-1.5">
+              <span>{isAr ? 'متاح للعمل الإقليمي وعن بُعد' : 'Available for Projects & Remote'}</span>
             </div>
           </div>
 
           <div className="space-y-6 text-zinc-300 text-sm sm:text-xl leading-relaxed font-light px-2">
             <p>
               {isAr
-                ? 'أنا محمد مصطفى طاهر، مسوق رقمي ومخرج إبداعي مقيم في القاهرة، مصر. متخصص في هندسة الحملات الإعلانية المدفوعة، كتابة وصناعة الفيديوهات التجارية، وتخطيط استراتيجيات النمو للعلامات التجارية وفق نموذج SOSTAC العالمي.'
-                : 'I am Mohamed Mostafa Taher, a data-driven Digital Marketer & Creative Director based in Cairo, Egypt. Specializing in high-converting paid media campaigns, viral short-form commercials, and full-funnel growth architecture.'}
+                ? 'أنا محمد مصطفى طاهر، صانع محتوى إبداعي بالذكاء الاصطناعي ومسوق رقمي متخصص في هندسة الإعلانات التجارية السريعة، إنتاج فيديوهات الـ AI، تصميم سلاسل الكاروسيل عالية التفاعل، وتخطيط استراتيجيات النمو للعلامات التجارية وفق نموذج SOSTAC العالمي.'
+                : 'I am Mohamed Mostafa Taher, an AI Creative Producer & Content Marketer specializing in high-velocity commercial video TVCs, generative AI workflows, high-converting social carousels, and SOSTAC growth architecture.'}
             </p>
 
             <p className="text-zinc-400 text-sm sm:text-lg">
               {isAr
-                ? 'طالب بجامعة العاصمة (كلية الآداب) وحاصل على شهادة الذكاء الاصطناعي والمهارات المهنية من ALX ومعتمد من مبادرة مصر الرقمية (DEPI). قمت بتخطيط وتنفيذ حملات وفيديوهات إعلانية لمشاريع بارزة تشمل: قيم للأزياء، بريدفاست، في سفن صودا، تاكة، بابا جه، بافلو برجر، وطلبات مصر.'
-                : 'Student at Capital University (Faculty of Arts), ALX AI & Professional Skills certified, and accredited by the Digital Egypt Pioneers Initiative (DEPI). Strategized and produced impactful campaigns for brands including QAIM Menswear, Breadfast, V7 Soda, TAKAA Energy Drink, Baba Geh, Buffalo Burger, and Talabat Egypt.'}
+                ? 'طالب بجامعة العاصمة (كلية الآداب، دفعة 2027)، متدرب بمبادرة رواد مصر الرقمية (DEPI) التابعة لوزارة الاتصالات وتكنولوجيا المعلومات، وحاصل على اعتماد الذكاء الاصطناعي والمهارات المهنية من ALX. أدمج أحدث نماذج التوليد البصري (Kling AI وMidjourney وRunway) مع المونتاج الإيقاعي الدقيق بـ CapCut Pro لإنتاج مخرجات إعلانية تجارية تضاهي كبرى الوكالات.'
+                : 'Student at Capital University (Faculty of Arts, Class of 2027), trainee at the Digital Egypt Pioneers Initiative (DEPI - MCIT), and ALX AI & Professional Skills accredited. I bridge modern generative AI engines (Kling AI, Midjourney, Runway) with precise CapCut Pro rhythm editing to create agency-grade commercial deliverables.'}
             </p>
           </div>
 
@@ -137,11 +142,15 @@ export const About: React.FC<AboutProps> = ({
           <div className="flex flex-wrap gap-3 mt-10 justify-center font-mono">
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
               <GraduationCap className="w-4 h-4 text-amber-500" />
-              <span>Capital University (2027)</span>
+              <span>Capital University (Class of 2027)</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
               <Sparkles className="w-4 h-4 text-amber-500" />
               <span>ALX AI Certified</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-amber-400" />
+              <span>DEPI MCIT Scholar</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
               <HeartHandshake className="w-4 h-4 text-emerald-500" />

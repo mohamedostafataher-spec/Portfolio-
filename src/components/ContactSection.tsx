@@ -78,7 +78,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
         {/* Section Tag */}
         <div className="flex items-center gap-3 mb-4">
           <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">
-            {isAr ? 'تواصل معي • CONTACT' : 'CONTACT'}
+            {isAr ? '06 — تواصل وتعاون • CONTACT' : '06 — CONTACT & BOOKING'}
           </span>
           <div className="h-px bg-amber-500/20 w-12 sm:w-16" />
         </div>
@@ -216,7 +216,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
                 <div className="p-3 rounded-xl bg-zinc-900/40 border border-white/5 flex items-center gap-2 text-zinc-400">
                   <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>{isAr ? 'القاهرة & عن بُعد' : 'Cairo & Remote'}</span>
+                  <span>{isAr ? 'متاح إقليمياً & عن بُعد' : 'Available for Remote Work'}</span>
                 </div>
                 <div className="p-3 rounded-xl bg-zinc-900/40 border border-white/5 flex items-center gap-2 text-zinc-400">
                   <Clock className="w-4 h-4 text-emerald-400 shrink-0" />

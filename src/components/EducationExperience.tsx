@@ -20,8 +20,8 @@ export const EducationExperience: React.FC = () => {
       ar: 'بناء بورتفوليو متنامٍ من المفاهيم الإعلانية المتطورة بالذكاء الاصطناعي.',
     },
     {
-      en: 'Developed cinematic commercial concepts for major brands (Spiro Spathis, Baba Geh, Talabat, Buffalo Burger, Qaim).',
-      ar: 'تطوير مفاهيم إعلانات تجارية سينمائية لكبرى العلامات والمشاريع (سبيرو سباتس، بابا جه، طلبات، بافلو برجر، قَيَم).',
+      en: 'Developed cinematic commercial concepts for major brands (Spiro Spathis, Baba Geh, Breadfast, Buffalo Burger, QAIM).',
+      ar: 'تطوير مفاهيم إعلانات تجارية سينمائية لكبرى العلامات والمشاريع (سبيرو سباتس، بابا جه، بريدفاست، بافلو برجر، قَيَم).',
     },
     {
       en: 'Applied digital marketing frameworks (SCQA, Hook → Body → CTA) to creative content.',
@@ -176,8 +176,8 @@ export const EducationExperience: React.FC = () => {
 
               <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
                 {isAr
-                  ? 'تطوير مفاهيم إعلانات تجارية سينمائية متكاملة لبراندات ومشاريع تشمل سبيرو سباتس (Spiro Spathis)، بابا جه (Baba Geh)، طلبات (Talabat)، بافلو برجر (Buffalo Burger)، وبراند الأزياء قَيَم (Qaim).'
-                  : 'Developed advertising concepts for brands including Spiro Spathis, Baba Geh, Talabat, Buffalo Burger and Qaim as creative commercial projects.'}
+                  ? 'تطوير مفاهيم إعلانات تجارية سينمائية متكاملة لبراندات ومشاريع تشمل سبيرو سباتس (Spiro Spathis)، بابا جه (Baba Geh)، بريدفاست (Breadfast)، بافلو برجر (Buffalo Burger)، وبراند الأزياء قَيَم (QAIM).'
+                  : 'Developed advertising concepts for brands including Spiro Spathis, Baba Geh, Breadfast, Buffalo Burger and QAIM as creative commercial projects.'}
               </p>
 
               <div className="space-y-2 pt-2">

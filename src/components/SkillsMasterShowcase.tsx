@@ -510,8 +510,8 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                 {
                   id: 'baba-geh-family',
                   titleAr: 'بابا جه — فيلم القصة والكوميديا العائلية',
-                  titleEn: 'Baba Gah Family Story Film',
-                  tag: 'Baba Gah · Family Story',
+                  titleEn: 'Baba Geh Family Story Film',
+                  tag: 'Baba Geh · Family Story',
                   duration: '45 sec',
                   hookAr: 'أب للإيجار ومشاعر واقعية تلمس البيت المصري بحبكة مرحة.',
                   url: '/videos/baba_geh_pro.mp4',
@@ -520,8 +520,8 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                 {
                   id: 'baba-geh-montage',
                   titleAr: 'بابا جه — مونتاج سريع وكيس المشتريات (60 ثانية)',
-                  titleEn: 'Baba Gah Montage Film (60s)',
-                  tag: 'Baba Gah · Montage Cut',
+                  titleEn: 'Baba Geh Montage Film (60s)',
+                  tag: 'Baba Geh · Montage Cut',
                   duration: '60 sec',
                   hookAr: 'تقطيع فريمات كوميدي سريع وظهور شنطة اللبس «بابا جه».',
                   url: '/videos/baba_geh_montage.mp4',
@@ -775,10 +775,10 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
                     </button>
                   </div>
 
-                  {/* Track 3: Baba Gah Synthetic Character Demo */}
+                  {/* Track 3: Baba Geh Synthetic Character Demo */}
                   <div className="p-3.5 rounded-2xl bg-zinc-950/80 border border-white/5 flex items-center justify-between mb-3">
                     <div>
-                      <div className="text-xs font-bold text-white">Baba Gah · Synthetic Character Demo</div>
+                      <div className="text-xs font-bold text-white">Baba Geh · Synthetic Character Demo</div>
                       <span className="text-[10px] font-mono text-zinc-400">Spec Character VO · تجربة أداء صوتي للشخصية</span>
                     </div>
 

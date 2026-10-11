@@ -198,7 +198,7 @@ export const ProjectShowcaseHub: React.FC<ProjectShowcaseHubProps> = ({
       taglineAr: '«أب للإيجار.. ومشاعر واقعية تلمس البيت المصري» • مونتاج كوميدي سريع الإيقاع.',
       taglineEn: 'Relatable family storytelling and fast-cut comedy reels synced to dialogue beats.',
       briefAr: 'إنتاج نسختين مونتاج لمشروع «بابا جه»: الأولى فيلم عائلي دافئ (45 ثانية) والثانية مونتاج كوميدي سريع (60 ثانية) مع شنطة المشتريات ومزامنة الحوار.',
-      briefEn: 'Two edited cuts from the Baba Gah Drive archive: a 45s warm family narrative and a 60s dynamic punchline montage.',
+      briefEn: 'Two edited cuts from the Baba Geh Drive archive: a 45s warm family narrative and a 60s dynamic punchline montage.',
       insightAr: 'المفارقات الكوميدية العائلية في مصر تتطلب توقيتاً دقيقاً للـ Punchline ومؤثرات صوتية واقعية تجعل المشهد طبيعياً وقريباً للقلب.',
       insightEn: 'Egyptian family comedy succeeds when timing is precise and sound effects emphasize everyday humor.',
       executionAr: 'مونتاج سريع الإيقاع في CapCut Pro + تلوين سينمائي دافئ + هندسة المؤثرات الصوتية (Foley FX) + مزامنة حركة شنطة الملابس مع الحوار.',

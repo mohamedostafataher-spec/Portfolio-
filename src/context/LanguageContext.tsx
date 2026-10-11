@@ -25,7 +25,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Hero
     heroAvailable: 'Available for Brand Campaigns & Collaborations',
-    heroLocation: 'Cairo & Remote',
+    heroLocation: 'Available for Remote & Regional Work',
     heroTitle: 'Mohamed Mostafa',
     heroSubtitle: 'Digital Marketing Specialist & AI Content Creator',
     heroDescription:

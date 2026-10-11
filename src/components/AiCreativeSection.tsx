@@ -10,6 +10,7 @@ import {
   Sliders,
 } from 'lucide-react';
 import { AI_CREATIVE_PILLARS } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 interface AiCreativeSectionProps {
   onOpenWork: () => void;
@@ -18,6 +19,7 @@ interface AiCreativeSectionProps {
 export const AiCreativeSection: React.FC<AiCreativeSectionProps> = ({
   onOpenWork,
 }) => {
+  const { isAr } = useLanguage();
   const icons = [
     Film, // AI Video
     ImageIcon, // AI Images
@@ -36,7 +38,7 @@ export const AiCreativeSection: React.FC<AiCreativeSectionProps> = ({
         {/* Section Header */}
         <div className="flex items-center gap-3 mb-4">
           <span className="text-xs font-mono font-bold tracking-widest text-amber-400 uppercase">
-            05 — CREATIVE EDGE
+            {isAr ? '06 — مختبر الإبداع بالذكاء الاصطناعي • AI CREATIVE LAB' : '06 — AI CREATIVE LAB'}
           </span>
           <div className="h-px bg-amber-500/20 w-16" />
         </div>

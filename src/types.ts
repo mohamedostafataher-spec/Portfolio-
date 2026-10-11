@@ -59,6 +59,18 @@ export interface Project {
   evidenceStatus?: 'Drive-backed' | 'Coursework' | 'Spec Concept' | 'Video Sample';
   evidenceLabelAr?: string;
   guardrailNote?: string;
+  specBadge?: 'Concept' | 'Spec Work' | 'Client Work' | 'Coursework';
+  brief?: string;
+  targetAudience?: string;
+  aiToolsUsed?: string[];
+  targetKpi?: string;
+  whatILearned?: string;
+  beforeAfterComparison?: {
+    beforeLabel: string;
+    afterLabel: string;
+    beforeDesc: string;
+    afterDesc: string;
+  };
 }
 
 export interface Article {

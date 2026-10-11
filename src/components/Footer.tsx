@@ -143,7 +143,7 @@ export const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="text-zinc-400 hover:text-white transition-colors"
             >
-              Baba Gah Folder
+              Baba Geh Folder
             </a>
           </div>
         </div>

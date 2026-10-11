@@ -20,6 +20,7 @@ import {
   Volume2,
   Layers,
   ArrowUpRight,
+  Target,
 } from 'lucide-react';
 import { Project } from '../types';
 import { parseVideoUrl } from '../utils/videoHelper';
@@ -102,15 +103,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const videoInfo = parseVideoUrl(videoUrlToUse);
 
   useEffect(() => {
-    setIsPaused(true);
     setCurrentSlideIndex(0);
     setModalSlideIndex(0);
     setShowDeepDiveDeck(false);
     setDisplayFormat(project?.aspectRatio === '9:16' ? 'vertical' : 'landscape');
 
     if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.load();
+      videoRef.current.currentTime = 0;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPaused(false))
+          .catch(() => setIsPaused(true));
+      }
+    } else {
+      setIsPaused(true);
     }
     if (modalScrollRef.current) {
       modalScrollRef.current.scrollTop = 0;
@@ -313,51 +320,70 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl flex items-center justify-center">
               {videoInfo ? (
                 /* Video Player */
-                <div
-                  className={`w-full relative transition-all duration-300 ${
-                    displayFormat === 'vertical'
-                      ? 'max-w-[280px] xs:max-w-sm mx-auto aspect-[9/16] py-2'
-                      : 'aspect-video max-h-[520px]'
-                  }`}
-                >
-                  {videoInfo.isDirect ? (
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <video
-                        ref={videoRef}
-                        controls
-                        playsInline
-                        preload="metadata"
-                        poster={project.image}
-                        onPlay={() => setIsPaused(false)}
-                        onPause={() => setIsPaused(true)}
-                        className="w-full h-full object-contain rounded-xl bg-black"
-                      >
-                        <source src={videoInfo.embedUrl} type="video/mp4" />
-                        Your browser does not support video playback.
-                      </video>
-                      {isPaused && (
-                        <button
-                          onClick={() => {
-                            if (videoRef.current) {
-                              videoRef.current.play().catch(() => {});
-                              setIsPaused(false);
-                            }
-                          }}
-                          className="absolute inset-0 m-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500 hover:bg-amber-400 text-black flex items-center justify-center shadow-2xl transition-transform hover:scale-110 z-20 cursor-pointer pointer-events-auto"
-                          aria-label="Play video"
+                <div className="w-full flex flex-col items-center">
+                  <div
+                    className={`w-full relative transition-all duration-300 ${
+                      displayFormat === 'vertical'
+                        ? 'max-w-[280px] xs:max-w-sm mx-auto aspect-[9/16] py-2'
+                        : 'aspect-video max-h-[520px]'
+                    }`}
+                  >
+                    {videoInfo.isDirect ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        <video
+                          ref={videoRef}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          poster={project.image}
+                          onPlay={() => setIsPaused(false)}
+                          onPause={() => setIsPaused(true)}
+                          className="w-full h-full object-contain rounded-xl bg-black"
                         >
-                          <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
-                        </button>
-                      )}
+                          <source src={videoInfo.embedUrl} type="video/mp4" />
+                          Your browser does not support video playback.
+                        </video>
+                        {isPaused && (
+                          <button
+                            onClick={() => {
+                              if (videoRef.current) {
+                                videoRef.current.play().catch(() => {});
+                                setIsPaused(false);
+                              }
+                            }}
+                            className="absolute inset-0 m-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500 hover:bg-amber-400 text-black flex items-center justify-center shadow-2xl transition-transform hover:scale-110 z-20 cursor-pointer pointer-events-auto"
+                            aria-label="Play video"
+                          >
+                            <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center">
+                        <iframe
+                          src={videoInfo.embedUrl}
+                          title={project.title}
+                          className="w-full h-full border-0 rounded-xl"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {videoInfo?.type === 'youtube' && (
+                    <div className="flex items-center justify-center pt-3 pb-2">
+                      <a
+                        href={videoUrlToUse}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-lg"
+                      >
+                        <Play className="w-4 h-4 fill-current" />
+                        <span>{isAr ? 'مشاهدة مباشرة على تطبيق / موقع YouTube' : 'Watch Directly on YouTube'}</span>
+                        <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                      </a>
                     </div>
-                  ) : (
-                    <iframe
-                      src={videoInfo.embedUrl}
-                      title={project.title}
-                      className="w-full h-full border-0 rounded-xl"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
                   )}
                 </div>
               ) : project.galleryImages && project.galleryImages.length > 1 ? (
@@ -539,27 +565,50 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
           </div>
 
-          {/* 6. PROJECT TYPE */}
+          {/* 6. PROJECT TYPE & HONEST SPEC BADGE */}
           <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
             <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
               <Briefcase className="w-4 h-4" />
-              <span>PROJECT TYPE</span>
+              <span>CLASSIFICATION &amp; STATUS</span>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <span className="px-3.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-bold font-mono">
-                {project.projectType || project.clientOrSpec || 'Spec / Concept / Personal Project'}
+                {project.specBadge || project.clientOrSpec || 'Spec Work'}
               </span>
               <span className="text-xs text-zinc-400 font-mono">
-                • {project.clientOrSpec}
+                • {project.projectType || 'Strategic Deliverable'}
               </span>
             </div>
           </div>
 
-          {/* 7. TOOLS & SKILLS (5–7 skills) */}
+          {/* 7. TARGET AUDIENCE & KPI TARGET */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-5 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
+              <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
+                <Target className="w-4 h-4" />
+                <span>TARGET AUDIENCE</span>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+                {project.targetAudience || 'Egyptian youth, social media audiences and digital consumers seeking high quality and clear value.'}
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
+              <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
+                <Target className="w-4 h-4" />
+                <span>SUCCESS KPI TARGET</span>
+              </div>
+              <p className="text-xs sm:text-sm text-amber-200 font-mono font-semibold leading-relaxed">
+                {project.targetKpi || (project.stats?.[0] ? `${project.stats[0].label}: ${project.stats[0].value}` : '3-Second Hold Rate > 45% & High Completion Ratio')}
+              </p>
+            </div>
+          </div>
+
+          {/* 8. TOOLS & SKILLS (5–7 skills) */}
           <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-3">
             <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
               <Wrench className="w-4 h-4" />
-              <span>TOOLS & SKILLS</span>
+              <span>TOOLS &amp; AI ENGINE</span>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -573,6 +622,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               ))}
             </div>
           </div>
+
+          {/* 9. KEY LEARNING (WHAT I LEARNED) */}
+          {project.whatILearned && (
+            <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/30 border border-white/10 space-y-2">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">
+                WHAT I LEARNED / LESSON:
+              </span>
+              <p className="text-xs sm:text-sm text-zinc-300 italic leading-relaxed">
+                "{project.whatILearned}"
+              </p>
+            </div>
+          )}
 
           {/* Optional Audio Track (if present) */}
           {project.audioUrl && (

@@ -31,9 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { nameEn: 'Home', nameAr: 'الرئيسية', href: '#home' },
-    { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'About', nameAr: 'عن محمد', href: '#about' },
     { nameEn: 'Services', nameAr: 'الخدمات', href: '#services' },
+    { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
 
@@ -72,14 +72,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div className="flex flex-col min-w-0">
             <span className="font-display font-bold text-[13px] sm:text-base tracking-tight text-white group-hover:text-amber-300 transition-colors flex items-center gap-1.5 truncate">
-              {isAr ? 'محمد طاهر' : 'Mohamed Taher'}
+              {isAr ? 'محمد مصطفى طاهر' : 'Mohamed Mostafa Taher'}
               {isOwnerMode && (
                 <Crown className="w-3 h-3 text-amber-400 shrink-0" title="Owner Mode Active" />
               )}
             </span>
             <span className="text-[9px] sm:text-[11px] font-medium text-zinc-400 tracking-wider uppercase flex items-center gap-1.5 truncate">
               <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
-              {isAr ? 'مسوق رقمي' : 'Marketer'}
+              {isAr ? 'صانع محتوى AI ومسوق' : 'AI Creative & Marketer'}
             </span>
           </div>
         </a>

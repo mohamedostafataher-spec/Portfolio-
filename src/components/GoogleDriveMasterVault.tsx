@@ -79,19 +79,6 @@ export const GoogleDriveMasterVault: React.FC = () => {
       driveFolderUrl: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
     },
     {
-      id: 'v3',
-      titleAr: 'إعلان طلبات مصر العائلي — يوم واحد من غير طلبات',
-      titleEn: 'Talabat Egypt — High-Velocity Food Delivery Spot',
-      projectAr: 'تطبيق طلبات مصر',
-      projectEn: 'Talabat Egypt',
-      type: 'video',
-      ext: 'MP4',
-      sizeLabel: '7.5 MB',
-      durationOrPages: '68 sec',
-      url: '/videos/food_delivery_ad.mp4',
-      driveFolderUrl: 'https://drive.google.com/drive/folders/1v0rs3UAwaxY8sOckbHlWB3y-J9_AVSvf',
-    },
-    {
       id: 'v4',
       titleAr: 'إعلان سبيرو سباتس التاريخي — الأصل بيكمل معانا',
       titleEn: 'Spiro Spathis Beverage Heritage Spot',
@@ -359,19 +346,19 @@ export const GoogleDriveMasterVault: React.FC = () => {
           <div className="space-y-3 max-w-2xl text-left rtl:text-right">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs font-bold uppercase tracking-wider">
               <FolderOpen className="w-3.5 h-3.5" />
-              <span>{isAr ? 'خزينة ملفات Google Drive الكاملة' : 'MASTER GOOGLE DRIVE VAULT'}</span>
+              <span>{isAr ? 'أرشيف ملفات Google Drive المعتمدة' : 'CURATED GOOGLE DRIVE ARCHIVE'}</span>
             </div>
 
             <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
               {isAr
-                ? 'جميع ملفات وأصول الدرايف الأساسي المعتمدة'
-                : 'Every Verified Asset from the Master Drive'}
+                ? 'أهم مخرجات وأصول درايف المعتمدة'
+                : 'Verified Deliverables from Google Drive'}
             </h2>
 
             <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
               {isAr
-                ? 'فهرس متكامل لجميع الفيديوهات، العروض التقديمية (PPTX)، التقارير (PDF)، والتسجيلات الصوتية (WAV) مع إمكانية التشغيل أو التحميل المباشر.'
-                : 'Complete directory of 79 original Drive assets: 9 videos, 11 PPTX presentations, 6 PDF reports, and studio audio masters.'}
+                ? `فهرس منظم لأهم ${vaultItems.length} ملفاً ومخرجاً من أصول درايف: ${vaultItems.filter((v) => v.type === 'video').length} فيديوهات وإعلانات تجارية، ${vaultItems.filter((v) => v.type === 'deck').length} عروض استراتيجية (PPTX)، ${vaultItems.filter((v) => v.type === 'pdf').length} تقارير وأبحاث (PDF)، وتسجيلات صوتية فويس أوفر (WAV) مع إمكانية التشغيل أو التحميل المباشر.`
+                : `Curated directory of ${vaultItems.length} verified deliverables: ${vaultItems.filter((v) => v.type === 'video').length} commercial videos, ${vaultItems.filter((v) => v.type === 'deck').length} strategy decks (PPTX), ${vaultItems.filter((v) => v.type === 'pdf').length} research reports (PDF), and studio audio masters with direct playback and download.`}
             </p>
           </div>
 
@@ -396,7 +383,7 @@ export const GoogleDriveMasterVault: React.FC = () => {
             {
               nameAr: 'المجلد الرئيسي الشامل',
               nameEn: 'Master Drive Folder',
-              count: '79 Files',
+              count: 'All Assets',
               url: 'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3',
             },
             {
@@ -408,19 +395,19 @@ export const GoogleDriveMasterVault: React.FC = () => {
             {
               nameAr: 'مجلد مشروع تاكة',
               nameEn: 'TAKAA Folder',
-              count: '16 Files',
+              count: 'Videos & Decks',
               url: 'https://drive.google.com/drive/folders/1zYaljKNwH5XvD5V_Irsfcas-FZ1MsHrq',
             },
             {
               nameAr: 'مجلد مشروع في سفن',
               nameEn: 'V7 Folder',
-              count: '18 Files',
+              count: 'Campaign Assets',
               url: 'https://drive.google.com/drive/folders/1fyGsWAhwiEdt_qkshdB9eCzsX1ldZ4Sh',
             },
             {
               nameAr: 'مجلد مشروع بابا جه',
-              nameEn: 'Baba Gah Folder',
-              count: 'Videos & Foley',
+              nameEn: 'Baba Geh Folder',
+              count: 'Reels & Foley',
               url: 'https://drive.google.com/drive/folders/19xsfCc4ThGEilh9GoEQSaQgo5TARk00C',
             },
           ].map((f, i) => (
@@ -452,10 +439,30 @@ export const GoogleDriveMasterVault: React.FC = () => {
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
           {[
             { id: 'all', labelAr: 'كل الملفات', labelEn: 'All Files', count: vaultItems.length },
-            { id: 'video', labelAr: 'الفيديوهات (MP4)', labelEn: 'Videos (9 MP4)', count: 9 },
-            { id: 'deck', labelAr: 'عروض البوربوينت (PPTX)', labelEn: 'Decks (7 PPTX)', count: 7 },
-            { id: 'pdf', labelAr: 'التقارير (PDF)', labelEn: 'PDF Reports', count: 4 },
-            { id: 'audio', labelAr: 'الصوت والفويس أوفر (WAV)', labelEn: 'Voiceover (WAV)', count: 2 },
+            {
+              id: 'video',
+              labelAr: 'الفيديوهات (MP4)',
+              labelEn: 'Videos',
+              count: vaultItems.filter((v) => v.type === 'video').length,
+            },
+            {
+              id: 'deck',
+              labelAr: 'عروض البوربوينت (PPTX)',
+              labelEn: 'Decks (PPTX)',
+              count: vaultItems.filter((v) => v.type === 'deck').length,
+            },
+            {
+              id: 'pdf',
+              labelAr: 'التقارير (PDF)',
+              labelEn: 'PDF Reports',
+              count: vaultItems.filter((v) => v.type === 'pdf').length,
+            },
+            {
+              id: 'audio',
+              labelAr: 'الصوت والفويس أوفر (WAV)',
+              labelEn: 'Voiceover (WAV)',
+              count: vaultItems.filter((v) => v.type === 'audio').length,
+            },
           ].map((btn) => (
             <button
               key={btn.id}

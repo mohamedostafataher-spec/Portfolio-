@@ -9,6 +9,9 @@ import {
   ArrowLeft,
   CheckCircle2,
   Layers,
+  MessageCircle,
+  Clock,
+  Zap,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -24,16 +27,14 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
       num: '01',
       id: 'performance-marketing',
       titleAr: 'إعلانات الأداء والميديا بايينج',
-      titleEn: 'Performance Marketing',
+      titleEn: 'Performance Media & Funnels',
       categoryEn: 'PAID MEDIA & FUNNELS',
       categoryAr: 'الإعلانات الممولة ومسارات الشراء',
       icon: BarChart3,
-      accentColor: 'from-amber-500 to-orange-500',
-      badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
       descAr:
-        'إدارة ميزانيات إعلانات Meta و TikTok و Google بهندسة مسارات شراء (Funnels) تضمن استهدافاً دقيقاً، وتقلل تكلفة الاستحواذ (CAC)، وتضاعف العائد على الإنفاق الإعلاني (ROAS).',
+        'إدارة ميزانيات إعلانات Meta و TikTok بهندسة مسارات شراء تضمن استهدافاً دقيقاً، وتقلل تكلفة الاستحواذ (CAC)، وتضاعف العائد على الإنفاق الإعلاني (ROAS).',
       descEn:
-        'Managing high-performing Meta, TikTok & Google ad budgets through structured funnels, precise audience segmentation, CAC reduction, and aggressive ROAS scaling.',
+        'Managing high-performing Meta & TikTok ad budgets through structured funnels, audience segmentation, CAC reduction, and aggressive ROAS scaling.',
       highlights: [
         { en: 'Meta Ads Manager & CBO/ABO', ar: 'إدارة حملات ميتا واختبارات A/B' },
         { en: 'TikTok Ads & Spark Ads', ar: 'إعلانات تيك توك وسپارك آدز' },
@@ -45,14 +46,12 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
       num: '02',
       id: 'commercial-video',
       titleAr: 'صناعة الفيديو والإعلانات التجارية',
-      titleEn: 'Commercial Video & TVC',
+      titleEn: 'Commercial Video & TVC Spots',
       categoryEn: 'FAST-PACED EDITING & FOLEY',
       categoryAr: 'المونتاج الإيقاعي وهندسة الصوت',
       icon: Film,
-      accentColor: 'from-orange-500 to-rose-500',
-      badgeColor: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
       descAr:
-        'مونتاج فيديوهات إعلانية وتجارية سريعة الإيقاع بـ CapCut Pro و Premiere، مع هندسة خطافات بصرية تجذب الانتباه في أول ثانيتين، ومؤثرات صوتية محترفة (Foley & Sizzle) تحفز الشراء.',
+        'مونتاج فيديوهات إعلانية وتجارية سريعة الإيقاع بـ CapCut Pro و Premiere، مع هندسة خطافات بصرية تجذب الانتباه في أول ثانيتين، ومؤثرات صوتية محترفة (Foley & Sizzle).',
       descEn:
         'Producing high-retention commercial TVC spots and short-form reels using CapCut Pro, featuring instant 2-second hooks, dynamic motion zooms, and macro food sizzle foley.',
       highlights: [
@@ -70,39 +69,100 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
       categoryEn: 'MARKET AUDITS & ROADMAPS',
       categoryAr: 'أبحاث السوق والخطط الشاملة',
       icon: Target,
-      accentColor: 'from-amber-400 to-yellow-500',
-      badgeColor: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20',
       descAr:
-        'بناء خطط تسويق استراتيجية متكاملة وفق منهجية SOSTAC المعتمدة دولياً، تشمل تحليل الموقف الحالي، دراسة المنافسين، تحديد شخصيات المشترين (Buyer Personas)، وتصميم العروض التقديمية.',
+        'بناء خطط تسويق استراتيجية متكاملة وفق منهجية SOSTAC المعتمدة، تشمل تحليل الموقف الحالي، دراسة المنافسين، تحديد شخصيات المشترين، وتصميم العروض التقديمية.',
       descEn:
-        'Designing end-to-end strategic marketing roadmaps based on the certified SOSTAC framework, comprehensive competitor benchmarking, buyer persona definition, and pitch decks.',
+        'Designing end-to-end strategic marketing roadmaps based on the certified SOSTAC framework, competitor benchmarking, buyer persona definition, and pitch decks.',
       highlights: [
         { en: 'SOSTAC Certified Framework', ar: 'تخطيط تسويقي معتمد بنموذج SOSTAC' },
         { en: 'Competitor Benchmarking', ar: 'تحليل المنافسين والفجوات السوقية' },
         { en: 'Buyer Persona Architecture', ar: 'رسم وتحديد شخصيات العملاء المستهدفين' },
-        { en: 'Investor & Strategy Pitch Decks', ar: 'تصميم عروض الاستراتيجية بالكانفا والـ PDF' },
+        { en: 'Strategy Pitch Decks & PDFs', ar: 'تصميم عروض الاستراتيجية بالكانفا والـ PDF' },
       ],
     },
     {
       num: '04',
       id: 'creative-direction',
-      titleAr: 'التوجيه الإبداعي وكتابة الاسكريبت',
-      titleEn: 'Creative Direction & Copy',
-      categoryEn: 'EGYPTIAN STORYTELLING & VO',
-      categoryAr: 'السرد القصصي والفويس أوفر',
+      titleAr: 'الذكاء الاصطناعي التوليدي والاسكريبت',
+      titleEn: 'Generative AI & Copywriting',
+      categoryEn: 'GEN-AI & STORYTELLING',
+      categoryAr: 'الذكاء الاصطناعي والسرد القصصي',
       icon: Sparkles,
-      accentColor: 'from-emerald-400 to-teal-500',
-      badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
       descAr:
-        'ابتكار أفكار إعلانية أصيلة تلمس الواقع والفكاهة المصرية، صياغة اسكريبتات الإعلانات، توجيه الأداء الصوتي (Voice-over Direction)، وتوليد المواد البصرية بالذكاء الاصطناعي.',
+        'ابتكار أفكار إعلانية أصيلة تلمس الواقع والفكاهة المصرية، صياغة اسكريبتات الإعلانات، توليد الكوادر البصرية بـ Midjourney وKling AI، وتوجيه الأداء الصوتي.',
       descEn:
-        'Crafting memorable campaign ideas rooted in Egyptian cultural truths, high-converting colloquial copywriting, voice-over direction, and AI visual concept generation.',
+        'Crafting campaign concepts rooted in cultural insights, high-converting colloquial copywriting, prompt-engineered video scenes (Kling/Midjourney), and AI voiceovers.',
       highlights: [
+        { en: 'Kling & Midjourney Visuals', ar: 'توليد مشاهد سينمائية بالذكاء الاصطناعي' },
         { en: 'Egyptian Colloquial Copywriting', ar: 'كتابة إعلانية بالعامية المصرية الذكية' },
-        { en: 'TVC Scriptwriting & Dialogue', ar: 'كتابة السيناريو والحوارات الإعلانية' },
-        { en: 'Voice-over & Audio Direction', ar: 'توجيه هندسة الصوت والأداء الإعلاني' },
-        { en: 'Generative AI Visual Concepts', ar: 'توليد أفكار وبوسترات بالذكاء الاصطناعي' },
+        { en: 'ElevenLabs & Studio Dubbing', ar: 'توجيه هندسة الصوت والأداء الإعلاني' },
+        { en: 'Viral Social Carousels', ar: 'تصميم سلاسل الكاروسيل التفاعلية' },
       ],
+    },
+  ];
+
+  // 3 Clear Packages with defined scopes (Audit Recommendation)
+  const packages = [
+    {
+      nameAr: 'باقة الانطلاق الإبداعي (Starter Pack)',
+      nameEn: 'Starter Creative Pack',
+      taglineAr: 'مثالية لإطلاق ريلز سريع وهوكات قوية للمنتجات والمطاعم',
+      taglineEn: 'Ideal for fast product reels, restaurant promos & instant viral hooks',
+      scopeAr: [
+        'عدد 2 إلى 3 فيديوهات ريلز تجارية سريعة (CapCut Pro)',
+        'هندسة هوك أول ثانيتين (Stop-Scroll Hook)',
+        'تصميم شريط صوتي متقدم بمؤثرات Foley & Sizzle',
+        'تسليم سريع خلال 3 إلى 5 أيام عمل',
+      ],
+      scopeEn: [
+        '2–3 High-retention vertical TVC reels (9:16 CapCut Pro)',
+        '2-Second hook engineering & stop-scroll motion',
+        'Tactile Foley & food sizzle sound master',
+        'Fast turnaround: 3–5 business days',
+      ],
+      isPopular: false,
+    },
+    {
+      nameAr: 'باقة النمو ومحتوى الـ AI (Growth Pack)',
+      nameEn: 'Growth & AI Content Pack',
+      taglineAr: 'الحل الأمثل للحملات الإعلانية ومحتوى السوشيال ميديا المتكامل',
+      taglineEn: 'The full creative engine for performance brands needing high volume & testing',
+      scopeAr: [
+        'فيديو إعلاني سينمائي بتوليد Kling AI & Midjourney',
+        'عدد 2 سلاسل كاروسيل تفاعلية متعددة الشرائح للمنتجات',
+        'تنويعات إعلانية A/B Test لميتا وتيك توك',
+        'فويس أوفر إعلاني احترافي باللهجة المصرية أو الفصحى',
+        'تسليم خلال 7 إلى 10 أيام عمل',
+      ],
+      scopeEn: [
+        '1 Cinematic Gen-AI commercial spot (Kling AI / Runway)',
+        '2 Multi-slide e-commerce carousels (Canva / Figma)',
+        'Creative variations for Meta & TikTok A/B testing',
+        'Egyptian colloquial or formal AI studio voiceover',
+        'Turnaround: 7–10 business days',
+      ],
+      isPopular: true,
+    },
+    {
+      nameAr: 'الحملة الشاملة المخصصة (Custom Campaign)',
+      nameEn: 'Full-Funnel Custom Campaign',
+      taglineAr: 'بناء استراتيجية كاملة وهندسة مسار الشراء من الصفر',
+      taglineEn: 'End-to-end strategic marketing roadmap & full-funnel execution',
+      scopeAr: [
+        'خطة تسويق استراتيجية كاملة بنموذج SOSTAC المعتمد (PDF/PPTX)',
+        'تدقيق المنافسين وتحديد الجمهور المستهدف بدقة',
+        'تصميم مسارات الشراء (TOFU / MOFU / BOFU)',
+        'حزمة إنتاج مرئي كاملة (فيديوهات + كاروسيل + بوسترات)',
+        'نطاق عمل زمني مخصص حسب متطلبات المشروع',
+      ],
+      scopeEn: [
+        'Full SOSTAC strategy blueprint & market audit (PDF / PPTX)',
+        'Competitor benchmarking & buyer persona architecture',
+        'Full-funnel media architecture (TOFU/MOFU/BOFU setup)',
+        'Full creative asset suite (Reels + Carousels + Decks)',
+        'Custom timeline aligned with product launch targets',
+      ],
+      isPopular: false,
     },
   ];
 
@@ -117,29 +177,36 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
     }
   };
 
+  const handlePackageWhatsApp = (pkgTitle: string) => {
+    const phone = '201110095403';
+    const message = isAr
+      ? `مرحباً أستاذ محمد، أود الاستفسار ومناقشة تفاصيل التعاون عبر: ${pkgTitle}.`
+      : `Hi Mohamed, I would like to inquire about collaboration via: ${pkgTitle}.`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <section id="services" className="py-24 relative bg-[#070709] border-t border-white/5 overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-amber-500/5 blur-[140px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* SECTION HEADER (MATCHING REFERENCE VIDEO 00:10 "Our services") */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-20">
+        {/* SECTION HEADER: PERSONAL PRO PROFESSIONAL TONE */}
+        <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-bold mb-3 uppercase tracking-widest">
-            <span>{isAr ? '04 / الخدمات التسويقية' : '04 / SERVICES & CAPABILITIES'}</span>
+            <span>{isAr ? '03 / الخدمات وباقات التعاون' : '03 / SERVICES & PACKAGES'}</span>
           </div>
           <h2 className="font-display text-3xl sm:text-5xl font-black text-white tracking-tight">
-            {isAr ? 'خدماتي التسويقية' : 'Our Services'}
+            {isAr ? 'خدماتي التسويقية والإبداعية' : 'My Services & Capabilities'}
           </h2>
           <p className="text-zinc-400 text-sm sm:text-base mt-3 leading-relaxed">
             {isAr
-              ? 'حلول تسويقية متكاملة تجذب العملاء وتحقق أعلى عائد، مصممة خصيصاً لتناسب هوية علامتك التجارية وسلوك جمهورك المستهدف.'
-              : 'End-to-end marketing solutions that attract customers, build brand equity, and generate measurable revenue across modern digital touchpoints.'}
+              ? 'حلول إبداعية متكاملة ومباشرة تجمع بين سحر الإخراج المرئي، محتوى الذكاء الاصطناعي، وهندسة مسارات الشراء المربحة.'
+              : 'Direct, focused creative and growth solutions combining cinematic video direction, generative AI, and high-converting acquisition funnels.'}
           </p>
         </div>
 
-        {/* 4 SERVICE CARDS (MATCHING REFERENCE VIDEO STYLE) */}
+        {/* 4 SERVICE CAPABILITIES CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => {
             const Icon = service.icon;
@@ -177,17 +244,93 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onSele
                   </p>
                 </div>
 
-                {/* BOTTOM BUTTON: GET STARTED (MATCHING REFERENCE VIDEO) */}
+                {/* Bottom Button */}
                 <button
                   onClick={() => handleServiceClick(isAr ? service.titleAr : service.titleEn)}
-                  className="w-full py-3 px-4 rounded-xl bg-zinc-800 hover:bg-amber-500 text-zinc-200 hover:text-black font-bold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/5 hover:border-amber-500 group-hover:shadow-md"
+                  className="w-full py-3 px-4 rounded-xl bg-zinc-800 hover:bg-amber-500 text-zinc-200 hover:text-black font-bold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/5 hover:border-amber-500 group-hover:shadow-md mt-4"
                 >
-                  <span>{isAr ? 'ابدأ الآن' : 'Get Started'}</span>
+                  <span>{isAr ? 'طلب الخدمة' : 'Discuss'}</span>
                   <Arrow className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             );
           })}
+        </div>
+
+        {/* ======================================================== */}
+        {/* 3 STRUCTURED PACKAGES WITH CLEAR SCOPE (AUDIT PROPOSAL) */}
+        {/* ======================================================== */}
+        <div className="pt-10 border-t border-white/5 space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white">
+              {isAr ? 'باقات العمل المقترحة ونطاق التسليم' : 'Engagement Packages & Scopes'}
+            </h3>
+            <p className="text-zinc-400 text-xs sm:text-sm">
+              {isAr
+                ? 'نطاق تسليم واضح ومحدد يناسب احتياج علامتك ومرحلة نموها بدون تعقيدات.'
+                : 'Clear, transparent deliverables tailored to your brand stage and campaign goals.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {packages.map((pkg, idx) => (
+              <div
+                key={idx}
+                className={`p-6 sm:p-8 rounded-3xl border flex flex-col justify-between space-y-6 transition-all ${
+                  pkg.isPopular
+                    ? 'bg-zinc-900/80 border-amber-500/40 shadow-xl shadow-amber-500/5 ring-1 ring-amber-500/20'
+                    : 'bg-zinc-950/60 border-white/10 hover:border-white/20'
+                }`}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
+                      PACKAGE 0{idx + 1}
+                    </span>
+                    {pkg.isPopular && (
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-500 text-black font-mono font-bold text-[10px] uppercase">
+                        MOST POPULAR
+                      </span>
+                    )}
+                  </div>
+
+                  <h4 className="font-display text-xl font-bold text-white">
+                    {isAr ? pkg.nameAr : pkg.nameEn}
+                  </h4>
+
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    {isAr ? pkg.taglineAr : pkg.taglineEn}
+                  </p>
+
+                  {/* Scope Checklist */}
+                  <div className="pt-4 border-t border-white/10 space-y-2.5">
+                    <span className="text-[10px] font-mono font-bold text-zinc-500 uppercase block">
+                      DELIVERABLES / نطاق العمل:
+                    </span>
+                    {(isAr ? pkg.scopeAr : pkg.scopeEn).map((item, sIdx) => (
+                      <div key={sIdx} className="flex items-start gap-2 text-xs text-zinc-200">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span className="leading-snug">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA Button */}
+                <button
+                  onClick={() => handlePackageWhatsApp(isAr ? pkg.nameAr : pkg.nameEn)}
+                  className={`w-full py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                    pkg.isPopular
+                      ? 'bg-amber-500 hover:bg-amber-400 text-black shadow-lg shadow-amber-500/20'
+                      : 'bg-zinc-900 hover:bg-zinc-800 text-white border border-white/10'
+                  }`}
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>{isAr ? 'مناقشة الباقة عبر واتساب' : 'Discuss Scope on WhatsApp'}</span>
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
