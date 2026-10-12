@@ -124,6 +124,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     }
   }, [project]);
 
+  // Auto-play when active video changes
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+    }
+  }, [activeVideoIndex]);
+
   if (!project) return null;
 
   // Video list (Gallery videos + Primary videoUrl de-duplicated)
@@ -148,17 +156,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   const videoInfo = currentVideoItem ? parseVideoUrl(currentVideoItem.url) : null;
   const isYouTube = videoInfo?.type === 'youtube';
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
-    }
-  }, [safeVideoIndex]);
-
-  // Carousel images
-  const carouselImages = Array.from(
-    new Set([project.image, ...(project.galleryImages || [])])
-  );
+  // Carousel images (Only true multi-slide carousel projects)
+  const carouselImages = (project.galleryImages && project.galleryImages.length >= 4)
+    ? project.galleryImages
+    : [];
 
   const driveUrl =
     project.driveFolderUrl ||
@@ -609,84 +610,87 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* ========================================================= */}
           {/* STEP 4: الكاروسيل (CAROUSEL: Interactive Multi-Slide Slider) */}
           {/* ========================================================= */}
-          <section className="space-y-3">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                <Layers className="w-4 h-4" />
-                <span>04 — {isAr ? 'الكاروسيل التفاعلي' : 'INTERACTIVE CAROUSEL'}</span>
-              </span>
-              <span className="text-xs font-mono text-zinc-400">
-                {isAr
-                  ? `شريحة ${carouselIndex + 1} من ${carouselImages.length}`
-                  : `Slide ${carouselIndex + 1} of ${carouselImages.length}`}
-              </span>
-            </div>
-
-            {/* Slider container with swipe / buttons */}
-            <div className="relative rounded-2xl overflow-hidden bg-zinc-950 border border-white/10 min-h-[440px] sm:min-h-[540px] max-h-[650px] flex flex-col justify-between">
-              {/* Slide image */}
-              <div className="relative flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-                <img
-                  src={carouselImages[carouselIndex] || project.image}
-                  alt={`${project.title} Carousel Slide ${carouselIndex + 1}`}
-                  className="w-full h-full max-h-[460px] sm:max-h-[520px] object-contain rounded-lg"
-                />
-
-                {/* Left Button */}
-                {carouselImages.length > 1 && (
-                  <button
-                    onClick={() =>
-                      setCarouselIndex((prev) =>
-                        prev === 0 ? carouselImages.length - 1 : prev - 1
-                      )
-                    }
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
-                    title="Previous Slide"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                )}
-
-                {/* Right Button */}
-                {carouselImages.length > 1 && (
-                  <button
-                    onClick={() =>
-                      setCarouselIndex((prev) => (prev + 1) % carouselImages.length)
-                    }
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
-                    title="Next Slide"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                )}
+          {carouselImages.length > 0 && (
+            <section className="space-y-3">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                  <Layers className="w-4 h-4" />
+                  <span>04 — {isAr ? 'الكاروسيل التفاعلي' : 'INTERACTIVE CAROUSEL'}</span>
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-mono text-amber-300 font-bold">
+                  {isAr
+                    ? `شريحة ${carouselIndex + 1} من ${carouselImages.length}`
+                    : `Slide ${carouselIndex + 1} of ${carouselImages.length}`}
+                </span>
               </div>
 
-              {/* Slider Bottom Bar with Thumbnails */}
-              <div className="p-3 bg-black/90 border-t border-white/10 flex items-center justify-between gap-3">
-                <span className="text-xs font-mono text-amber-400 font-bold">
-                  {isAr
-                    ? `اسحب أو استخدم الأسهم للتنقل (${carouselIndex + 1}/${carouselImages.length})`
-                    : `Swipe or click arrows to browse (${carouselIndex + 1}/${carouselImages.length})`}
-                </span>
+              {/* Slider container with swipe / buttons */}
+              <div className="relative rounded-2xl overflow-hidden bg-zinc-950 border border-white/10 min-h-[440px] sm:min-h-[540px] max-h-[650px] flex flex-col justify-between">
+                {/* Slide image */}
+                <div className="relative flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+                  <img
+                    src={carouselImages[carouselIndex]}
+                    alt={`${project.title} Carousel Slide ${carouselIndex + 1}`}
+                    className="w-full h-full max-h-[460px] sm:max-h-[520px] object-contain rounded-lg"
+                  />
 
-                <div className="flex items-center gap-1.5 overflow-x-auto">
-                  {carouselImages.map((img, idx) => (
+                  {/* Left Button */}
+                  {carouselImages.length > 1 && (
                     <button
-                      key={idx}
-                      onClick={() => setCarouselIndex(idx)}
-                      className={`w-10 h-7 rounded overflow-hidden border transition-all cursor-pointer ${
-                        idx === carouselIndex
-                          ? 'border-amber-400 scale-105 ring-1 ring-amber-400'
-                          : 'border-white/10 opacity-50 hover:opacity-100'
-                      }`}
+                      onClick={() =>
+                        setCarouselIndex((prev) =>
+                          prev === 0 ? carouselImages.length - 1 : prev - 1
+                        )
+                      }
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                      title="Previous Slide"
                     >
-                      <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                      <ChevronLeft className="w-5 h-5" />
                     </button>
-                  ))}
+                  )}
+
+                  {/* Right Button */}
+                  {carouselImages.length > 1 && (
+                    <button
+                      onClick={() =>
+                        setCarouselIndex((prev) => (prev + 1) % carouselImages.length)
+                      }
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                      title="Next Slide"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  )}
+                </div>
+
+                {/* Slider Bottom Bar with Thumbnails */}
+                <div className="p-3 bg-black/90 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap">
+                  <span className="text-xs font-mono text-amber-400 font-bold">
+                    {isAr
+                      ? `سلسلة إنستغرام كاملة (${carouselImages.length} شرائح 4:5)`
+                      : `Full Instagram Series (${carouselImages.length} Slides 4:5)`}
+                  </span>
+
+                  <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-thin max-w-full">
+                    {carouselImages.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCarouselIndex(idx)}
+                        className={`w-10 h-12 sm:w-11 sm:h-14 rounded overflow-hidden border shrink-0 transition-all cursor-pointer ${
+                          idx === carouselIndex
+                            ? 'border-amber-400 scale-105 ring-2 ring-amber-400/40'
+                            : 'border-white/10 opacity-50 hover:opacity-100'
+                        }`}
+                        title={`Slide ${idx + 1}`}
+                      >
+                        <img src={img} alt={`Slide ${idx + 1}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* ========================================================= */}
           {/* STEP 5: الفكرة والسكريبت (CONCEPT & SCRIPT IN EGYPTIAN ARABIC) */}

@@ -57,29 +57,29 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  if (!video) return null;
-
   // Combine main videoUrl with galleryVideos if available
-  const allVideos: Array<{ title: string; url: string; category?: string }> = [
-    { title: video.title, url: video.videoUrl, category: video.category || 'Commercial Video' },
-    ...(video.project?.galleryVideos || []),
-  ];
+  const allVideos: Array<{ title: string; url: string; category?: string }> = video
+    ? [
+        { title: video.title, url: video.videoUrl, category: video.category || 'Commercial Video' },
+        ...(video.project?.galleryVideos || []),
+      ]
+    : [];
 
   const safeIndex =
     videoIndex >= 0 && videoIndex < allVideos.length ? videoIndex : 0;
-  const currentVideo = allVideos[safeIndex] || {
+  const currentVideo = allVideos[safeIndex] || (video ? {
     title: video.title,
     url: video.videoUrl,
     category: video.category || 'Commercial Video',
-  };
+  } : null);
 
-  const videoInfo = parseVideoUrl(currentVideo.url);
+  const videoInfo = currentVideo ? parseVideoUrl(currentVideo.url) : null;
   const isYouTube = videoInfo?.type === 'youtube';
 
   const nextVideo = () =>
-    setVideoIndex((prev) => (prev + 1) % allVideos.length);
+    setVideoIndex((prev) => (prev + 1) % (allVideos.length || 1));
   const prevVideo = () =>
-    setVideoIndex((prev) => (prev - 1 + allVideos.length) % allVideos.length);
+    setVideoIndex((prev) => (prev - 1 + (allVideos.length || 1)) % (allVideos.length || 1));
 
   useEffect(() => {
     setIsPlaying(true);
@@ -111,6 +111,8 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
         });
     }
   }, [currentVideo?.url, safeIndex, videoInfo?.isDirect]);
+
+  if (!video || !currentVideo) return null;
 
   const handleManualPlay = () => {
     if (videoRef.current) {

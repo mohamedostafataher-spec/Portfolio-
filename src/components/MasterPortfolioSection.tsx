@@ -51,14 +51,21 @@ const ProjectCarouselCard: React.FC<{
     : [project.image];
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
+  // Reset slide to 0 whenever project changes
+  useEffect(() => {
+    setCurrentSlideIndex(0);
+  }, [project.id]);
+
+  const safeSlideIndex = currentSlideIndex < slides.length ? currentSlideIndex : 0;
+
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentSlideIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentSlideIndex((prev) => (prev <= 0 ? slides.length - 1 : prev - 1));
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentSlideIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    setCurrentSlideIndex((prev) => (prev >= slides.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -90,15 +97,15 @@ const ProjectCarouselCard: React.FC<{
       {/* Main Interactive Slide Stage */}
       <div className="relative aspect-[4/5] sm:aspect-[1/1] md:aspect-[4/5] bg-black overflow-hidden flex items-center justify-center group">
         <img
-          src={slides[currentSlideIndex]}
-          alt={`${project.title} slide ${currentSlideIndex + 1}`}
+          src={slides[safeSlideIndex]}
+          alt={`${project.title} slide ${safeSlideIndex + 1}`}
           className="w-full h-full object-contain cursor-pointer transition-transform duration-300 group-hover:scale-[1.02]"
-          onClick={() => onOpenLightbox(slides, currentSlideIndex, project.title, project.brandName)}
+          onClick={() => onOpenLightbox(slides, safeSlideIndex, project.title, project.brandName)}
         />
 
         {/* Slide Counter Overlay */}
         <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-amber-300 font-bold z-10 shadow-lg">
-          {isAr ? `شريحة ${currentSlideIndex + 1} من ${slides.length}` : `Slide ${currentSlideIndex + 1} of ${slides.length}`}
+          {isAr ? `شريحة ${safeSlideIndex + 1} من ${slides.length}` : `Slide ${safeSlideIndex + 1} of ${slides.length}`}
         </div>
 
         {/* Previous Button */}
@@ -291,17 +298,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
   };
 
   const isCarouselProject = (p: Project) => {
-    return (
-      (!!p.galleryImages && p.galleryImages.length > 1) ||
-      p.category === 'Brand Presentation & Deck' ||
-      p.id.includes('carousel') ||
-      p.id === 'takaa-energy-launch' ||
-      p.id === 'v7-cream-soda-summer' ||
-      p.id === 'the-lakes-sodic-east' ||
-      p.id === 'qaim-fashion-growth' ||
-      p.id === 'buffalo-burger-commercial' ||
-      p.id === 'breadfast-campaign'
-    );
+    return !!p.galleryImages && p.galleryImages.length >= 4;
   };
 
   const isStrategyProject = (p: Project) => {

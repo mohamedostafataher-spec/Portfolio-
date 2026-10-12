@@ -1246,11 +1246,6 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/takaa/takaa_carousel_04.jpg',
       '/images/takaa/takaa_carousel_05.jpg',
       '/images/takaa/takaa_carousel_06.jpg',
-      '/images/takaa/takaa_tiktok_shot_01.jpg',
-      '/images/takaa/takaa_tiktok_shot_02.jpg',
-      '/images/takaa/takaa_tiktok_shot_03.jpg',
-      '/images/takaa/takaa_tiktok_shot_04.jpg',
-      '/images/takaa/takaa_tiktok_shot_05.jpg',
     ],
     videoUrl: '/videos/takaa/takaa_ai_commercial_master.mp4',
     galleryVideos: [
