@@ -40,6 +40,151 @@ interface MasterPortfolioSectionProps {
   onResetProjects?: () => void;
 }
 
+const ProjectCarouselCard: React.FC<{
+  project: Project;
+  onOpenLightbox: (images: string[], index: number, title: string, category?: string) => void;
+  onSelectProject: (project: Project) => void;
+  isAr: boolean;
+}> = ({ project, onOpenLightbox, onSelectProject, isAr }) => {
+  const slides = project.galleryImages && project.galleryImages.length > 0
+    ? project.galleryImages
+    : [project.image];
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentSlideIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentSlideIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="rounded-3xl bg-zinc-900/60 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-2xl">
+      {/* Card Header */}
+      <div className="p-4 sm:p-5 pb-3 bg-zinc-950/60 border-b border-white/5 flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+              {project.brandName || project.title}
+            </span>
+            <span className="px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[10px] font-mono text-amber-300 font-bold">
+              {slides.length} {isAr ? 'شرائح (4:5)' : 'Slides (4:5)'}
+            </span>
+          </div>
+          <h4 className="text-sm sm:text-base font-bold text-white mt-1 font-display truncate">
+            {project.title}
+          </h4>
+        </div>
+        <button
+          onClick={() => onOpenLightbox(slides, currentSlideIndex, project.title, project.brandName)}
+          className="p-2 rounded-xl bg-zinc-800 hover:bg-amber-500 hover:text-black text-zinc-300 transition-colors cursor-pointer shrink-0"
+          title={isAr ? 'تكبير ملء الشاشة' : 'Fullscreen'}
+        >
+          <Maximize2 className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Main Interactive Slide Stage */}
+      <div className="relative aspect-[4/5] sm:aspect-[1/1] md:aspect-[4/5] bg-black overflow-hidden flex items-center justify-center group">
+        <img
+          src={slides[currentSlideIndex]}
+          alt={`${project.title} slide ${currentSlideIndex + 1}`}
+          className="w-full h-full object-contain cursor-pointer transition-transform duration-300 group-hover:scale-[1.02]"
+          onClick={() => onOpenLightbox(slides, currentSlideIndex, project.title, project.brandName)}
+        />
+
+        {/* Slide Counter Overlay */}
+        <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-amber-300 font-bold z-10 shadow-lg">
+          {isAr ? `شريحة ${currentSlideIndex + 1} من ${slides.length}` : `Slide ${currentSlideIndex + 1} of ${slides.length}`}
+        </div>
+
+        {/* Previous Button */}
+        {slides.length > 1 && (
+          <button
+            onClick={handlePrev}
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20 border border-white/15"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+        )}
+
+        {/* Next Button */}
+        {slides.length > 1 && (
+          <button
+            onClick={handleNext}
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20 border border-white/15"
+            aria-label="Next Slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        )}
+      </div>
+
+      {/* Clickable Thumbnail Strip */}
+      {slides.length > 1 && (
+        <div className="p-2.5 bg-zinc-950/90 border-t border-b border-white/5 overflow-x-auto scrollbar-thin">
+          <div className="flex items-center gap-1.5">
+            {slides.map((imgUrl, sIdx) => (
+              <button
+                key={sIdx}
+                onClick={() => setCurrentSlideIndex(sIdx)}
+                className={`relative w-12 h-14 sm:w-14 sm:h-16 rounded-lg overflow-hidden border shrink-0 transition-all cursor-pointer ${
+                  currentSlideIndex === sIdx
+                    ? 'border-amber-400 ring-2 ring-amber-400/40 scale-105'
+                    : 'border-white/10 opacity-60 hover:opacity-100 hover:border-white/30'
+                }`}
+                title={isAr ? `شريحة ${sIdx + 1}` : `Slide ${sIdx + 1}`}
+              >
+                <img
+                  src={imgUrl}
+                  alt={`Thumb ${sIdx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                <span className="absolute bottom-0.5 right-0.5 px-1 py-0.2 rounded bg-black/80 text-[8px] font-mono font-bold text-white">
+                  {sIdx + 1}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Card Footer: Concept + CTAs */}
+      <div className="p-4 sm:p-5 space-y-3 bg-zinc-900/40">
+        <p className="text-xs text-zinc-300 line-clamp-2 leading-relaxed">
+          {project.tagline || project.subtitle || project.description}
+        </p>
+
+        <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/5 flex-wrap">
+          <button
+            onClick={() => onSelectProject(project)}
+            className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500 hover:text-black text-amber-400 font-mono text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border border-amber-500/20"
+          >
+            <span>{isAr ? 'عرض الاستراتيجية والتفاصيل' : 'Case Study & Details'}</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+
+          {project.driveFolderUrl && (
+            <a
+              href={project.driveFolderUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 text-zinc-300 hover:text-white font-mono text-xs transition-colors flex items-center gap-1.5 border border-white/5"
+            >
+              <FolderOpen className="w-3.5 h-3.5 text-amber-400" />
+              <span>{isAr ? 'ملفات الدرايف' : 'Drive'}</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
   projects,
   activeCategory,
@@ -58,8 +203,8 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
     images: string[];
     currentIndex: number;
     title: string;
-    category: string;
-    desc: string;
+    category?: string;
+    desc?: string;
   } | null>(null);
 
   // Instant Video Theatre Modal for Playable Commercials & YouTube
@@ -72,6 +217,9 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
     duration?: string;
     project?: Project;
   } | null>(null);
+
+  // Carousel brand filter (ALL or project ID)
+  const [carouselBrandFilter, setCarouselBrandFilter] = useState<string>('ALL');
 
   // Close lightbox on Escape key
   useEffect(() => {
@@ -584,7 +732,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                       {isAr ? activeTabMeta.labelAr : activeTabMeta.labelEn}
                     </span>
                     <span className="text-[11px] font-mono text-zinc-500">
-                      ({filteredCategoryProjects.length} {isAr ? 'عناصر' : 'items'})
+                      ({filteredCategoryProjects.length} {isAr ? 'مشاريع' : 'projects'})
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-zinc-300 mt-0.5">
@@ -592,86 +740,137 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                   </p>
                 </div>
               </div>
+
+              {/* Quick Reset back to All */}
+              <button
+                onClick={() => onCategoryChange('All')}
+                className="px-3 py-1.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-mono text-zinc-300 transition-colors cursor-pointer"
+              >
+                {isAr ? 'العودة لجميع المشاريع' : 'Back to Overview'}
+              </button>
             </div>
 
-            {/* Grid of filtered corner projects */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCategoryProjects.map((project, idx) => (
-                <TiltCard3D
-                  key={project.id}
-                  onClick={() => {
-                    if (activeCategory === 'Videos' && project.videoUrl) {
-                      handleOpenVideoTheatre(project);
-                    } else if (
-                      activeCategory === 'Carousels' &&
-                      project.galleryImages &&
-                      project.galleryImages.length > 1
-                    ) {
-                      setLightboxState({
-                        images: project.galleryImages,
-                        currentIndex: 0,
-                        title: project.title,
-                      });
-                    } else {
-                      onSelectProject(project);
-                    }
-                  }}
-                  className="group rounded-3xl bg-zinc-900/40 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl cursor-pointer"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-black/40" />
+            {/* DEDICATED CAROUSELS PER-PROJECT SHOWCASE */}
+            {activeCategory === 'Carousels' ? (
+              <div className="space-y-6">
+                {/* Brand Selector Filter Bar */}
+                <div className="p-3 rounded-2xl bg-zinc-950/80 border border-white/10 flex items-center gap-2 overflow-x-auto scrollbar-thin">
+                  <span className="text-[10px] font-mono font-bold text-zinc-500 uppercase shrink-0 px-2">
+                    {isAr ? 'تصفية البراند:' : 'FILTER BRAND:'}
+                  </span>
+                  {[
+                    { id: 'ALL', labelAr: '✨ جميع الكاروسيلات (48+ شريحة)', labelEn: '✨ All Carousels (48+ Slides)' },
+                    { id: 'the-lakes-sodic-east', labelAr: 'The Lakes SODIC (8)', labelEn: 'The Lakes SODIC (8)' },
+                    { id: 'takaa-energy-launch', labelAr: 'TAKAA Energy (6)', labelEn: 'TAKAA Energy (6)' },
+                    { id: 'v7-cream-soda-summer', labelAr: 'V7 Cream Soda (8)', labelEn: 'V7 Cream Soda (8)' },
+                    { id: 'baba-geh-campaign', labelAr: 'Baba Geh (5)', labelEn: 'Baba Geh (5)' },
+                    { id: 'breadfast-campaign', labelAr: 'Breadfast (5)', labelEn: 'Breadfast (5)' },
+                    { id: 'buffalo-burger-commercial', labelAr: 'Buffalo Burger (5)', labelEn: 'Buffalo Burger (5)' },
+                    { id: 'qaim-carousels-content', labelAr: 'QAIM Concepts (6)', labelEn: 'QAIM Concepts (6)' },
+                    { id: 'qaim-fashion-growth', labelAr: 'QAIM Fashion (6)', labelEn: 'QAIM Fashion (6)' },
+                  ].map((filterItem) => (
+                    <button
+                      key={filterItem.id}
+                      onClick={() => setCarouselBrandFilter(filterItem.id)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all cursor-pointer shrink-0 ${
+                        carouselBrandFilter === filterItem.id
+                          ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/20'
+                          : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white border border-white/5'
+                      }`}
+                    >
+                      {isAr ? filterItem.labelAr : filterItem.labelEn}
+                    </button>
+                  ))}
+                </div>
 
-                    <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono z-10">
-                      <span className="px-2 py-0.5 rounded bg-amber-500/90 text-black font-extrabold uppercase">
-                        Concept Project
-                      </span>
-                      {activeCategory === 'Carousels' && project.galleryImages && project.galleryImages.length > 1 ? (
-                        <span className="px-2 py-0.5 rounded bg-black/80 text-amber-300 border border-white/10 flex items-center gap-1 font-bold">
-                          <ImageIcon className="w-2.5 h-2.5" />
-                          <span>{project.galleryImages.length} {isAr ? 'شرائح' : 'Slides'}</span>
-                        </span>
-                      ) : activeCategory === 'SOSTAC' && project.deckSlides && project.deckSlides.length > 0 ? (
-                        <span className="px-2 py-0.5 rounded bg-black/80 text-amber-300 border border-white/10 flex items-center gap-1 font-bold">
-                          <Presentation className="w-2.5 h-2.5" />
-                          <span>{project.deckSlides.length} {isAr ? 'شريحة استراتيجية' : 'Deck Slides'}</span>
-                        </span>
-                      ) : project.videoUrl ? (
-                        <span className="px-2 py-0.5 rounded bg-black/80 text-amber-300 border border-white/10 flex items-center gap-1">
-                          <Play className="w-2.5 h-2.5 fill-current" />
-                          <span>Video</span>
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
+                {/* Per-Project Interactive Carousel Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                  {filteredCategoryProjects
+                    .filter((p) => carouselBrandFilter === 'ALL' || p.id === carouselBrandFilter)
+                    .map((project) => (
+                      <ProjectCarouselCard
+                        key={project.id}
+                        project={project}
+                        onOpenLightbox={(imgs, idx, ttl, cat) =>
+                          setLightboxState({
+                            images: imgs,
+                            currentIndex: idx,
+                            title: ttl,
+                            category: cat || 'Carousel',
+                            desc: project.tagline || project.subtitle || '',
+                          })
+                        }
+                        onSelectProject={onSelectProject}
+                        isAr={isAr}
+                      />
+                    ))}
+                </div>
+              </div>
+            ) : (
+              /* VIDEOS & SOSTAC CORNER GRID */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredCategoryProjects.map((project, idx) => (
+                  <TiltCard3D
+                    key={project.id}
+                    onClick={() => {
+                      if (activeCategory === 'Videos' && project.videoUrl) {
+                        handleOpenVideoTheatre(project);
+                      } else {
+                        onSelectProject(project);
+                      }
+                    }}
+                    className="group rounded-3xl bg-zinc-900/40 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl cursor-pointer"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-black/40" />
 
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
-                    <div className="space-y-1">
-                      <span className="text-xs font-mono font-bold text-amber-400 uppercase">
-                        {project.brandName || project.title}
-                      </span>
-                      <h4 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors font-display line-clamp-1">
-                        {project.title}
-                      </h4>
-                      <p className="text-xs text-zinc-300 line-clamp-2 leading-relaxed">
-                        {project.tagline || project.subtitle || project.description}
-                      </p>
+                      <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono z-10">
+                        <span className="px-2 py-0.5 rounded bg-amber-500/90 text-black font-extrabold uppercase">
+                          Concept Project
+                        </span>
+                        {activeCategory === 'SOSTAC' && project.deckSlides && project.deckSlides.length > 0 ? (
+                          <span className="px-2 py-0.5 rounded bg-black/80 text-amber-300 border border-white/10 flex items-center gap-1 font-bold">
+                            <Presentation className="w-2.5 h-2.5" />
+                            <span>{project.deckSlides.length} {isAr ? 'شريحة استراتيجية' : 'Deck Slides'}</span>
+                          </span>
+                        ) : project.videoUrl ? (
+                          <span className="px-2 py-0.5 rounded bg-black/80 text-amber-300 border border-white/10 flex items-center gap-1 font-bold">
+                            <Play className="w-2.5 h-2.5 fill-current" />
+                            <span>Play Video</span>
+                          </span>
+                        ) : null}
+                      </div>
                     </div>
 
-                    <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-zinc-400">
-                      <span>{project.category}</span>
-                      <span className="text-amber-400 group-hover:underline">
-                        {isAr ? 'فتح التفاصيل ←' : 'Open Dossier →'}
-                      </span>
+                    <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
+                      <div className="space-y-1">
+                        <span className="text-xs font-mono font-bold text-amber-400 uppercase">
+                          {project.brandName || project.title}
+                        </span>
+                        <h4 className="text-base font-bold text-white group-hover:text-amber-300 transition-colors font-display line-clamp-1">
+                          {project.title}
+                        </h4>
+                        <p className="text-xs text-zinc-300 line-clamp-2 leading-relaxed">
+                          {project.tagline || project.subtitle || project.description}
+                        </p>
+                      </div>
+
+                      <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-zinc-400">
+                        <span>{project.category}</span>
+                        <span className="text-amber-400 group-hover:underline">
+                          {isAr ? 'فتح التفاصيل ←' : 'Open Dossier →'}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </TiltCard3D>
-              ))}
-            </div>
+                  </TiltCard3D>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
