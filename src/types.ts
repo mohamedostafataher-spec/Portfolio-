@@ -30,8 +30,8 @@ export interface Project {
   whatIDid?: string[];
   projectType?: string;
   tools: string[];
-  process: { step: string; detail: string }[];
-  finalResult: string;
+  process?: { step: string; detail: string }[];
+  finalResult?: string;
   image: string;
   videoUrl?: string;
   videoPreviewUrl?: string;
@@ -71,6 +71,11 @@ export interface Project {
     beforeDesc: string;
     afterDesc: string;
   };
+  galleryVideos?: { title: string; url: string; category?: string }[];
+  brandName?: string;
+  conceptScriptAr?: string;
+  strategySlideImage?: string;
+  isFeaturedTop3?: boolean;
 }
 
 export interface Article {

@@ -127,14 +127,14 @@ export const About: React.FC<AboutProps> = ({
           <div className="space-y-6 text-zinc-300 text-sm sm:text-xl leading-relaxed font-light px-2">
             <p>
               {isAr
-                ? 'أنا محمد مصطفى طاهر، صانع محتوى إبداعي بالذكاء الاصطناعي ومسوق رقمي متخصص في هندسة الإعلانات التجارية السريعة، إنتاج فيديوهات الـ AI، تصميم سلاسل الكاروسيل عالية التفاعل، وتخطيط استراتيجيات النمو للعلامات التجارية وفق نموذج SOSTAC العالمي.'
-                : 'I am Mohamed Mostafa Taher, an AI Creative Producer & Content Marketer specializing in high-velocity commercial video TVCs, generative AI workflows, high-converting social carousels, and SOSTAC growth architecture.'}
+                ? 'أنا محمد مصطفى طاهر سالم، صانع محتوى وفيديو بالذكاء الاصطناعي ومتدرب تسويق رقمي في مبادرة رواد مصر الرقمية (DEPI). بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية، مع تخطيط استراتيجيات المحتوى ونموذج SOSTAC وتصميم الكاروسيل التفاعلي.'
+                : 'I am Mohamed Mostafa Taher Salem, an AI Video & Creative Content Creator and Digital Marketing Trainee (DEPI). I build concept campaigns and AI commercial videos for Egyptian brands in authentic colloquial Egyptian Arabic, with SOSTAC marketing plans and interactive carousels.'}
             </p>
 
             <p className="text-zinc-400 text-sm sm:text-lg">
               {isAr
-                ? 'طالب بجامعة العاصمة (كلية الآداب، دفعة 2027)، متدرب بمبادرة رواد مصر الرقمية (DEPI) التابعة لوزارة الاتصالات وتكنولوجيا المعلومات، وحاصل على اعتماد الذكاء الاصطناعي والمهارات المهنية من ALX. أدمج أحدث نماذج التوليد البصري (Kling AI وMidjourney وRunway) مع المونتاج الإيقاعي الدقيق بـ CapCut Pro لإنتاج مخرجات إعلانية تجارية تضاهي كبرى الوكالات.'
-                : 'Student at Capital University (Faculty of Arts, Class of 2027), trainee at the Digital Egypt Pioneers Initiative (DEPI - MCIT), and ALX AI & Professional Skills accredited. I bridge modern generative AI engines (Kling AI, Midjourney, Runway) with precise CapCut Pro rhythm editing to create agency-grade commercial deliverables.'}
+                ? 'طالب بجامعة العاصمة (دفعة 2027)، متدرب بمبادرة رواد مصر الرقمية (DEPI) التابعة لوزارة الاتصالات وتكنولوجيا المعلومات. أدمج أدوات الذكاء الاصطناعي الإبداعية (Midjourney وRunway) مع المونتاج الإيقاعي السريع بـ CapCut Pro وتصاميم Canva لتقديم أفكار وحملات إعلانية بطابع مصري محلي أصيل.'
+                : 'Student at Capital University (Class of 2027) and Digital Marketing Trainee at the Digital Egypt Pioneers Initiative (DEPI - MCIT). I bridge generative AI tools with CapCut Pro editing, Canva design, and authentic Egyptian colloquial storytelling.'}
             </p>
           </div>
 

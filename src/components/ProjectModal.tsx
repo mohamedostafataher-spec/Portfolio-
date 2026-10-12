@@ -4,23 +4,23 @@ import {
   Play,
   ChevronLeft,
   ChevronRight,
-  ArrowRight,
-  ArrowLeft,
   ExternalLink,
   FolderOpen,
   CheckCircle2,
   Lightbulb,
   UserCheck,
-  Briefcase,
   Wrench,
+  Presentation,
+  Download,
+  MessageCircle,
+  FileText,
+  Layers,
+  Sparkles,
+  Volume2,
   Tv,
   Smartphone,
-  Presentation,
-  Music,
-  Volume2,
-  Layers,
-  ArrowUpRight,
-  Target,
+  Briefcase,
+  Share2,
 } from 'lucide-react';
 import { Project } from '../types';
 import { parseVideoUrl } from '../utils/videoHelper';
@@ -42,13 +42,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onOpenContact,
 }) => {
   const { isAr } = useLanguage();
-  const [displayFormat, setDisplayFormat] = useState<'landscape' | 'vertical'>('landscape');
-  const [isPaused, setIsPaused] = useState<boolean>(true);
-  const [showDeepDiveDeck, setShowDeepDiveDeck] = useState<boolean>(false);
-  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
-  const [modalSlideIndex, setModalSlideIndex] = useState<number>(0);
+  const [carouselIndex, setCarouselIndex] = useState<number>(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState<number>(0);
+  const [aspectRatio, setAspectRatio] = useState<'9:16' | '16:9'>('9:16');
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [showDeckSlides, setShowDeckSlides] = useState<boolean>(false);
+  const [deckSlideIndex, setDeckSlideIndex] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const modalScrollRef = useRef<HTMLDivElement | null>(null);
+
+  const whatsappNumber = '201110095403';
 
   const currentIndex = project ? allProjects.findIndex((p) => p.id === project.id) : -1;
   const hasNext = currentIndex !== -1 && currentIndex < allProjects.length - 1;
@@ -99,26 +103,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [hasNext, hasPrev, isAr, onClose, nextProject, prevProject]);
 
-  const videoUrlToUse = project?.videoUrl || project?.videoPreviewUrl;
-  const videoInfo = parseVideoUrl(videoUrlToUse);
-
+  // Reset state when project changes
   useEffect(() => {
-    setCurrentSlideIndex(0);
-    setModalSlideIndex(0);
-    setShowDeepDiveDeck(false);
-    setDisplayFormat(project?.aspectRatio === '9:16' ? 'vertical' : 'landscape');
+    setCarouselIndex(0);
+    setActiveVideoIndex(0);
+    setShowDeckSlides(false);
+    setDeckSlideIndex(0);
+
+    if (project) {
+      setAspectRatio(project.aspectRatio === '16:9' ? '16:9' : '9:16');
+    }
 
     if (videoRef.current) {
       videoRef.current.currentTime = 0;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => setIsPaused(false))
-          .catch(() => setIsPaused(true));
-      }
-    } else {
-      setIsPaused(true);
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
     }
+
     if (modalScrollRef.current) {
       modalScrollRef.current.scrollTop = 0;
     }
@@ -126,28 +126,63 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
   if (!project) return null;
 
-  // Derive fallbacks for 4-6 bullet points
-  const bulletsToDisplay =
-    project.whatIDid && project.whatIDid.length > 0
-      ? project.whatIDid
-      : [
-          project.objective || 'تحديد الأهداف التسويقية وتحليل الشريحة المستهدفة.',
-          project.concept || 'ابتكار الفكرة الإبداعية وصياغة الرسائل الإعلانية.',
-          project.myRole || 'التوجيه الإبداعي وهندسة الإخراج والمونتاج.',
-          project.finalResult || 'إنهاء الحملة وتسليم المواد الإعلانية بجاهزية تامة للنشر.',
-        ];
+  // Video list (Gallery videos + Primary videoUrl de-duplicated)
+  const rawVideoList = [
+    ...(project.galleryVideos || []),
+    {
+      title: project.title,
+      url: project.videoUrl || project.videoPreviewUrl || '',
+      category: project.category,
+    },
+  ].filter((v) => !!v.url);
 
-  // Derive tools & skills (5-7 skills)
-  const combinedSkillsAndTools = Array.from(
-    new Set([...(project.tools || []), ...(project.skills || [])])
-  ).slice(0, 7);
+  const seenUrls = new Set<string>();
+  const videoList = rawVideoList.filter((v) => {
+    if (seenUrls.has(v.url)) return false;
+    seenUrls.add(v.url);
+    return true;
+  });
+
+  const safeVideoIndex = activeVideoIndex < videoList.length ? activeVideoIndex : 0;
+  const currentVideoItem = videoList[safeVideoIndex] || videoList[0];
+  const videoInfo = currentVideoItem ? parseVideoUrl(currentVideoItem.url) : null;
+  const isYouTube = videoInfo?.type === 'youtube';
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+    }
+  }, [safeVideoIndex]);
+
+  // Carousel images
+  const carouselImages = Array.from(
+    new Set([project.image, ...(project.galleryImages || [])])
+  );
 
   const driveUrl =
     project.driveFolderUrl ||
     'https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3';
 
+  const downloadDocUrl =
+    project.pdfDownloadUrl ||
+    project.deckDownloadUrl ||
+    '/documents/Mohamed_Taher_Executive_Portfolio.pdf';
+
+  const downloadFileName =
+    project.pdfFileName ||
+    project.deckFileName ||
+    `${project.id}_Strategy_Plan.pdf`;
+
+  const handleWhatsAppInquiry = () => {
+    const text = isAr
+      ? `مرحباً أستاذ محمد، اطلعت على مشروع "${project.brandName || project.title}" في بورتفوليو أعمالك، وأود مناقشة فكرة حملة إعلانية / محتوى مشابه للبراند الخاص بنا.`
+      : `Hi Mohamed, I saw your project "${project.brandName || project.title}" in your portfolio, and would like to discuss a similar advertising campaign / content for our brand.`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto bg-black/90 backdrop-blur-xl animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-y-auto bg-black/92 backdrop-blur-2xl animate-fadeIn">
       {/* Background Overlay */}
       <div
         className="fixed inset-0"
@@ -157,18 +192,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
       <div
         ref={modalScrollRef}
-        className="relative w-full max-w-4xl max-h-[94vh] overflow-y-auto bg-[#0d0d12] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-left my-auto selection:bg-amber-500 selection:text-black"
+        className="relative w-full max-w-4xl max-h-[94vh] overflow-y-auto bg-[#0c0c10] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-left my-auto selection:bg-amber-500 selection:text-black flex flex-col"
       >
         {/* ========================================================= */}
-        {/* STICKY TOP BAR: FAST NAVIGATION & CLOSE */}
+        {/* STICKY TOP BAR: NAVIGATION & ACTIONS */}
         {/* ========================================================= */}
-        <div className="sticky top-0 z-30 px-4 sm:px-6 py-3 bg-[#0d0d12]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between gap-3">
-          {/* Left: Project Type & Drive Badge */}
+        <div className="sticky top-0 z-40 px-4 sm:px-6 py-3.5 bg-[#0c0c10]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between gap-3">
+          {/* Brand + Project indicator */}
           <div className="flex items-center gap-2 overflow-hidden">
-            <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 truncate">
-              {project.projectType || project.clientOrSpec || 'Spec / Concept'}
+            <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              Concept Project
             </span>
-
+            <span className="text-xs sm:text-sm font-bold text-white truncate font-display">
+              {project.brandName || project.title}
+            </span>
             {currentIndex !== -1 && (
               <span className="text-[11px] font-mono text-zinc-500 hidden sm:inline">
                 ({currentIndex + 1} / {allProjects.length})
@@ -176,13 +213,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             )}
           </div>
 
-          {/* Right: Quick Previous / Next & Close */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Quick Prev / Next & Close */}
+          <div className="flex items-center gap-2">
             <button
               onClick={handlePrev}
               disabled={!hasPrev}
               className="px-2.5 sm:px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300 hover:text-white border border-white/10 text-xs font-mono font-bold flex items-center gap-1 transition-all cursor-pointer"
-              title={isAr ? 'المشروع السابق (سهم يسار)' : 'Previous Project (Left Arrow)'}
+              title={isAr ? 'المشروع السابق' : 'Previous Project'}
             >
               <ChevronLeft className="w-4 h-4" />
               <span className="hidden md:inline">{isAr ? 'السابق' : 'PREV'}</span>
@@ -192,7 +229,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               onClick={handleNext}
               disabled={!hasNext}
               className="px-2.5 sm:px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 disabled:opacity-30 disabled:cursor-not-allowed text-zinc-300 hover:text-white border border-white/10 text-xs font-mono font-bold flex items-center gap-1 transition-all cursor-pointer"
-              title={isAr ? 'المشروع التالي (سهم يمين)' : 'Next Project (Right Arrow)'}
+              title={isAr ? 'المشروع التالي' : 'Next Project'}
             >
               <span className="hidden md:inline">{isAr ? 'التالي' : 'NEXT'}</span>
               <ChevronRight className="w-4 h-4" />
@@ -203,7 +240,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-amber-400 border border-amber-500/20 text-xs font-mono font-bold flex items-center gap-1 transition-colors"
-              title="Open Google Drive Folder"
+              title="Google Drive Folder"
             >
               <FolderOpen className="w-3.5 h-3.5" />
               <span className="hidden lg:inline">Drive</span>
@@ -212,7 +249,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
             <button
               onClick={onClose}
-              id="close-project-modal"
               className="p-1.5 sm:p-2 rounded-full bg-amber-500 hover:bg-amber-400 text-black border border-amber-400 transition-all cursor-pointer shadow-md"
               aria-label="Close modal"
               title="Close (Esc)"
@@ -223,597 +259,509 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         </div>
 
         {/* ========================================================= */}
-        {/* MAIN BODY: THE USER'S EXACT SPECIFIED STRUCTURE */}
+        {/* MAIN BODY: EXACT 6-STEP SEQUENCE ORDER */}
+        {/* 1. ملخص (Summary) */}
+        {/* 2. الفيديو (Video: 9:16, instant playback / YouTube) */}
+        {/* 3. الاستراتيجية (Strategy: SOSTAC slide + Download PDF) */}
+        {/* 4. الكاروسيل (Carousel: Interactive slider) */}
+        {/* 5. الفكرة والسكريبت (Concept & Script in Egyptian Arabic) */}
+        {/* 6. زرار تواصل (Direct WhatsApp / Contact) */}
         {/* ========================================================= */}
-        <div className="p-4 sm:p-8 md:p-10 space-y-8">
-          {/* 1. PROJECT TITLE & SHORT SUBTITLE */}
-          <div className="space-y-2 border-b border-white/5 pb-6">
-            <div className="flex items-center gap-2 text-xs font-mono text-amber-400 font-bold uppercase tracking-wider flex-wrap">
-              <span>PROJECT SHOWCASE</span>
-              <span>•</span>
-              <span>{project.category}</span>
-              {(project.duration || project.durationAr) && (
-                <>
-                  <span>•</span>
-                  <span className="text-white bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/30">
-                    {isAr ? (project.durationAr || project.duration) : project.duration}
-                  </span>
-                </>
-              )}
+        <div className="p-4 sm:p-8 space-y-8">
+          
+          {/* ========================================================= */}
+          {/* STEP 1: ملخص (SUMMARY: Brand, Type, Role, Tools) */}
+          {/* ========================================================= */}
+          <section className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-white/10 space-y-4">
+            <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-white/5">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                <Briefcase className="w-4 h-4" />
+                <span>01 — {isAr ? 'ملخص المشروع' : 'PROJECT SUMMARY'}</span>
+              </span>
+              <span className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[11px] font-bold">
+                Concept Project
+              </span>
             </div>
 
-            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              {project.title}
-            </h1>
-
-            <p className="text-zinc-300 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
-              {project.subtitle || project.tagline || project.description}
-            </p>
-          </div>
-
-          {/* 2. CONTEXTUAL MEDIA & DELIVERABLE SHOWCASE */}
-          <div className="space-y-4">
-            {/* Header with Format and Action Badges */}
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider text-amber-400 uppercase">
-                {videoInfo ? (
-                  <>
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>FINAL COMMERCIAL VIDEO</span>
-                  </>
-                ) : project.galleryImages && project.galleryImages.length > 1 ? (
-                  <>
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>INTERACTIVE CAROUSEL SLIDES</span>
-                  </>
-                ) : (
-                  <>
-                    <Presentation className="w-3.5 h-3.5" />
-                    <span>STRATEGY & DELIVERABLE DECK</span>
-                  </>
-                )}
-
-                {videoInfo?.type === 'youtube' && (
-                  <span className="px-2 py-0.5 rounded bg-red-600/20 text-red-400 border border-red-500/30 text-[10px] flex items-center gap-1">
-                    <Play className="w-2.5 h-2.5 fill-current" />
-                    <span>YouTube HD</span>
-                  </span>
-                )}
-
-                {project.id === 'buffalo-burger-commercial' && (
-                  <span className="px-2 py-0.5 rounded bg-red-600 text-white font-bold text-[10px]">
-                    YouTube Shorts (Primary)
-                  </span>
-                )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {/* Brand */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-zinc-400 uppercase">
+                  {isAr ? 'البراند' : 'Brand'}
+                </span>
+                <p className="text-sm sm:text-base font-bold text-white font-display">
+                  {project.brandName || project.title}
+                </p>
               </div>
 
-              {/* Aspect Ratio Toggle (Landscape / Vertical) if Video */}
+              {/* Type */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-zinc-400 uppercase">
+                  {isAr ? 'نوع العمل' : 'Project Type'}
+                </span>
+                <p className="text-sm font-semibold text-amber-400">
+                  {project.projectType || project.category}
+                </p>
+              </div>
+
+              {/* My Role */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-zinc-400 uppercase">
+                  {isAr ? 'دوري في المشروع' : 'My Role'}
+                </span>
+                <p className="text-xs sm:text-sm font-medium text-zinc-200">
+                  {project.myRole || 'Creative Direction, Scriptwriting & Video Editing'}
+                </p>
+              </div>
+
+              {/* Tools */}
+              <div className="space-y-1">
+                <span className="text-[11px] font-mono text-zinc-400 uppercase">
+                  {isAr ? 'الأدوات والبرامج' : 'Tools & Software'}
+                </span>
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {(project.tools || ['CapCut Pro', 'Canva', 'AI Video']).map((tool, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 rounded bg-zinc-800 text-[10px] font-mono text-zinc-300 border border-white/5"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Tagline / Subtitle */}
+            <p className="text-xs sm:text-sm text-zinc-300 pt-2 border-t border-white/5 leading-relaxed font-sans">
+              {project.tagline || project.subtitle || project.description}
+            </p>
+          </section>
+
+          {/* ========================================================= */}
+          {/* STEP 2: الفيديو (VIDEO: 9:16 or Native, YouTube or Direct) */}
+          {/* ========================================================= */}
+          <section className="space-y-3">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                <Play className="w-4 h-4 fill-current" />
+                <span>02 — {isAr ? 'فيديو الإعلان التجاري' : 'COMMERCIAL VIDEO'}</span>
+                {project.duration && (
+                  <span className="text-zinc-400 font-normal">({project.duration})</span>
+                )}
+              </span>
+
+              {/* Video aspect ratio switch */}
               {videoInfo && (
-                <div className="flex items-center gap-1 p-1 rounded-xl bg-zinc-900 border border-white/10 text-xs">
-                  <button
-                    onClick={() => setDisplayFormat('landscape')}
-                    title="16:9 Landscape"
-                    className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                      displayFormat === 'landscape'
-                        ? 'bg-amber-500 text-black font-bold'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    <Tv className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setDisplayFormat('vertical')}
-                    title="9:16 Vertical Reel"
-                    className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                      displayFormat === 'vertical'
-                        ? 'bg-amber-500 text-black font-bold'
-                        : 'text-zinc-400 hover:text-white'
-                    }`}
-                  >
-                    <Smartphone className="w-3.5 h-3.5" />
-                  </button>
+                <div className="flex items-center gap-2">
+                  {videoList.length > 1 && (
+                    <span className="text-[11px] font-mono text-zinc-400">
+                      {activeVideoIndex + 1} / {videoList.length} Videos
+                    </span>
+                  )}
+                  <div className="flex items-center gap-1 p-1 rounded-xl bg-zinc-900 border border-white/10 text-xs">
+                    <button
+                      onClick={() => setAspectRatio('9:16')}
+                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                        aspectRatio === '9:16'
+                          ? 'bg-amber-500 text-black font-bold'
+                          : 'text-zinc-400 hover:text-white'
+                      }`}
+                      title="9:16 Vertical Reel"
+                    >
+                      <Smartphone className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => setAspectRatio('16:9')}
+                      className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                        aspectRatio === '16:9'
+                          ? 'bg-amber-500 text-black font-bold'
+                          : 'text-zinc-400 hover:text-white'
+                      }`}
+                      title="16:9 Landscape"
+                    >
+                      <Tv className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Media Box: Video, Carousel Slider, or Strategy Slide */}
-            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl flex items-center justify-center">
-              {videoInfo ? (
-                /* Video Player */
-                <div className="w-full flex flex-col items-center">
-                  <div
-                    className={`w-full relative transition-all duration-300 ${
-                      displayFormat === 'vertical'
-                        ? 'max-w-[280px] xs:max-w-sm mx-auto aspect-[9/16] py-2'
-                        : 'aspect-video max-h-[520px]'
+            {/* Video Multi-clip selector (if project has multiple videos like TAKAA) */}
+            {videoList.length > 1 && (
+              <div className="flex items-center gap-2 overflow-x-auto pb-1">
+                {videoList.map((vItem, vIdx) => (
+                  <button
+                    key={vIdx}
+                    onClick={() => setActiveVideoIndex(vIdx)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                      vIdx === activeVideoIndex
+                        ? 'bg-amber-500 text-black font-bold shadow-md'
+                        : 'bg-zinc-900 text-zinc-400 hover:text-white border border-white/5'
                     }`}
                   >
-                    {videoInfo.isDirect ? (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <video
-                          ref={videoRef}
-                          controls
-                          playsInline
-                          preload="metadata"
-                          poster={project.image}
-                          onPlay={() => setIsPaused(false)}
-                          onPause={() => setIsPaused(true)}
-                          className="w-full h-full object-contain rounded-xl bg-black"
-                        >
-                          <source src={videoInfo.embedUrl} type="video/mp4" />
-                          Your browser does not support video playback.
-                        </video>
-                        {isPaused && (
-                          <button
-                            onClick={() => {
-                              if (videoRef.current) {
-                                videoRef.current.play().catch(() => {});
-                                setIsPaused(false);
-                              }
-                            }}
-                            className="absolute inset-0 m-auto w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-amber-500 hover:bg-amber-400 text-black flex items-center justify-center shadow-2xl transition-transform hover:scale-110 z-20 cursor-pointer pointer-events-auto"
-                            aria-label="Play video"
-                          >
-                            <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
-                          </button>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center">
-                        <iframe
-                          src={videoInfo.embedUrl}
-                          title={project.title}
-                          className="w-full h-full border-0 rounded-xl"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                          allowFullScreen
-                        />
-                      </div>
-                    )}
-                  </div>
+                    {vItem.title || `Video ${vIdx + 1}`}
+                  </button>
+                ))}
+              </div>
+            )}
 
-                  {videoInfo?.type === 'youtube' && (
-                    <div className="flex items-center justify-center pt-3 pb-2">
+            {/* Video Player Box */}
+            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl flex items-center justify-center min-h-[300px]">
+              {videoInfo ? (
+                isYouTube ? (
+                  /* YouTube Embed with High Quality & Preservation */
+                  <div className="w-full flex flex-col items-center">
+                    <div
+                      className={`w-full relative transition-all duration-300 ${
+                        aspectRatio === '9:16'
+                          ? 'max-w-[320px] aspect-[9/16] py-3'
+                          : 'aspect-video max-w-4xl'
+                      }`}
+                    >
+                      <iframe
+                        src={videoInfo.embedUrl}
+                        title={project.title}
+                        className="w-full h-full rounded-xl border border-white/10"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                    <div className="p-3 bg-zinc-950/80 w-full flex items-center justify-center gap-3 border-t border-white/5">
                       <a
-                        href={videoUrlToUse}
+                        href={currentVideoItem.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-lg"
                       >
-                        <Play className="w-4 h-4 fill-current" />
-                        <span>{isAr ? 'مشاهدة مباشرة على تطبيق / موقع YouTube' : 'Watch Directly on YouTube'}</span>
-                        <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                        <Play className="w-3.5 h-3.5 fill-current" />
+                        <span>{isAr ? 'مشاهدة مباشرة على YouTube' : 'Open Directly on YouTube'}</span>
+                        <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>
-                  )}
-                </div>
-              ) : project.galleryImages && project.galleryImages.length > 1 ? (
-                /* Interactive Multi-Image Carousel Slider */
-                (() => {
-                  const images = Array.from(new Set([project.image, ...project.galleryImages]));
-                  const activeImg = images[modalSlideIndex] || project.image;
-                  return (
-                    <div className="relative w-full aspect-[16/10] sm:aspect-video max-h-[500px] bg-zinc-950 flex flex-col justify-between overflow-hidden">
-                      <div className="relative flex-1 flex items-center justify-center overflow-hidden">
-                        <img
-                          src={activeImg}
-                          alt={`${project.title} Slide ${modalSlideIndex + 1}`}
-                          className="w-full h-full object-contain"
-                        />
-
-                        {/* Slider Prev / Next Controls */}
-                        <button
-                          onClick={() =>
-                            setModalSlideIndex((prev) =>
-                              prev === 0 ? images.length - 1 : prev - 1
-                            )
-                          }
-                          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
-                          title="Previous Slide"
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                        </button>
-
-                        <button
-                          onClick={() =>
-                            setModalSlideIndex((prev) => (prev + 1) % images.length)
-                          }
-                          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
-                          title="Next Slide"
-                        >
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-                      </div>
-
-                      {/* Carousel Thumbnail Strip & Counter */}
-                      <div className="p-3 bg-black/80 border-t border-white/10 flex items-center justify-between gap-3">
-                        <span className="text-xs font-mono text-amber-400 font-bold">
-                          {isAr
-                            ? `شريحة ${modalSlideIndex + 1} من ${images.length}`
-                            : `Slide ${modalSlideIndex + 1} of ${images.length}`}
-                        </span>
-
-                        <div className="flex items-center gap-2 overflow-x-auto">
-                          {images.map((img, idx) => (
-                            <button
-                              key={idx}
-                              onClick={() => setModalSlideIndex(idx)}
-                              className={`w-12 h-8 rounded-md overflow-hidden border transition-all cursor-pointer ${
-                                idx === modalSlideIndex
-                                  ? 'border-amber-400 scale-105'
-                                  : 'border-white/10 opacity-50 hover:opacity-100'
-                              }`}
-                            >
-                              <img src={img} alt="Thumb" className="w-full h-full object-cover" />
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+                  </div>
+                ) : (
+                  /* Direct HTML5 MP4 Player */
+                  <div className="w-full flex flex-col items-center relative">
+                    <div
+                      className={`w-full relative transition-all duration-300 ${
+                        aspectRatio === '9:16'
+                          ? 'max-w-[320px] aspect-[9/16] py-2'
+                          : 'aspect-video max-h-[520px]'
+                      }`}
+                    >
+                      <video
+                        ref={videoRef}
+                        controls
+                        autoPlay
+                        playsInline
+                        loop
+                        muted={isMuted}
+                        poster={project.image}
+                        className="w-full h-full object-contain rounded-xl bg-black"
+                        onPlay={() => setIsPlaying(true)}
+                        onPause={() => setIsPlaying(false)}
+                      >
+                        <source src={videoInfo.embedUrl} type="video/mp4" />
+                        Your browser does not support HTML5 video.
+                      </video>
                     </div>
-                  );
-                })()
+
+                    {/* Quick direct video bar */}
+                    <div className="p-2.5 bg-zinc-950/90 w-full flex items-center justify-between text-xs font-mono text-zinc-400 border-t border-white/5 px-4">
+                      <span>{currentVideoItem.title || project.title}</span>
+                      <button
+                        onClick={() => setIsMuted(!isMuted)}
+                        className="text-amber-400 hover:underline cursor-pointer flex items-center gap-1"
+                      >
+                        <Volume2 className="w-3.5 h-3.5" />
+                        <span>{isMuted ? (isAr ? 'تشغيل الصوت' : 'Unmute') : (isAr ? 'كتم الصوت' : 'Mute')}</span>
+                      </button>
+                    </div>
+                  </div>
+                )
               ) : (
-                /* Static High-Res Visual / Slide Preview */
-                <div className="relative w-full aspect-video max-h-[460px] overflow-hidden bg-zinc-950 flex items-center justify-center">
+                /* Poster fallback if no video */
+                <div className="relative w-full aspect-video max-h-[460px] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-zinc-300">
-                    <span className="px-3 py-1 rounded-lg bg-black/80 border border-white/10 font-mono text-amber-400">
-                      {project.category}
-                    </span>
-                    {project.deckSlides && project.deckSlides.length > 0 && (
-                      <button
-                        onClick={() => setShowDeepDiveDeck(true)}
-                        className="px-3 py-1.5 rounded-lg bg-amber-500 text-black font-bold flex items-center gap-1.5 cursor-pointer hover:bg-amber-400 transition-colors"
-                      >
-                        <Presentation className="w-3.5 h-3.5" />
-                        <span>{isAr ? 'تصفح شرائح العرض' : 'Inspect Presentation'}</span>
-                      </button>
-                    )}
-                  </div>
                 </div>
               )}
             </div>
+          </section>
 
-            {/* Media Action Bar with Prominent YouTube & Secondary Drive */}
-            <div className="flex items-center justify-between flex-wrap gap-3 pt-1 text-xs">
-              <span className="font-mono text-[11px] text-zinc-400">
-                {videoInfo
-                  ? displayFormat === 'landscape'
-                    ? '16:9 Landscape Commercial'
-                    : '9:16 Vertical Reel'
-                  : project.galleryImages && project.galleryImages.length > 1
-                  ? `${project.galleryImages.length} Carousel Slides`
-                  : project.category}
+          {/* ========================================================= */}
+          {/* STEP 3: الاستراتيجية (STRATEGY: SOSTAC Slide + PDF Download) */}
+          {/* ========================================================= */}
+          <section className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-4">
+            <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-white/5">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                <Presentation className="w-4 h-4" />
+                <span>03 — {isAr ? 'الاستراتيجية وخطة العمل' : 'STRATEGY & MARKETING PLAN'}</span>
               </span>
 
-              <div className="flex items-center gap-3">
-                {/* Dedicated YouTube Link (Buffalo Burger & Breadfast) */}
-                {project.videoUrl && project.videoUrl.includes('youtu') && (
-                  <a
-                    href={project.videoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-red-600/20 transition-all hover:scale-105"
+              {/* Button: حمّل الخطة كاملة PDF */}
+              <a
+                href={downloadDocUrl}
+                download={downloadFileName}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs font-mono transition-all flex items-center gap-2 shadow-lg shadow-amber-500/20 cursor-pointer hover:scale-105"
+              >
+                <Download className="w-4 h-4" />
+                <span>{isAr ? 'حمّل الخطة كاملة PDF' : 'Download Full Plan (PDF)'}</span>
+              </a>
+            </div>
+
+            {/* Strategy Highlights or SOSTAC Pillars */}
+            <div className="space-y-3">
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+                {project.objective ||
+                  'تطبيق نموذج SOSTAC لدراسة الوضع الراهن، تحديد الأهداف الذكية، وصياغة الرسائل الإعلانية ومسار التحويل.'}
+              </p>
+
+              {/* What I Did / Strategic execution points */}
+              {project.whatIDid && project.whatIDid.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                  {project.whatIDid.slice(0, 4).map((pt, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3 rounded-xl bg-black/40 border border-white/5 text-xs text-zinc-300 flex items-start gap-2.5"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                      <span>{pt}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Optional Deck Slides Inspector */}
+              {project.deckSlides && project.deckSlides.length > 0 && (
+                <div className="pt-2">
+                  <button
+                    onClick={() => setShowDeckSlides(!showDeckSlides)}
+                    className="text-xs font-mono text-amber-400 hover:text-amber-300 underline underline-offset-4 cursor-pointer flex items-center gap-1.5"
                   >
-                    <Play className="w-3 h-3 fill-current" />
-                    <span>{isAr ? 'شاهد على يوتيوب شورتس' : 'Watch on YouTube Shorts'}</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                    <Presentation className="w-3.5 h-3.5" />
+                    <span>
+                      {showDeckSlides
+                        ? (isAr ? 'إخفاء شرائح العرض' : 'Hide Presentation Slides')
+                        : (isAr ? `تصفح شرائح العرض التقديمي (${project.deckSlides.length} شرائح)` : `Browse Strategy Slides (${project.deckSlides.length})`)}
+                    </span>
+                  </button>
+
+                  {showDeckSlides && (
+                    <div className="mt-3 p-4 rounded-xl bg-black/70 border border-white/10 space-y-3">
+                      {(() => {
+                        const slide = project.deckSlides[deckSlideIndex];
+                        return (
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-between text-xs font-mono">
+                              <span className="text-amber-400 font-bold">
+                                {isAr ? `شريحة ${deckSlideIndex + 1} من ${project.deckSlides.length}` : `Slide ${deckSlideIndex + 1} of ${project.deckSlides.length}`}
+                              </span>
+                              <span className="text-zinc-500">{slide.category}</span>
+                            </div>
+                            <h4 className="text-sm sm:text-base font-bold text-white">
+                              {slide.title}
+                            </h4>
+                            <ul className="space-y-1.5 text-xs text-zinc-300">
+                              {slide.points.map((p, pIdx) => (
+                                <li key={pIdx} className="flex items-start gap-2">
+                                  <span className="text-amber-400">•</span>
+                                  <span>{p}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            <div className="flex items-center justify-between pt-2 border-t border-white/10 text-xs font-mono">
+                              <button
+                                onClick={() => setDeckSlideIndex((prev) => Math.max(0, prev - 1))}
+                                disabled={deckSlideIndex === 0}
+                                className="px-3 py-1 rounded bg-zinc-800 disabled:opacity-30 text-white cursor-pointer"
+                              >
+                                {isAr ? '← السابق' : '← Prev'}
+                              </button>
+                              <button
+                                onClick={() =>
+                                  setDeckSlideIndex((prev) =>
+                                    Math.min(project.deckSlides!.length - 1, prev + 1)
+                                  )
+                                }
+                                disabled={deckSlideIndex === project.deckSlides.length - 1}
+                                className="px-3 py-1 rounded bg-zinc-800 disabled:opacity-30 text-white cursor-pointer"
+                              >
+                                {isAr ? 'التالي →' : 'Next →'}
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+
+          {/* ========================================================= */}
+          {/* STEP 4: الكاروسيل (CAROUSEL: Interactive Multi-Slide Slider) */}
+          {/* ========================================================= */}
+          <section className="space-y-3">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                <Layers className="w-4 h-4" />
+                <span>04 — {isAr ? 'الكاروسيل التفاعلي' : 'INTERACTIVE CAROUSEL'}</span>
+              </span>
+              <span className="text-xs font-mono text-zinc-400">
+                {isAr
+                  ? `شريحة ${carouselIndex + 1} من ${carouselImages.length}`
+                  : `Slide ${carouselIndex + 1} of ${carouselImages.length}`}
+              </span>
+            </div>
+
+            {/* Slider container with swipe / buttons */}
+            <div className="relative rounded-2xl overflow-hidden bg-zinc-950 border border-white/10 min-h-[440px] sm:min-h-[540px] max-h-[650px] flex flex-col justify-between">
+              {/* Slide image */}
+              <div className="relative flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+                <img
+                  src={carouselImages[carouselIndex] || project.image}
+                  alt={`${project.title} Carousel Slide ${carouselIndex + 1}`}
+                  className="w-full h-full max-h-[460px] sm:max-h-[520px] object-contain rounded-lg"
+                />
+
+                {/* Left Button */}
+                {carouselImages.length > 1 && (
+                  <button
+                    onClick={() =>
+                      setCarouselIndex((prev) =>
+                        prev === 0 ? carouselImages.length - 1 : prev - 1
+                      )
+                    }
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                    title="Previous Slide"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
                 )}
 
-                {/* Google Drive Link (Secondary Backup) */}
-                <a
-                  href={driveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400 border border-white/10 font-mono text-xs flex items-center gap-1.5 transition-colors"
-                  title="Google Drive Archive (Backup)"
-                >
-                  <FolderOpen className="w-3.5 h-3.5 text-amber-400" />
-                  <span>{isAr ? 'مجلد Drive (إضافي)' : 'Drive (Backup)'}</span>
-                  <ExternalLink className="w-3 h-3 opacity-60" />
-                </a>
+                {/* Right Button */}
+                {carouselImages.length > 1 && (
+                  <button
+                    onClick={() =>
+                      setCarouselIndex((prev) => (prev + 1) % carouselImages.length)
+                    }
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/80 hover:bg-amber-500 hover:text-black text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+                    title="Next Slide"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Slider Bottom Bar with Thumbnails */}
+              <div className="p-3 bg-black/90 border-t border-white/10 flex items-center justify-between gap-3">
+                <span className="text-xs font-mono text-amber-400 font-bold">
+                  {isAr
+                    ? `اسحب أو استخدم الأسهم للتنقل (${carouselIndex + 1}/${carouselImages.length})`
+                    : `Swipe or click arrows to browse (${carouselIndex + 1}/${carouselImages.length})`}
+                </span>
+
+                <div className="flex items-center gap-1.5 overflow-x-auto">
+                  {carouselImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCarouselIndex(idx)}
+                      className={`w-10 h-7 rounded overflow-hidden border transition-all cursor-pointer ${
+                        idx === carouselIndex
+                          ? 'border-amber-400 scale-105 ring-1 ring-amber-400'
+                          : 'border-white/10 opacity-50 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* 3. THE IDEA / CONCEPT (2–3 lines فقط) */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
-            <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
+          {/* ========================================================= */}
+          {/* STEP 5: الفكرة والسكريبت (CONCEPT & SCRIPT IN EGYPTIAN ARABIC) */}
+          {/* ========================================================= */}
+          <section className="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-white/10 space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-wider pb-3 border-b border-white/5">
               <Lightbulb className="w-4 h-4" />
-              <span>THE IDEA / CONCEPT</span>
-            </div>
-            <p className="text-sm sm:text-base text-zinc-200 leading-relaxed font-sans">
-              {project.concept || project.description}
-            </p>
-          </div>
-
-          {/* 4. MY ROLE */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
-            <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-              <UserCheck className="w-4 h-4" />
-              <span>MY ROLE</span>
-            </div>
-            <p className="text-sm sm:text-base text-white font-semibold leading-relaxed">
-              {project.myRole || 'Creative Direction, Video Editing & Motion Graphics'}
-            </p>
-          </div>
-
-          {/* 5. WHAT I DID (4–6 bullet points) */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-3">
-            <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-              <CheckCircle2 className="w-4 h-4" />
-              <span>WHAT I DID</span>
+              <span>05 — {isAr ? 'الفكرة والسكريبت بالعامية المصرية' : 'THE CONCEPT & COLLOQUIAL SCRIPT'}</span>
             </div>
 
-            <div className="space-y-2.5">
-              {bulletsToDisplay.map((bullet, bIdx) => (
-                <div key={bIdx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-md bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-xs font-bold font-mono">0{bIdx + 1}</span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
-                    {bullet}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 6. PROJECT TYPE & HONEST SPEC BADGE */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
-            <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-              <Briefcase className="w-4 h-4" />
-              <span>CLASSIFICATION &amp; STATUS</span>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="px-3.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-bold font-mono">
-                {project.specBadge || project.clientOrSpec || 'Spec Work'}
+            {/* The Creative Concept */}
+            <div className="space-y-1.5">
+              <span className="text-xs font-mono font-bold text-amber-400/90 uppercase">
+                {isAr ? '💡 الفكرة الإعلانية:' : '💡 The Creative Angle:'}
               </span>
-              <span className="text-xs text-zinc-400 font-mono">
-                • {project.projectType || 'Strategic Deliverable'}
-              </span>
-            </div>
-          </div>
-
-          {/* 7. TARGET AUDIENCE & KPI TARGET */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-2">
-              <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-                <Target className="w-4 h-4" />
-                <span>TARGET AUDIENCE</span>
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
-                {project.targetAudience || 'Egyptian youth, social media audiences and digital consumers seeking high quality and clear value.'}
+              <p className="text-sm sm:text-base text-zinc-200 leading-relaxed font-sans">
+                {project.concept || project.description}
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
-              <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-                <Target className="w-4 h-4" />
-                <span>SUCCESS KPI TARGET</span>
-              </div>
-              <p className="text-xs sm:text-sm text-amber-200 font-mono font-semibold leading-relaxed">
-                {project.targetKpi || (project.stats?.[0] ? `${project.stats[0].label}: ${project.stats[0].value}` : '3-Second Hold Rate > 45% & High Completion Ratio')}
-              </p>
-            </div>
-          </div>
-
-          {/* 8. TOOLS & SKILLS (5–7 skills) */}
-          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/40 border border-white/10 space-y-3">
-            <div className="flex items-center gap-2 text-amber-400 font-mono font-bold text-xs uppercase tracking-wider">
-              <Wrench className="w-4 h-4" />
-              <span>TOOLS &amp; AI ENGINE</span>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {combinedSkillsAndTools.map((skill, sIdx) => (
-                <span
-                  key={sIdx}
-                  className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-medium text-zinc-200 transition-colors"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* 9. KEY LEARNING (WHAT I LEARNED) */}
-          {project.whatILearned && (
-            <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/30 border border-white/10 space-y-2">
-              <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider block">
-                WHAT I LEARNED / LESSON:
+            {/* The Script in Egyptian Arabic */}
+            <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 space-y-2">
+              <span className="text-xs font-mono font-bold text-amber-400 uppercase flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{isAr ? '🎬 الاسكريبت الإعلاني (بالعامية المصرية):' : '🎬 Commercial Script (Egyptian Arabic):'}</span>
               </span>
-              <p className="text-xs sm:text-sm text-zinc-300 italic leading-relaxed">
-                "{project.whatILearned}"
+              <p className="text-sm sm:text-base text-amber-100/90 leading-relaxed font-sans italic">
+                "{project.conceptScriptAr || project.tagline || project.description}"
               </p>
             </div>
-          )}
-
-          {/* Optional Audio Track (if present) */}
-          {project.audioUrl && (
-            <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-zinc-900/80 to-zinc-900 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
-              <div className="flex items-center gap-3 w-full sm:w-auto">
-                <div className="w-10 h-10 rounded-xl bg-amber-500 text-black flex items-center justify-center shrink-0 shadow-lg">
-                  <Music className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
-                    <Volume2 className="w-3.5 h-3.5" />
-                    <span>Commercial Voiceover Audio</span>
-                  </div>
-                  <div className="text-xs sm:text-sm font-bold text-white mt-0.5">
-                    {project.audioTitle || (isAr ? 'التسجيل الصوتي الرسمي' : 'Official Audio Track')}
-                  </div>
-                </div>
-              </div>
-              <div className="w-full sm:w-64 shrink-0">
-                <audio controls className="w-full h-9 rounded-lg" src={project.audioUrl}>
-                  Your browser does not support audio.
-                </audio>
-              </div>
-            </div>
-          )}
-
-          {/* Optional Strategy Deck Slides Viewer (Expandable) */}
-          {project.deckSlides && project.deckSlides.length > 0 && (
-            <div className="border border-white/10 rounded-2xl overflow-hidden bg-zinc-950">
-              <button
-                onClick={() => setShowDeepDiveDeck(!showDeepDiveDeck)}
-                className="w-full px-5 py-4 flex items-center justify-between text-left bg-zinc-900/60 hover:bg-zinc-900 transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase">
-                  <Presentation className="w-4 h-4" />
-                  <span>
-                    {isAr ? 'عرض شرائح الاستراتيجية التقديمية' : 'Strategy Deck Slides'} (
-                    {project.deckSlides.length} Slides)
-                  </span>
-                </div>
-                <span className="text-xs text-zinc-400 font-mono">
-                  {showDeepDiveDeck ? '▲ إخفاء' : '▼ استعراض الشرائح'}
-                </span>
-              </button>
-
-              {showDeepDiveDeck && (
-                <div className="p-4 sm:p-6 border-t border-white/10 space-y-4">
-                  {(() => {
-                    const slide = project.deckSlides[currentSlideIndex];
-                    return (
-                      <div className="p-5 rounded-2xl bg-black border border-white/10 space-y-4">
-                        <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
-                          <span className="text-amber-400 font-bold">
-                            SLIDE {slide.slideNumber} / {project.deckSlides.length}
-                          </span>
-                          <span>{slide.category}</span>
-                        </div>
-
-                        <h3 className="text-lg sm:text-2xl font-bold text-white">
-                          {slide.title}
-                        </h3>
-
-                        <div className="space-y-2">
-                          {slide.points.map((pt, pIdx) => (
-                            <div key={pIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
-                              <span className="text-amber-400 font-bold">•</span>
-                              <span>{pt}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Slide Navigation */}
-                        <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                          <button
-                            onClick={() => setCurrentSlideIndex((prev) => Math.max(0, prev - 1))}
-                            disabled={currentSlideIndex === 0}
-                            className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 disabled:opacity-30 text-white text-xs font-mono cursor-pointer"
-                          >
-                            ← Prev Slide
-                          </button>
-                          <span className="text-xs font-mono text-zinc-500">
-                            {currentSlideIndex + 1} of {project.deckSlides.length}
-                          </span>
-                          <button
-                            onClick={() =>
-                              setCurrentSlideIndex((prev) =>
-                                Math.min(project.deckSlides!.length - 1, prev + 1)
-                              )
-                            }
-                            disabled={currentSlideIndex === project.deckSlides.length - 1}
-                            className="px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 disabled:opacity-30 text-white text-xs font-mono cursor-pointer"
-                          >
-                            Next Slide →
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })()}
-                </div>
-              )}
-            </div>
-          )}
+          </section>
 
           {/* ========================================================= */}
-          {/* 8. FAST NEXT / PREVIOUS PROJECT NAVIGATION FOOTER */}
+          {/* STEP 6: زرار تواصل (DIRECT CONTACT / WHATSAPP ACTION) */}
           {/* ========================================================= */}
-          <div className="pt-8 border-t border-white/10 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {/* PREVIOUS PROJECT BUTTON */}
-              <button
-                onClick={handlePrev}
-                disabled={!hasPrev}
-                className="w-full p-4 rounded-2xl bg-zinc-900/80 hover:bg-zinc-800 disabled:opacity-40 disabled:cursor-not-allowed border border-white/10 text-left transition-all cursor-pointer group flex items-center justify-between gap-3 shadow-lg"
-              >
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="w-10 h-10 rounded-xl bg-black border border-white/10 flex items-center justify-center shrink-0 text-zinc-400 group-hover:text-amber-400 transition-colors">
-                    <ArrowLeft className="w-5 h-5" />
-                  </div>
-                  <div className="overflow-hidden">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">
-                      {isAr ? 'المشروع السابق' : '← PREVIOUS PROJECT'}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-300 transition-colors truncate block">
-                      {prevProject ? prevProject.title : (isAr ? 'بداية القائمة' : 'Start of list')}
-                    </span>
-                  </div>
-                </div>
-              </button>
-
-              {/* NEXT PROJECT BUTTON [ NEXT PROJECT → ] */}
-              <button
-                onClick={handleNext}
-                disabled={!hasNext}
-                className="w-full p-4 rounded-2xl bg-amber-500/10 hover:bg-amber-500/20 disabled:opacity-40 disabled:cursor-not-allowed border border-amber-500/30 text-left transition-all cursor-pointer group flex items-center justify-between gap-3 shadow-lg"
-              >
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <div className="overflow-hidden">
-                    <span className="text-[10px] font-mono text-amber-400 uppercase block font-bold">
-                      {isAr ? 'المشروع التالي →' : 'NEXT PROJECT →'}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-300 transition-colors truncate block">
-                      {nextProject ? nextProject.title : (isAr ? 'نهاية القائمة' : 'End of list')}
-                    </span>
-                  </div>
-                  <div className="w-10 h-10 rounded-xl bg-amber-500 text-black flex items-center justify-center shrink-0 shadow-md">
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
-                </div>
-              </button>
+          <section className="p-6 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-zinc-900/90 to-amber-500/10 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+            <div className="space-y-1 text-center sm:text-left rtl:sm:text-right">
+              <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider block">
+                06 — {isAr ? 'جاهز للتنفيذ والتعاون؟' : 'READY TO COLLABORATE?'}
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold text-white font-display">
+                {isAr
+                  ? `عايز حملة إعلانية أو فيديو بالذكاء الاصطناعي لبراندك؟`
+                  : `Want a similar AI commercial or strategy for your brand?`}
+              </h3>
+              <p className="text-xs text-zinc-300">
+                {isAr
+                  ? 'تواصل مباشرة عبر واتساب لمناقشة الفكرة والتفاصيل والبدء في التنفيذ.'
+                  : 'Chat directly on WhatsApp to discuss your brief and get started.'}
+              </p>
             </div>
 
-            {/* Bottom Contact & Drive Banner */}
-            <div className="p-4 rounded-2xl bg-black/60 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-xs text-zinc-400">
-                <FolderOpen className="w-4 h-4 text-amber-400" />
-                <span>
-                  {isAr ? 'كل ملفات المشاريع متاحة على الدرايف:' : 'Full verified project assets on Google Drive:'}
-                </span>
-                <a
-                  href={driveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-400 underline font-mono text-xs hover:text-amber-300"
-                >
-                  Drive Vault ↗
-                </a>
-              </div>
+            <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
+              {/* WhatsApp Direct Button */}
+              <button
+                onClick={handleWhatsAppInquiry}
+                className="flex-1 sm:flex-initial px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/20 transition-all cursor-pointer hover:scale-105"
+              >
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>{isAr ? 'تواصل على واتساب' : 'Chat on WhatsApp'}</span>
+              </button>
 
+              {/* Alternative Email / Contact modal button */}
               <button
                 onClick={() => {
                   onClose();
                   onOpenContact(project.title);
                 }}
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-md cursor-pointer"
+                className="px-4 py-3.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-mono font-bold border border-white/10 transition-colors cursor-pointer"
               >
-                <span>{isAr ? 'طلب حملة مماثلة' : 'Work Together on Similar Campaign'}</span>
-                <ArrowUpRight className="w-4 h-4" />
+                {isAr ? 'نموذج التواصل' : 'Contact Form'}
               </button>
             </div>
-          </div>
+          </section>
+
         </div>
       </div>
     </div>

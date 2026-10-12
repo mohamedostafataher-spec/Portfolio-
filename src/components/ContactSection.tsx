@@ -11,6 +11,7 @@ import {
   MessageCircle,
   MapPin,
   Clock,
+  Play,
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -183,10 +184,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </button>
               </div>
 
-              {/* LinkedIn & Instagram Channels */}
+              {/* LinkedIn & YouTube Channels from CV */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <a
-                  href="https://www.linkedin.com"
+                  href="https://linkedin.com/in/mohamed-mostafa-2a00993b8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-amber-500/30 flex items-center justify-between text-zinc-300 hover:text-white transition-colors group"
@@ -199,14 +200,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </a>
 
                 <a
-                  href="https://www.instagram.com"
+                  href="https://youtube.com/@mohamedmostafacreative"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 rounded-xl bg-zinc-900/60 border border-white/5 hover:border-amber-500/30 flex items-center justify-between text-zinc-300 hover:text-white transition-colors group"
                 >
                   <div className="flex items-center gap-2 text-xs font-semibold">
-                    <Sparkles className="w-4 h-4 text-amber-400" />
-                    <span>Instagram</span>
+                    <Play className="w-4 h-4 text-red-500 fill-current" />
+                    <span>YouTube</span>
                   </div>
                   <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-amber-400 transition-colors" />
                 </a>

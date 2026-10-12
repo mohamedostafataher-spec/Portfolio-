@@ -35,25 +35,24 @@ export function PortfolioApp() {
   const { openLoginModal } = useOwner();
   const { isAr } = useLanguage();
 
+  // Canonical projects source: always load the latest INITIAL_PROJECTS,
+  // while preserving any custom projects dynamically added by the owner.
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
-      localStorage.removeItem('mm_portfolio_projects_v28');
-      localStorage.removeItem('mm_portfolio_projects_v25');
-      localStorage.removeItem('mm_portfolio_projects_v24');
-      localStorage.removeItem('mm_portfolio_projects_v20');
-      const saved = localStorage.getItem('mm_portfolio_projects_v30');
-      if (saved) {
-        const parsed: Project[] = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // ensure no deleted spec projects exist in cache
-          const cleaned = parsed.filter(
-            (p) =>
-              p.id !== 'level-fitness-spec' &&
-              p.id !== 'wojooh-tourism-spec' &&
-              p.id !== 'golden-sun-spec' &&
-              p.id !== 'talabat-delivery-tvc'
-          );
-          return cleaned;
+      // Clear out all stale legacy cache keys from previous versions
+      for (let i = 0; i <= 50; i++) {
+        localStorage.removeItem(`mm_portfolio_projects_v${i}`);
+      }
+      localStorage.removeItem('mm_portfolio_projects_v36');
+
+      // Check for user-created custom projects
+      const customSaved = localStorage.getItem('mm_portfolio_custom_user_projects');
+      if (customSaved) {
+        const customProjects: Project[] = JSON.parse(customSaved);
+        if (Array.isArray(customProjects) && customProjects.length > 0) {
+          const initialIds = new Set(INITIAL_PROJECTS.map((p) => p.id));
+          const trulyCustom = customProjects.filter((p) => !initialIds.has(p.id));
+          return [...trulyCustom, ...INITIAL_PROJECTS];
         }
       }
     } catch {
@@ -69,16 +68,16 @@ export function PortfolioApp() {
   const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
   const [contactInitialService, setContactInitialService] = useState<string>('');
-  const [activeCategory, setActiveCategory] = useState<string>('Videos');
+  const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  // Persist projects to localStorage
+  // Sync state if INITIAL_PROJECTS updates in hot code reload
   useEffect(() => {
-    try {
-      localStorage.setItem('mm_portfolio_projects_v30', JSON.stringify(projects));
-    } catch {
-      // ignore
-    }
-  }, [projects]);
+    setProjects((prev) => {
+      const initialIds = new Set(INITIAL_PROJECTS.map((p) => p.id));
+      const customOnly = prev.filter((p) => !initialIds.has(p.id));
+      return [...customOnly, ...INITIAL_PROJECTS];
+    });
+  }, []);
 
   // Keyboard shortcut (Alt + L or Ctrl + Shift + L) for discrete Owner login
   useEffect(() => {
@@ -94,6 +93,16 @@ export function PortfolioApp() {
 
   const handleAddProject = (newProject: Project) => {
     setProjects((prev) => [newProject, ...prev]);
+    try {
+      const customSaved = localStorage.getItem('mm_portfolio_custom_user_projects');
+      const customProjects: Project[] = customSaved ? JSON.parse(customSaved) : [];
+      localStorage.setItem(
+        'mm_portfolio_custom_user_projects',
+        JSON.stringify([newProject, ...customProjects])
+      );
+    } catch {
+      // ignore
+    }
   };
 
   const handleSaveProject = (updatedProject: Project) => {

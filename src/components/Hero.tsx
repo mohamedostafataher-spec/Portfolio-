@@ -61,46 +61,50 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Clear Professional Positioning Kicker */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider mb-4">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Digital Marketing • AI Content • Video Editing • Creative Strategy</span>
+          <span>AI Video • Creative Content • SOSTAC Strategy • Digital Marketing</span>
         </div>
 
-        {/* Standardized Full Official Name */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight mb-2">
-          Mohamed Mostafa
+        {/* Unified Official Full Name */}
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight mb-3">
+          Mohamed Mostafa Taher Salem
         </h1>
 
-        {/* Title */}
-        <p className="text-amber-400 font-bold text-lg sm:text-xl mb-5">
-          Digital Marketing Specialist & AI Content Creator
+        {/* Exact Requested Professional Title */}
+        <p className="text-amber-400 font-bold text-lg sm:text-2xl mb-4 font-display">
+          AI Video & Content Creator | Digital Marketing Trainee
         </p>
 
-        {/* Main Headline */}
-        <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-6">
-          Creative Strategist · AI Filmmaker · Growth Marketer
-        </h2>
-
-        {/* Main Description */}
-        <p className="max-w-2xl text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed mb-8 font-normal">
-          I turn ideas into visual stories and strategies into campaigns.
-          <br /><br />
-          Blending creative thinking, generative AI, cinematic storytelling, and digital marketing to build compelling brand experiences—from the first insight to the final execution.
+        {/* Exact Requested Single Line Description */}
+        <p className="max-w-2xl text-zinc-200 text-base sm:text-xl leading-relaxed mb-8 font-normal font-sans">
+          {isAr
+            ? 'بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية'
+            : 'Crafting AI video campaigns & commercials for Egyptian brands in authentic Egyptian Arabic.'}
         </p>
 
-        {/* CTAs Action Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-10 w-full">
-          {/* WhatsApp Direct */}
+        {/* CTAs Action Row: Exact Two Primary Buttons (شوف الأعمال + واتساب) + CV */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 w-full">
+          {/* شوف الأعمال (Explore Work) */}
           <button
-            onClick={handleWhatsApp}
-            className="px-6 py-3.5 rounded-full bg-emerald-500/10 hover:bg-emerald-500 text-emerald-400 hover:text-black font-bold text-xs sm:text-sm border border-emerald-500/30 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
+            onClick={onExploreWork}
+            className="px-8 py-3.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm sm:text-base transition-all shadow-xl shadow-amber-500/20 flex items-center gap-2 cursor-pointer hover:scale-105"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>{isAr ? 'محادثة واتساب مباشرة' : 'WhatsApp Chat'}</span>
+            <span>{isAr ? 'شوف الأعمال' : 'Explore Work'}</span>
+            <ArrowDown className="w-4 h-4 stroke-[2.5]" />
           </button>
 
-          {/* Download CV */}
+          {/* واتساب (WhatsApp Direct) */}
+          <button
+            onClick={handleWhatsApp}
+            className="px-7 py-3.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500 text-emerald-400 hover:text-black font-bold text-sm sm:text-base border border-emerald-500/30 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
+          >
+            <MessageCircle className="w-4 h-4 fill-current" />
+            <span>{isAr ? 'واتساب' : 'WhatsApp'}</span>
+          </button>
+
+          {/* Quick CV Download */}
           <button
             onClick={onOpenResume}
-            className="px-5 py-3.5 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all flex items-center gap-2 cursor-pointer"
+            className="px-5 py-3.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all flex items-center gap-2 cursor-pointer"
           >
             <FileText className="w-4 h-4 text-amber-400" />
             <span>{isAr ? 'السيرة الذاتية (CV)' : 'Download CV'}</span>
@@ -129,6 +133,30 @@ export const Hero: React.FC<HeroProps> = ({
             title="Instagram"
           >
             <Instagram className="w-4 h-4" />
+          </a>
+
+          <a
+            href="https://youtube.com/@mohamedmostafacreative"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-red-500 border border-white/5 transition-colors"
+            title="YouTube Channel"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/mohamed-mostafa-2a00993b8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-sky-400 border border-white/5 transition-colors"
+            title="LinkedIn"
+          >
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 0 0 1.65-1.63 1.65 1.65 0 1 0-3.3 0c0 .9.74 1.63 1.65 1.63m1.4 9.74v-8.37H5.06v8.37h2.8z"/>
+            </svg>
           </a>
 
           <a

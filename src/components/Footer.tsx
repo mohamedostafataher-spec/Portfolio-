@@ -17,20 +17,22 @@ export const Footer: React.FC = () => {
         {/* Brand info */}
         <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
           <span className="font-display font-bold text-white text-base flex items-center gap-2">
-            {isAr ? 'محمد مصطفى' : 'Mohamed Mostafa'}
+            Mohamed Mostafa Taher Salem
             {isOwnerMode && (
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">
                 OWNER
               </span>
             )}
           </span>
-          <span className="text-zinc-500 font-mono text-[11px]">
+          <span className="text-amber-400 font-mono text-[11px] font-bold">
             {isAr
-              ? 'أخصائي تسويق رقمي & صانع محتوى بالذكاء الاصطناعي'
-              : 'Digital Marketing Specialist & AI Content Creator'}
+              ? 'صانع محتوى وفيديو بالـ AI | متدرب تسويق رقمي'
+              : 'AI Video & Content Creator | Digital Marketing Trainee'}
           </span>
-          <span className="text-zinc-600 text-[10px] mt-1">
-            Digital Marketing &bull; AI Content &bull; Video Editing &bull; Creative Strategy
+          <span className="text-zinc-500 text-[10px] mt-1">
+            {isAr
+              ? 'بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية'
+              : 'Crafting AI video campaigns & commercials for Egyptian brands in Egyptian Arabic'}
           </span>
         </div>
 
