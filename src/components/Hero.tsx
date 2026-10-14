@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 shadow-xl shadow-amber-500/20">
             <div className="w-full h-full rounded-full overflow-hidden bg-zinc-950">
               <img
-                src="/images/profile/whatsapp_profile_professional_edit.png"
+                src="/images/profile/mohamed_profile_new.jpg"
                 alt="Mohamed Mostafa Taher"
                 className="w-full h-full object-cover"
               />

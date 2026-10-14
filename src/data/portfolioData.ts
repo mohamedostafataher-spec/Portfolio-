@@ -1646,7 +1646,12 @@ export const INITIAL_PROJECTS: Project[] = [
     ],
     tools: ['CapCut Pro', 'Canva Pro', 'Sound Design & Foley', 'SCQA Framework'],
     image: talabatRealThumb,
-    galleryImages: [talabatRealThumb, talabatEgyptAd, foodDeliveryPoster],
+    galleryImages: [
+      talabatRealThumb,
+      '/images/talabat/talabat_commercial_eating_frame.jpg',
+      foodDeliveryPoster,
+      talabatEgyptAd,
+    ],
     videoUrl: foodDeliveryVideo,
     aspectRatio: '9:16',
     pdfDownloadUrl: '/documents/Mohamed_Taher_Executive_Portfolio.pdf',
