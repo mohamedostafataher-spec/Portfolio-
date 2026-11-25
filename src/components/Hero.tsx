@@ -86,55 +86,18 @@ export const Hero: React.FC<HeroProps> = ({
           {/* شوف الأعمال (Explore Work) */}
           <button
             onClick={onExploreWork}
-            className="px-8 py-3.5 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-sm sm:text-base transition-all shadow-xl shadow-amber-500/20 flex items-center gap-2 cursor-pointer hover:scale-105"
+            className="px-10 py-4 rounded-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-base sm:text-lg transition-all shadow-xl shadow-amber-500/20 flex items-center gap-2 cursor-pointer hover:scale-105"
           >
             <span>{isAr ? 'شوف الأعمال' : 'Explore Work'}</span>
             <ArrowDown className="w-4 h-4 stroke-[2.5]" />
           </button>
 
-          {/* واتساب (WhatsApp Direct) */}
-          <button
-            onClick={handleWhatsApp}
-            className="px-7 py-3.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500 text-emerald-400 hover:text-black font-bold text-sm sm:text-base border border-emerald-500/30 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
-          >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>{isAr ? 'واتساب' : 'WhatsApp'}</span>
-          </button>
-
-          {/* Quick CV Download */}
-          <button
-            onClick={onOpenResume}
-            className="px-5 py-3.5 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium text-xs sm:text-sm border border-white/10 transition-all flex items-center gap-2 cursor-pointer"
-          >
-            <FileText className="w-4 h-4 text-amber-400" />
-            <span>{isAr ? 'السيرة الذاتية (CV)' : 'Download CV'}</span>
-          </button>
         </div>
 
         {/* Showreel removed per user request */}
 
         {/* Quick Social Strip */}
         <div className="flex items-center gap-3 mt-8">
-          <a
-            href="https://drive.google.com/drive/folders/1xgALo2bO0OOT5yC674DhLphM91VN8ML3"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-xs font-mono text-zinc-300 hover:text-amber-400 border border-white/5 transition-colors flex items-center gap-1.5"
-          >
-            <FolderGit2 className="w-3.5 h-3.5 text-amber-400" />
-            <span>Master Drive (Google Drive)</span>
-          </a>
-
-          <a
-            href="https://instagram.com/mohamedostafataher"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-full bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-pink-400 border border-white/5 transition-colors"
-            title="Instagram"
-          >
-            <Instagram className="w-4 h-4" />
-          </a>
-
           <a
             href="https://youtube.com/@mohamedmostafacreative"
             target="_blank"
@@ -169,17 +132,6 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Down Scroll Anchor */}
-      <div className="mt-12">
-        <button
-          onClick={onExploreWork}
-          className="p-2 text-zinc-500 hover:text-white transition-colors cursor-pointer flex flex-col items-center gap-1"
-          aria-label="Scroll down to projects"
-        >
-          <span className="text-[10px] font-mono tracking-widest uppercase text-zinc-600">EXPLORE WORK</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-        </button>
-      </div>
     </section>
   );
 };
