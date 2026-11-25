@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Store, Globe2, Youtube, Code2 } from 'lucide-react';
+import { ExternalLink, Store, Youtube, Code2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface LiveProject {
@@ -33,22 +33,6 @@ const PROJECTS: LiveProject[] = [
     extraEn: 'English page',
     extraAr: 'الصفحة الإنجليزية',
     icon: Store,
-  },
-  {
-    nameEn: 'NILORA: travel and world app',
-    nameAr: 'NILORA: تطبيق سفر وعالم افتراضي',
-    descEn:
-      'A web app (PWA) concept for exploring the world: 3D globe, a passport with country and city stamps, daily missions, a live map and a playable 3D city. Also NILORA Lite: a free translator with ready-made travel phrases (Situations), an Egyptian Arabic style option, and a text-based translated call between two users. Built by me with free tools, from my phone. Work in progress.',
-    descAr:
-      'تطبيق ويب (PWA) لاستكشاف العالم: كرة أرضية ثلاثية الأبعاد، جواز سفر بأختام الدول والمدن، مهام يومية، خريطة حية ومدينة ثلاثية الأبعاد قابلة للعب. وكمان NILORA Lite: مترجم مجاني بعبارات سفر جاهزة (مواقف)، وخيار للعامية المصرية، ومكالمة مترجمة بالنص بين اثنين. بنيته بنفسي بأدوات مجانية ومن الموبايل. المشروع قيد التطوير.',
-    url: 'https://mohamedostafataher-spec.github.io/NILOTA/web/',
-    ctaEn: 'Open the app',
-    ctaAr: 'فتح التطبيق',
-    tags: ['Web App', 'PWA', '3D', 'Translation'],
-    extraUrl: 'https://mohamedostafataher-spec.github.io/NILOTA/web/lite/',
-    extraEn: 'NILORA Lite',
-    extraAr: 'NILORA Lite',
-    icon: Globe2,
   },
   {
     nameEn: 'Mohamed Mostafa Creative: story shorts',
