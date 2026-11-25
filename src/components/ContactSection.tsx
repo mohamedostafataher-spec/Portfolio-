@@ -221,7 +221,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
                 <div className="p-3 rounded-xl bg-zinc-900/40 border border-white/5 flex items-center gap-2 text-zinc-400">
                   <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>{isAr ? 'رد خلال 24 ساعة' : 'Sub-24h reply'}</span>
+                  <span>{isAr ? 'بيرد على واتساب' : 'Replies on WhatsApp'}</span>
                 </div>
               </div>
             </div>
