@@ -31,8 +31,8 @@ export const Footer: React.FC = () => {
           </span>
           <span className="text-zinc-500 text-[10px] mt-1">
             {isAr
-              ? 'بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية'
-              : 'Crafting AI video campaigns & commercials for Egyptian brands in Egyptian Arabic'}
+              ? 'بعمل حملات وإعلانات فيديو بالـ AI كأعمال مفاهيمية مستقلة لبراندات مصرية، بالعامية المصرية'
+              : 'Independent concept campaigns & AI video ads for Egyptian brands, in Egyptian Arabic'}
           </span>
         </div>
 
