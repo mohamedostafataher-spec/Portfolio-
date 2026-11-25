@@ -11,6 +11,9 @@ interface LiveProject {
   ctaEn: string;
   ctaAr: string;
   tags: string[];
+  extraUrl?: string;
+  extraEn?: string;
+  extraAr?: string;
   icon: React.ComponentType<{ className?: string }>;
 }
 
@@ -26,19 +29,25 @@ const PROJECTS: LiveProject[] = [
     ctaEn: 'Visit the store',
     ctaAr: 'زيارة المتجر',
     tags: ['React', 'TypeScript', 'Supabase', 'Arabic SEO', 'RTL'],
+    extraUrl: 'https://sulta.vercel.app/en',
+    extraEn: 'English page',
+    extraAr: 'الصفحة الإنجليزية',
     icon: Store,
   },
   {
     nameEn: 'NILORA: travel and world app',
     nameAr: 'NILORA: تطبيق سفر وعالم افتراضي',
     descEn:
-      'A web app (PWA) concept for exploring the world: 3D globe, a passport with country and city stamps, daily missions, a live map and a playable 3D city. Built by me as a free-tools, phone-only project. It is a work in progress.',
+      'A web app (PWA) concept for exploring the world: 3D globe, a passport with country and city stamps, daily missions, a live map and a playable 3D city. Also NILORA Lite: a free translator with ready-made travel phrases (Situations), an Egyptian Arabic style option, and a text-based translated call between two users. Built by me with free tools, from my phone. Work in progress.',
     descAr:
-      'تطبيق ويب (PWA) لاستكشاف العالم: كرة أرضية ثلاثية الأبعاد، جواز سفر بأختام الدول والمدن، مهام يومية، خريطة حية ومدينة ثلاثية الأبعاد قابلة للعب. بنيته بنفسي بأدوات مجانية ومن الموبايل فقط. المشروع قيد التطوير.',
+      'تطبيق ويب (PWA) لاستكشاف العالم: كرة أرضية ثلاثية الأبعاد، جواز سفر بأختام الدول والمدن، مهام يومية، خريطة حية ومدينة ثلاثية الأبعاد قابلة للعب. وكمان NILORA Lite: مترجم مجاني بعبارات سفر جاهزة (مواقف)، وخيار للعامية المصرية، ومكالمة مترجمة بالنص بين اثنين. بنيته بنفسي بأدوات مجانية ومن الموبايل. المشروع قيد التطوير.',
     url: 'https://mohamedostafataher-spec.github.io/NILOTA/web/',
     ctaEn: 'Open the app',
     ctaAr: 'فتح التطبيق',
-    tags: ['Web App', 'PWA', '3D', 'Game design'],
+    tags: ['Web App', 'PWA', '3D', 'Translation'],
+    extraUrl: 'https://mohamedostafataher-spec.github.io/NILOTA/web/lite/',
+    extraEn: 'NILORA Lite',
+    extraAr: 'NILORA Lite',
     icon: Globe2,
   },
   {
@@ -97,6 +106,7 @@ export const LiveProjects: React.FC = () => {
                     </span>
                   ))}
                 </div>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <a
                   href={p.url}
                   target="_blank"
@@ -106,6 +116,18 @@ export const LiveProjects: React.FC = () => {
                   {isAr ? p.ctaAr : p.ctaEn}
                   <ExternalLink className="w-4 h-4" aria-hidden="true" />
                 </a>
+                {p.extraUrl && (
+                  <a
+                    href={p.extraUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-zinc-200 hover:text-white"
+                  >
+                    {isAr ? p.extraAr : p.extraEn}
+                    <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                  </a>
+                )}
+                </div>
               </article>
             );
           })}
