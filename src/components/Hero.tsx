@@ -77,8 +77,8 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Exact Requested Single Line Description */}
         <p className="max-w-2xl text-zinc-200 text-base sm:text-xl leading-relaxed mb-8 font-normal font-sans">
           {isAr
-            ? 'بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية'
-            : 'Crafting AI video campaigns & commercials for Egyptian brands in authentic Egyptian Arabic.'}
+            ? 'بعمل حملات وإعلانات فيديو بالـ AI كأعمال مفاهيمية مستقلة لبراندات مصرية، بالعامية المصرية'
+            : 'Independent concept campaigns & AI video ads for Egyptian brands, in authentic Egyptian Arabic.'}
         </p>
 
         {/* CTAs Action Row: Exact Two Primary Buttons (شوف الأعمال + واتساب) + CV */}
