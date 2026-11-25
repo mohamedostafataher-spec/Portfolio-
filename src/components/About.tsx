@@ -40,10 +40,10 @@ export const About: React.FC<AboutProps> = ({
 
   const marketingPillars = [
     {
-      titleEn: 'Performance & ROAS',
+      titleEn: 'Performance Marketing (learning)',
       titleAr: 'التسويق بالأداء والعائد',
-      descEn: 'Managing Meta & TikTok ad budgets with precision funnel targeting, audience segmentation, and CAC reduction.',
-      descAr: 'إدارة ميزانيات إعلانات ميتا وتيك توك بتحديد دقيق للجمهور ومسارات شراء تقلل كلفة الاكتساب وتضاعف العائد.',
+      descEn: 'Studying paid social on Meta and TikTok: audience segmentation, funnel planning and how to read CAC and ROAS. Coursework and concept plans, not client ad spend.',
+      descAr: 'دراسة الإعلانات المدفوعة على ميتا وتيك توك: تقسيم الجمهور وتخطيط مسار الشراء وقراءة كلفة الاكتساب والعائد. تدريب وخطط تطبيقية وليس إنفاقًا إعلانيًا لعملاء.',
       icon: BarChart3,
     },
     {
@@ -146,7 +146,7 @@ export const About: React.FC<AboutProps> = ({
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
               <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>ALX AI Certified</span>
+              <span>ALX AI &amp; Professional Skills</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 border border-white/5 text-zinc-300 text-xs shadow-sm">
               <CheckCircle2 className="w-4 h-4 text-amber-400" />
