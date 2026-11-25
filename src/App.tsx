@@ -17,6 +17,7 @@ import { MasterPortfolioSection } from './components/MasterPortfolioSection';
 import { CapabilitiesSection } from './components/CapabilitiesSection';
 import { CreativeProcess } from './components/CreativeProcess';
 import { About } from './components/About';
+import { LiveProjects } from './components/LiveProjects';
 import { ContactSection } from './components/ContactSection';
 import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
 import { MotionGraphicsDecorations } from './components/MotionGraphicsDecorations';
@@ -213,6 +214,8 @@ export function PortfolioApp() {
           onDeleteProject={handleDeleteProject}
           onResetProjects={handleResetProjects}
         />
+
+        <LiveProjects />
 
         {/* 05 — THE CREATIVE & STRATEGIC PROCESS (FROM BRIEF TO IMPACT) */}
         <CreativeProcess />
