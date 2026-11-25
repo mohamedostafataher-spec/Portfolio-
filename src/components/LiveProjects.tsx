@@ -42,19 +42,6 @@ const PROJECTS: LiveProject[] = [
     icon: Globe2,
   },
   {
-    nameEn: 'Mr. Mohamed Academy: kids education channel',
-    nameAr: 'يلا نفهم مع مستر محمد: قناة تعليمية للأطفال',
-    descEn:
-      'A YouTube channel for KG and Grade 1 lessons in Egyptian Arabic. Each episode tells the lesson as a story and comes with a homework worksheet. I write the scripts and direct the episodes.',
-    descAr:
-      'قناة يوتيوب لشرح منهج KG والصف الأول الابتدائي بالعامية المصرية. كل حلقة بتحكي الدرس كقصة ومعاها ملزمة وواجب. بكتب السكريبتات وأخرج الحلقات.',
-    url: 'https://www.youtube.com/@YallaNefhamMrMohamed',
-    ctaEn: 'Watch on YouTube',
-    ctaAr: 'مشاهدة على يوتيوب',
-    tags: ['Scriptwriting', 'Egyptian Arabic', 'Education', 'AI video'],
-    icon: Youtube,
-  },
-  {
     nameEn: 'Mohamed Mostafa Creative: story shorts',
     nameAr: 'Mohamed Mostafa Creative: قصص قصيرة',
     descEn:
