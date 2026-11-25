@@ -46,3 +46,11 @@
 .glow-amber-card:hover {
   box-shadow: 0 0 40px -8px rgba(245, 158, 11, 0.18);
 }
+
+/* Readability and contrast */
+html { font-size: 106.25%; }
+@media (max-width: 640px) { html { font-size: 112.5%; } }
+.text-zinc-600 { color: #a1a1aa; }
+.text-zinc-500 { color: #a1a1aa; }
+.text-\[10px\] { font-size: 12px; }
+.text-\[11px\] { font-size: 12.5px; }
