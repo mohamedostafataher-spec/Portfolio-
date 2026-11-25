@@ -127,8 +127,8 @@ export const About: React.FC<AboutProps> = ({
           <div className="space-y-6 text-zinc-300 text-sm sm:text-xl leading-relaxed font-light px-2">
             <p>
               {isAr
-                ? 'أنا محمد مصطفى طاهر سالم، صانع محتوى وفيديو بالذكاء الاصطناعي ومتدرب تسويق رقمي في مبادرة رواد مصر الرقمية (DEPI). بعمل حملات وإعلانات فيديو بالـ AI للبراندات المصرية بالعامية المصرية، مع تخطيط استراتيجيات المحتوى ونموذج SOSTAC وتصميم الكاروسيل التفاعلي.'
-                : 'I am Mohamed Mostafa Taher Salem, an AI Video & Creative Content Creator and Digital Marketing Trainee (DEPI). I build concept campaigns and AI commercial videos for Egyptian brands in authentic colloquial Egyptian Arabic, with SOSTAC marketing plans and interactive carousels.'}
+                ? 'أنا محمد مصطفى طاهر سالم، صانع محتوى وفيديو بالذكاء الاصطناعي ومتدرب تسويق رقمي في مبادرة رواد مصر الرقمية (DEPI). بعمل حملات وإعلانات فيديو بالـ AI كأعمال مفاهيمية مستقلة لبراندات مصرية، بالعامية المصرية، مع تخطيط استراتيجيات المحتوى ونموذج SOSTAC وتصميم الكاروسيل التفاعلي.'
+                : 'I am Mohamed Mostafa Taher Salem, an AI Video & Creative Content Creator and Digital Marketing Trainee (DEPI). I build independent concept campaigns and AI commercial videos for Egyptian brands in authentic colloquial Egyptian Arabic, with SOSTAC marketing plans and interactive carousels.'}
             </p>
 
             <p className="text-zinc-400 text-sm sm:text-lg">
