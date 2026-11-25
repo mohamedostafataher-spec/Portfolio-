@@ -152,7 +152,7 @@ export const DigitalMarketingSection: React.FC<DigitalMarketingSectionProps> = (
               <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-xs text-zinc-300 flex items-start gap-3">
                 <span className="font-bold text-amber-400 font-mono shrink-0">PRACTICE:</span>
                 <p>
-                  Applied in client and commercial campaigns like Spiro Spathis, Baba Geh, Talabat, and Buffalo Burger to balance brand storytelling with direct-response metrics.
+                  Applied in my independent concept campaigns like Spiro Spathis, Baba Geh, Talabat, and Buffalo Burger to balance brand storytelling with direct-response metrics.
                 </p>
               </div>
 
