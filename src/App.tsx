@@ -218,26 +218,10 @@ export function PortfolioApp() {
         <LiveProjects />
 
         {/* 05 — THE CREATIVE & STRATEGIC PROCESS (FROM BRIEF TO IMPACT) */}
-        <CreativeProcess />
 
         {/* 06 — CONTACT ME */}
         <ContactSection initialServiceOrProject={contactInitialService} />
 
-        {/* 07 — ADDITIONAL WORK & ARCHIVE */}
-        <div id="archive" className="border-t border-white/5 pt-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs font-mono text-zinc-400">
-              {isAr ? 'أعمال استراتيجية إضافية وملفات المساقات والأرشيف' : 'Additional strategy work, experiments and supporting files are available in the archive.'}
-            </span>
-            <button
-              onClick={() => setIsPdfModalOpen(true)}
-              className="text-xs font-mono text-amber-400 hover:text-amber-300 underline underline-offset-4 cursor-pointer"
-            >
-              {isAr ? 'عرض كتيب البورتفوليو الكامل (25 صفحة PDF)' : 'View Full Portfolio PDF (25 Pages)'}
-            </button>
-          </div>
-          <GoogleDriveMasterVault />
-        </div>
       </main>
 
       {/* Footer */}
