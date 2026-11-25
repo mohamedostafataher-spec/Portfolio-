@@ -327,7 +327,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
     projects.find((p) => p.id === 'spiro-spathis-commercial') || projects.find((p) => p.id.includes('spiro')),
     projects.find((p) => p.id === 'baba-geh-campaign') || projects.find((p) => p.id.includes('baba')),
     projects.find((p) => p.id === 'qaim-fashion-growth') || projects.find((p) => p.id.includes('qaim')),
-  ].filter(Boolean) as Project[];
+  ].filter(Boolean).slice(0, 3) as Project[];
 
   // Filtered list when user selects a specific corner tab (Videos, Carousels, SOSTAC)
   const filteredCategoryProjects = projects.filter((p) => {
