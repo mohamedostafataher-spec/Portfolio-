@@ -405,8 +405,8 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
             </h2>
             <p className="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
               {isAr
-                ? 'مشاريع متكاملة للبراندات المصرية: إعلانات فيديو سينمائية ورأسية، استراتيجيات SOSTAC المعتمدة، وسلاسل كاروسيل تفاعلية.'
-                : 'Commercial AI video campaigns, certified SOSTAC strategy plans, and interactive carousels for Egyptian brands.'}
+                ? 'مشاريع مفاهيمية مستقلة (مش شغل عملاء) لبراندات مصرية: إعلانات فيديو سينمائية ورأسية، استراتيجيات SOSTAC المعتمدة، وسلاسل كاروسيل تفاعلية.'
+                : 'Independent concept work, not client projects: AI video campaigns, SOSTAC strategy plans and interactive carousels for Egyptian brands.'}
             </p>
           </div>
 
