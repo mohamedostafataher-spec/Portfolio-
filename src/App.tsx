@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Project } from './types';
 import { INITIAL_PROJECTS } from './data/portfolioData';
 
@@ -13,24 +13,24 @@ import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { TopAdminBar } from './components/TopAdminBar';
 import { PortfolioHeader } from './components/PortfolioHeader';
 import { Hero } from './components/Hero';
-import { MasterPortfolioSection } from './components/MasterPortfolioSection';
-import { CapabilitiesSection } from './components/CapabilitiesSection';
+const MasterPortfolioSection = lazy(() => import('./components/MasterPortfolioSection').then((m) => ({ default: m.MasterPortfolioSection })));
+const CapabilitiesSection = lazy(() => import('./components/CapabilitiesSection').then((m) => ({ default: m.CapabilitiesSection })));
 import { CreativeProcess } from './components/CreativeProcess';
-import { About } from './components/About';
-import { LiveProjects } from './components/LiveProjects';
-import { ContactSection } from './components/ContactSection';
+const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })));
+const LiveProjects = lazy(() => import('./components/LiveProjects').then((m) => ({ default: m.LiveProjects })));
+const ContactSection = lazy(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })));
 import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
-import { MotionGraphicsDecorations } from './components/MotionGraphicsDecorations';
-import { Footer } from './components/Footer';
+const MotionGraphicsDecorations = lazy(() => import('./components/MotionGraphicsDecorations').then((m) => ({ default: m.MotionGraphicsDecorations })));
+const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
 import { QuickFloatingAction } from './components/QuickFloatingAction';
 
-import { ProjectModal } from './components/ProjectModal';
-import { AddProjectModal } from './components/AddProjectModal';
-import { EditProjectModal } from './components/EditProjectModal';
-import { ResumeModal } from './components/ResumeModal';
-import { PdfDeckModal } from './components/PdfDeckModal';
-import { PortfolioDashboardModal } from './components/PortfolioDashboardModal';
-import { OwnerLoginModal } from './components/OwnerLoginModal';
+const ProjectModal = lazy(() => import('./components/ProjectModal').then((m) => ({ default: m.ProjectModal })));
+const AddProjectModal = lazy(() => import('./components/AddProjectModal').then((m) => ({ default: m.AddProjectModal })));
+const EditProjectModal = lazy(() => import('./components/EditProjectModal').then((m) => ({ default: m.EditProjectModal })));
+const ResumeModal = lazy(() => import('./components/ResumeModal').then((m) => ({ default: m.ResumeModal })));
+const PdfDeckModal = lazy(() => import('./components/PdfDeckModal').then((m) => ({ default: m.PdfDeckModal })));
+const PortfolioDashboardModal = lazy(() => import('./components/PortfolioDashboardModal').then((m) => ({ default: m.PortfolioDashboardModal })));
+const OwnerLoginModal = lazy(() => import('./components/OwnerLoginModal').then((m) => ({ default: m.OwnerLoginModal })));
 
 export function PortfolioApp() {
   const { openLoginModal } = useOwner();
@@ -162,7 +162,7 @@ export function PortfolioApp() {
   return (
     <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] flex flex-col selection:bg-amber-500 selection:text-black relative overflow-x-hidden">
       {/* 3D Motion Graphics Ambient Background */}
-      <MotionGraphicsDecorations />
+      <Suspense fallback={null}><MotionGraphicsDecorations /></Suspense>
 
       {/* 00 — Top Admin Bar (Shown ONLY when Mohamed is authenticated as Owner) */}
       <TopAdminBar
@@ -190,6 +190,7 @@ export function PortfolioApp() {
             setSelectedProject(spiro);
           }}
         />
+        <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
 
         {/* 02 — ABOUT & CREDENTIALS (Placed before projects per user instruction) */}
         <About
@@ -222,9 +223,11 @@ export function PortfolioApp() {
         {/* 06 — CONTACT ME */}
         <ContactSection initialServiceOrProject={contactInitialService} />
 
+        </Suspense>
       </main>
 
       {/* Footer */}
+      <Suspense fallback={null}>
       <Footer />
 
       {/* Minimal Quick Action (Direct WhatsApp + Scroll to Top) */}
@@ -281,6 +284,7 @@ export function PortfolioApp() {
 
       {/* Discrete Owner Login Modal */}
       <OwnerLoginModal />
+      </Suspense>
     </div>
   );
 }
