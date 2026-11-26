@@ -89,7 +89,7 @@ export const About: React.FC<AboutProps> = ({
             <div className="absolute -inset-4 bg-amber-500/10 blur-3xl rounded-full" />
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl rotate-3 border border-white/10 p-2 bg-zinc-900 group">
               <div className="w-full h-full rounded-xl overflow-hidden -rotate-3 transition-transform group-hover:rotate-0 duration-500">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src="/images/profile/mohamed_profile_new.jpg" 
                   alt="Mohamed Mostafa Taher"
                   className="w-full h-full object-cover"
