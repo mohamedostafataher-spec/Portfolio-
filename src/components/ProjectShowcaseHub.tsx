@@ -448,7 +448,7 @@ export const ProjectShowcaseHub: React.FC<ProjectShowcaseHubProps> = ({
                     className="w-full h-full object-contain"
                   />
                 ) : (
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={currentTab.posterImg}
                     alt={currentTab.nameEn}
                     className="w-full h-full object-cover"
@@ -464,7 +464,7 @@ export const ProjectShowcaseHub: React.FC<ProjectShowcaseHubProps> = ({
                       key={i}
                       className="w-16 h-16 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-black"
                     >
-                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                      <img loading="lazy" decoding="async" src={img} alt="Thumbnail" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
