@@ -96,7 +96,7 @@ const ProjectCarouselCard: React.FC<{
 
       {/* Main Interactive Slide Stage */}
       <div className="relative aspect-[4/5] sm:aspect-[1/1] md:aspect-[4/5] bg-black overflow-hidden flex items-center justify-center group">
-        <img
+        <img loading="lazy" decoding="async"
           src={slides[safeSlideIndex]}
           alt={`${project.title} slide ${safeSlideIndex + 1}`}
           className="w-full h-full object-contain cursor-pointer transition-transform duration-300 group-hover:scale-[1.02]"
@@ -146,7 +146,7 @@ const ProjectCarouselCard: React.FC<{
                 }`}
                 title={isAr ? `شريحة ${sIdx + 1}` : `Slide ${sIdx + 1}`}
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src={imgUrl}
                   alt={`Thumb ${sIdx + 1}`}
                   className="w-full h-full object-cover"
@@ -474,7 +474,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                     >
                       {/* Top Poster Image with Play Overlay */}
                       <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -646,7 +646,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                     >
                       {/* Poster Image */}
                       <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -819,7 +819,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                     className="group rounded-3xl bg-zinc-900/40 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl cursor-pointer"
                   >
                     <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -906,7 +906,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
               </button>
             </div>
             <div className="relative flex-1 bg-black flex items-center justify-center p-4 min-h-[350px]">
-              <img
+              <img loading="lazy" decoding="async"
                 src={lightboxState.images[lightboxState.currentIndex]}
                 alt="Slide"
                 className="max-h-[65vh] w-auto object-contain rounded-xl"
