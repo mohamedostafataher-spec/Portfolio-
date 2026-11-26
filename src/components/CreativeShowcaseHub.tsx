@@ -775,7 +775,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
                 {/* Visual Slide Side */}
                 <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[480px] bg-black flex items-center justify-center p-6 sm:p-10">
                   <div className="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={currentSlide.image}
                       alt={currentSlide.titleAr}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -954,7 +954,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
                     className="group rounded-3xl bg-zinc-900/50 border border-white/10 hover:border-amber-500/40 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl"
                   >
                     <div className="relative aspect-[9/12] overflow-hidden bg-black flex items-center justify-center">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={reel.image}
                         alt={reel.titleAr}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1206,7 +1206,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
                   className="group relative rounded-2xl bg-zinc-900 border border-white/10 hover:border-amber-500/40 overflow-hidden cursor-pointer shadow-xl"
                 >
                   <div className="aspect-[4/5] overflow-hidden bg-black">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={item.src}
                       alt={item.titleAr}
                       className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
@@ -1473,7 +1473,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
               </button>
 
               <div className="relative w-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black">
-                <img
+                <img loading="lazy" decoding="async"
                   src={lightboxImg.src}
                   alt={lightboxImg.title}
                   className="w-full max-h-[75vh] object-contain mx-auto"
