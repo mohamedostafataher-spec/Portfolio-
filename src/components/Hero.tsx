@@ -95,6 +95,35 @@ export const Hero: React.FC<HeroProps> = ({
             <ArrowDown className="w-4 h-4 stroke-[2.5]" />
           </button>
 
+          {/* واتساب مباشر (Direct WhatsApp) */}
+          <button
+            onClick={handleWhatsApp}
+            className="px-8 py-4 rounded-full bg-zinc-900 hover:bg-zinc-800 text-emerald-400 font-bold text-base sm:text-lg transition-all border border-emerald-500/30 hover:border-emerald-500/60 flex items-center gap-2 cursor-pointer hover:scale-105"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span>{isAr ? 'كلميني واتساب' : 'WhatsApp Me'}</span>
+          </button>
+
+        </div>
+
+        {/* Proof strip: real numbers from the verified deliverables vault */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-3xl mt-2 mb-2">
+          {[
+            { n: '22+', en: 'Verified deliverables', ar: 'تسليم موثّق' },
+            { n: '9', en: 'Commercial videos', ar: 'فيديو إعلاني' },
+            { n: '7', en: 'SOSTAC strategy decks', ar: 'خطة استراتيجية' },
+            { n: '3', en: 'Flagship campaigns', ar: 'حملات رئيسية' },
+          ].map((s) => (
+            <div
+              key={s.en}
+              className="rounded-2xl border border-white/8 bg-zinc-900/50 px-3 py-4 flex flex-col items-center gap-1"
+            >
+              <span className="font-display text-2xl sm:text-3xl font-black text-amber-400">{s.n}</span>
+              <span className="text-zinc-400 text-xs sm:text-sm text-center leading-snug">
+                {isAr ? s.ar : s.en}
+              </span>
+            </div>
+          ))}
         </div>
 
         {/* Showreel removed per user request */}

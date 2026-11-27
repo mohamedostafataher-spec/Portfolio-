@@ -19,6 +19,7 @@ import { CreativeProcess } from './components/CreativeProcess';
 const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })));
 const LiveProjects = lazy(() => import('./components/LiveProjects').then((m) => ({ default: m.LiveProjects })));
 const ContactSection = lazy(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })));
+const FaqSection = lazy(() => import('./components/FaqSection').then((m) => ({ default: m.FaqSection })));
 import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
 const MotionGraphicsDecorations = lazy(() => import('./components/MotionGraphicsDecorations').then((m) => ({ default: m.MotionGraphicsDecorations })));
 const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
@@ -220,7 +221,10 @@ export function PortfolioApp() {
 
         {/* 05 — THE CREATIVE & STRATEGIC PROCESS (FROM BRIEF TO IMPACT) */}
 
-        {/* 06 — CONTACT ME */}
+        {/* 06 — FAQ (الأسئلة الشائعة) */}
+        <FaqSection />
+
+        {/* 07 — CONTACT ME */}
         <ContactSection initialServiceOrProject={contactInitialService} />
 
         </Suspense>
