@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   X,
+  FileText,
   Printer,
   Download,
   Mail,

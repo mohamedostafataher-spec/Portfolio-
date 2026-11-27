@@ -410,8 +410,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             {/* Video Player Box */}
             <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl flex items-center justify-center min-h-[300px]">
               {videoInfo ? (
-                isYouTube ? (
-                  /* YouTube Embed with High Quality & Preservation */
+                !videoInfo.isDirect ? (
+                  /* Embedded player (YouTube, Google Drive, Vimeo, Streamable) */
                   <div className="w-full flex flex-col items-center">
                     <div
                       className={`w-full relative transition-all duration-300 ${
@@ -433,10 +433,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                         href={currentVideoItem.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-lg"
+                        className={`px-4 py-2 rounded-xl ${isYouTube ? 'bg-red-600 hover:bg-red-500' : 'bg-sky-600 hover:bg-sky-500'} text-white font-mono text-xs font-bold transition-all flex items-center gap-2 shadow-lg`}
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>{isAr ? 'مشاهدة مباشرة على YouTube' : 'Open Directly on YouTube'}</span>
+                        <span>{isYouTube ? (isAr ? 'مشاهدة مباشرة على YouTube' : 'Open Directly on YouTube') : (isAr ? 'فتح في Google Drive' : 'Open in Google Drive')}</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     </div>

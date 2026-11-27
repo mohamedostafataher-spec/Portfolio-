@@ -13,12 +13,12 @@ import {
 // Video Asset URLs (Served from public/videos/)
 const aiReelVideo = '/videos/ai_reel_commercial.mp4';
 const takaaCapcutVideo = '/videos/takaa_capcut_ad.mp4';
-const spiroVideo = '/videos/spiro_spathis_premium.mp4';
+const spiroVideo = 'https://drive.google.com/file/d/1VYc8ioFeX1ZYoteJV7ZhDqOsBUvS-sLn/view';
 const buffaloVideo = '/videos/buffalo_burger_commercial.mp4';
 const v7Video = '/videos/v7_summer_commercial.mp4';
 const qaimVideo = '/videos/qaim_fashion_campaign.mp4';
 const takaaVideo = '/videos/takaa_instagram_ad.mp4';
-const foodDeliveryVideo = '/videos/food_delivery_ad.mp4';
+const foodDeliveryVideo = 'https://drive.google.com/file/d/10hAKdyuLlAzk1wvZ-9pdfFUDbhnQJYm6/view';
 const breadfastVideo = '/videos/breadfast_delivery_campaign.mp4';
 
 // Real Posters and Image Assets
@@ -92,8 +92,10 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/lakes/lakes-v3-07.png',
       '/images/lakes/lakes-v3-08.png',
     ],
-    videoUrl: 'https://youtube.com/shorts/WVn0VMNMWxU',
+    videoUrl: 'https://drive.google.com/file/d/1LaomfFPES7u7N57wgYx1I33wfBsxIMws/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/1LaomfFPES7u7N57wgYx1I33wfBsxIMws/view',
     galleryVideos: [
+      { title: 'The Lakes SODIC East — Polished Portfolio Cut (Google Drive)', url: 'https://drive.google.com/file/d/1LaomfFPES7u7N57wgYx1I33wfBsxIMws/view', category: 'Polished Master' },
       { title: 'The Lakes SODIC East — Vertical Commercial Cut (YouTube Shorts)', url: 'https://youtube.com/shorts/WVn0VMNMWxU', category: 'YouTube Shorts' },
       { title: 'The Lakes Cinematic 77s Full Reel (4K MP4)', url: '/videos/the_lakes_sodic_77s.mp4', category: 'Director Cut (77s)' },
     ],
@@ -907,8 +909,10 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/v7/v7_carousel_07.jpg',
       '/images/v7/v7_carousel_08.jpg',
     ],
-    videoUrl: '/videos/v7_summer_commercial.mp4',
+    videoUrl: 'https://drive.google.com/file/d/1Dakel4B001v1PvRwi9tZulR5IZgsP_0L/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/1Dakel4B001v1PvRwi9tZulR5IZgsP_0L/view',
     galleryVideos: [
+      { title: 'V7 Cream Soda — Polished Portfolio Cut (Google Drive)', url: 'https://drive.google.com/file/d/1Dakel4B001v1PvRwi9tZulR5IZgsP_0L/view', category: 'Polished Master' },
       { title: 'V7 Cream Soda — Summer Commercial Cut (Match-Cut)', url: '/videos/v7_summer_commercial.mp4', category: 'TVC Reel' },
       { title: 'V7 Cream Soda — Generation Reveal & Story', url: '/videos/v7_summer_reveal.mp4', category: 'Era Reveal' },
       { title: 'V7 Cream Soda — Sahel Beach Dynamic Cut', url: '/videos/v7_summer_story.mp4', category: 'Sahel Edition' },
@@ -1542,9 +1546,10 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/buffalo/buffalo_carousel_04.webp',
       '/images/buffalo/buffalo_carousel_05.webp',
     ],
-    videoUrl: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
-    videoPreviewUrl: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24',
+    videoUrl: 'https://drive.google.com/file/d/1DRNfSBem71qY7inRljMEGCWy3HdIAE2K/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/1DRNfSBem71qY7inRljMEGCWy3HdIAE2K/view',
     galleryVideos: [
+      { title: 'Buffalo Burger — Polished Portfolio Cut (Google Drive)', url: 'https://drive.google.com/file/d/1DRNfSBem71qY7inRljMEGCWy3HdIAE2K/view', category: 'Polished Master' },
       { title: 'Buffalo Burger — Sizzle Reel (YouTube Shorts)', url: 'https://youtube.com/shorts/6y1hBgpjbUo?si=1QVmwnI_Naly2V24', category: 'YouTube Shorts' },
       { title: 'Buffalo Burger — Commercial Master Cut', url: '/videos/buffalo_burger_commercial.mp4', category: '1080p Master' },
     ],
@@ -1598,9 +1603,10 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/breadfast/breadfast_carousel_04.webp',
       '/images/breadfast/breadfast_carousel_05.webp',
     ],
-    videoUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
-    videoPreviewUrl: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi',
+    videoUrl: 'https://drive.google.com/file/d/1vDDsUX7ag491VqfThlu-NbW9jkdsubuu/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/1vDDsUX7ag491VqfThlu-NbW9jkdsubuu/view',
     galleryVideos: [
+      { title: 'Breadfast — Polished Portfolio Cut (Google Drive)', url: 'https://drive.google.com/file/d/1vDDsUX7ag491VqfThlu-NbW9jkdsubuu/view', category: 'Polished Master' },
       { title: 'Breadfast — Morning Story & Delivery (YouTube)', url: 'https://youtu.be/2FbPg2xFnPo?si=irzAosIboMAcvKgi', category: 'YouTube' },
       { title: 'Breadfast — Commercial Cut (1080p MP4)', url: '/videos/breadfast_delivery_campaign.mp4', category: 'Commercial Master' },
     ],
@@ -1714,8 +1720,10 @@ export const INITIAL_PROJECTS: Project[] = [
       '/images/baba_geh/baba_geh_carousel_04.webp',
       '/images/baba_geh/baba_geh_carousel_05.webp',
     ],
-    videoUrl: '/videos/baba_geh_montage.mp4',
+    videoUrl: 'https://drive.google.com/file/d/12xkAKIFFQb9jU6ZmqTCj9PT038IT5EPL/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/12xkAKIFFQb9jU6ZmqTCj9PT038IT5EPL/view',
     galleryVideos: [
+      { title: 'Baba Geh — Polished Montage (Google Drive)', url: 'https://drive.google.com/file/d/12xkAKIFFQb9jU6ZmqTCj9PT038IT5EPL/view', category: 'Polished Master' },
       { title: 'Baba Geh — Comedy Fast Montage (60s)', url: '/videos/baba_geh_montage.mp4', category: 'Viral Montage' },
       { title: 'Baba Geh — Pro Narrative Drama Cut (45s)', url: '/videos/baba_geh_pro.mp4', category: 'Narrative Cut' },
     ],
@@ -1761,7 +1769,8 @@ export const INITIAL_PROJECTS: Project[] = [
     image: babaGehThumb2,
     reelImage: babaGehThumb2,
     galleryImages: [babaGehThumb2, babaGehThumb1, babaGehPoster],
-    videoUrl: '/videos/baba_geh_pro.mp4',
+    videoUrl: 'https://drive.google.com/file/d/1okSVZ5aqc4SsfyBJbwvKhPzzSXBeNNLe/view',
+    videoPreviewUrl: 'https://drive.google.com/file/d/1okSVZ5aqc4SsfyBJbwvKhPzzSXBeNNLe/view',
     aspectRatio: '9:16',
     driveFolderUrl: 'https://drive.google.com/drive/folders/19xsfCc4ThGEilh9GoEQSaQgo5TARk00C',
     stats: [
