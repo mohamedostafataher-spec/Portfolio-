@@ -45,7 +45,12 @@ export const Hero: React.FC<HeroProps> = ({
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center text-center z-10">
         {/* Profile Avatar + Location & Status */}
-        <div className="relative mb-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: 'spring', stiffness: 180, damping: 16 }}
+          className="relative mb-6"
+        >
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 shadow-xl shadow-amber-500/20">
             <div className="w-full h-full rounded-full overflow-hidden bg-zinc-950">
               <img
@@ -59,8 +64,14 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
           <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-zinc-950 shadow-md shadow-emerald-500/50" />
-        </div>
+        </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+          className="flex flex-col items-center w-full"
+        >
         {/* Clear Professional Positioning Kicker */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider mb-4">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -128,8 +139,15 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* Showreel removed per user request */}
 
+        </motion.div>
+
         {/* Quick Social Strip */}
-        <div className="flex items-center gap-3 mt-8">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex items-center gap-3 mt-8"
+        >
           <a
             href="https://youtube.com/@mohamedmostafacreative"
             target="_blank"
@@ -161,7 +179,7 @@ export const Hero: React.FC<HeroProps> = ({
           >
             <Mail className="w-4 h-4" />
           </a>
-        </div>
+        </motion.div>
       </div>
 
     </section>

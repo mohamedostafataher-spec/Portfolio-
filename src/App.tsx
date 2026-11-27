@@ -18,6 +18,8 @@ const CapabilitiesSection = lazy(() => import('./components/CapabilitiesSection'
 import { CreativeProcess } from './components/CreativeProcess';
 const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })));
 const LiveProjects = lazy(() => import('./components/LiveProjects').then((m) => ({ default: m.LiveProjects })));
+const AppsSection = lazy(() => import('./components/AppsSection').then((m) => ({ default: m.AppsSection })));
+const ChannelWorksSection = lazy(() => import('./components/ChannelWorksSection').then((m) => ({ default: m.ChannelWorksSection })));
 const ContactSection = lazy(() => import('./components/ContactSection').then((m) => ({ default: m.ContactSection })));
 const FaqSection = lazy(() => import('./components/FaqSection').then((m) => ({ default: m.FaqSection })));
 import { GoogleDriveMasterVault } from './components/GoogleDriveMasterVault';
@@ -217,7 +219,13 @@ export function PortfolioApp() {
           onResetProjects={handleResetProjects}
         />
 
+        {/* 05 — APPS I BUILT & SHIPPED (Nilo + Basma, real APKs) */}
+        <AppsSection />
+
         <LiveProjects />
+
+        {/* 06 — LATEST WORK FROM THE YOUTUBE CHANNEL */}
+        <ChannelWorksSection />
 
         {/* 05 — THE CREATIVE & STRATEGIC PROCESS (FROM BRIEF TO IMPACT) */}
 

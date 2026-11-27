@@ -22,6 +22,7 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
     { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
     { nameEn: 'About', nameAr: 'عن محمد', href: '#about' },
     { nameEn: 'Services', nameAr: 'الخدمات', href: '#services' },
+    { nameEn: 'Apps', nameAr: 'تطبيقاتي', href: '#apps' },
     { nameEn: 'Live', nameAr: 'مشاريع شغالة', href: '#live-projects' },
     { nameEn: 'Contact', nameAr: 'تواصل', href: '#contact' },
   ];
