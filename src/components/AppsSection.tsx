@@ -11,6 +11,7 @@ interface AppDef {
   descEn: string;
   descAr: string;
   shots: { src: string; alt: string }[];
+  gallery: { src: string; alt: string }[];
   tags: string[];
   apkUrl: string;
   apkEn: string;
@@ -37,6 +38,12 @@ const APPS: AppDef[] = [
       { src: '/images/apps/nilo-home.jpg', alt: 'Nilo - my home and daily tasks' },
       { src: '/images/apps/nilo-stories.jpg', alt: 'Nilo - stories' },
     ],
+    gallery: [
+      { src: '/images/apps/gallery/nilo_ex1_nile.jpg', alt: 'Nilo feature - send a papyrus letter from the Nile' },
+      { src: '/images/apps/gallery/nilo_ex2_home.jpg', alt: 'Nilo feature - my home and daily tasks' },
+      { src: '/images/apps/gallery/nilo_ex3_stories.jpg', alt: 'Nilo feature - stories and chapters' },
+      { src: '/images/apps/gallery/nilo_ex4_3d.jpg', alt: 'Nilo feature - 3D scenes of Egypt' },
+    ],
     tags: ['Flutter', 'Supabase', 'Android', 'Arabic-first'],
     apkUrl: 'https://mohamedostafataher-spec.github.io/nilo-dl/',
     apkEn: 'Download the APK',
@@ -59,6 +66,11 @@ const APPS: AppDef[] = [
     shots: [
       { src: '/images/apps/basma-services.jpg', alt: 'Basma - services home screen' },
       { src: '/images/apps/basma-splash.jpg', alt: 'Basma - splash screen' },
+    ],
+    gallery: [
+      { src: '/images/apps/gallery/basma_ex1_services.jpg', alt: 'Basma feature - maintenance and finishing services' },
+      { src: '/images/apps/gallery/basma_ex2_price.jpg', alt: 'Basma feature - price before work' },
+      { src: '/images/apps/gallery/basma_ex3_design.jpg', alt: 'Basma feature - design your room' },
     ],
     tags: ['Android', 'Services marketplace', 'Arabic-first'],
     apkUrl: 'https://mohamedostafataher-spec.github.io/basma-download/',
@@ -211,6 +223,27 @@ export const AppsSection: React.FC = () => {
                       </a>
                     )}
                   </div>
+                </div>
+
+                {/* Per-feature explainer cards (real in-app screenshots) */}
+                <div className="md:col-span-2 grid sm:grid-cols-2 gap-3">
+                  {app.gallery.map((g, gi) => (
+                    <motion.figure
+                      key={g.src}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ duration: 0.5, delay: 0.06 * gi, ease: 'easeOut' }}
+                      className="rounded-xl overflow-hidden border border-white/10 bg-zinc-900 group"
+                    >
+                      <img
+                        src={g.src}
+                        alt={g.alt}
+                        loading="lazy"
+                        className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </motion.figure>
+                  ))}
                 </div>
               </motion.article>
             );
