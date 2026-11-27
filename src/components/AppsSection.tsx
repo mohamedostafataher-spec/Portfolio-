@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Download, ExternalLink, Smartphone, Ship, Wrench } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -69,7 +69,7 @@ const APPS: AppDef[] = [
   },
 ];
 
-const PhoneCarousel: React.FC<{ shots: { src: string; alt: string }[]; accent: string }> = ({ shots, accent }) => {
+const PhoneCarousel: React.FC<{ shots: { src: string; alt: string }[]; accent: string; aspect?: string }> = ({ shots, accent, aspect = 'aspect-[576/1153]' }) => {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % shots.length), 3500);
@@ -84,20 +84,20 @@ const PhoneCarousel: React.FC<{ shots: { src: string; alt: string }[]; accent: s
         style={{ background: `radial-gradient(circle at 50% 40%, ${accent}, transparent 70%)` }}
       />
       <div className="relative rounded-[1.8rem] border border-white/15 bg-zinc-950 p-1.5 shadow-2xl shadow-black/60">
-        <div className="relative rounded-[1.5rem] overflow-hidden aspect-[576/1153] bg-zinc-900">
-          <AnimatePresence mode="wait">
+        <div className={`relative rounded-[1.5rem] overflow-hidden ${aspect} bg-zinc-900`}>
+          {shots.map((shot, i) => (
             <motion.img
-              key={shots[idx].src}
-              src={shots[idx].src}
-              alt={shots[idx].alt}
-              loading="lazy"
-              initial={{ opacity: 0, x: 26 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -26 }}
-              transition={{ duration: 0.45, ease: 'easeOut' }}
+              key={shot.src}
+              src={shot.src}
+              alt={shot.alt}
+              loading="eager"
+              draggable={false}
+              initial={false}
+              animate={{ opacity: i === idx ? 1 : 0, scale: i === idx ? 1 : 1.03 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
               className="absolute inset-0 w-full h-full object-cover"
             />
-          </AnimatePresence>
+          ))}
         </div>
       </div>
       <div className="flex justify-center gap-1.5 mt-3">
@@ -161,7 +161,7 @@ export const AppsSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.08 * i, ease: 'easeOut' }}
                 className="rounded-3xl border border-white/8 bg-gradient-to-b from-zinc-900/70 to-zinc-950 p-6 sm:p-10 grid gap-8 md:grid-cols-[auto_1fr] items-center"
               >
-                <PhoneCarousel shots={app.shots} accent={app.accent} />
+                <PhoneCarousel shots={app.shots} accent={app.accent} aspect={app.id === 'basma' ? 'aspect-[576/1050]' : 'aspect-[576/1153]'} />
 
                 <div>
                   <div className="flex items-center gap-3 mb-3">

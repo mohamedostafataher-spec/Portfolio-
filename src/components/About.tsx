@@ -108,7 +108,7 @@ export const About: React.FC<AboutProps> = ({
             <span className="w-8 h-[1px] bg-amber-500/50"></span>
           </div>
           
-          <h2 className="font-display text-3xl sm:text-6xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
             {isAr ? 'الرؤية والمسار المهني' : 'Creative Vision & Trajectory'}
           </h2>
           

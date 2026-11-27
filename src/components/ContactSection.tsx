@@ -91,7 +91,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <span className="text-[10px] sm:text-xs font-mono text-amber-400 uppercase tracking-widest block mb-2">
                 Digital marketing · creative content · AI product stories
               </span>
-              <h2 className="font-display text-2xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight px-0.5">
+              <h2 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight px-0.5">
                 {isAr ? (
                   <>
                     فلنتحدث عن{' '}

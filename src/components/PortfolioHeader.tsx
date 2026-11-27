@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, useScroll, useSpring } from 'motion/react';
 import { Menu, X, FileText, Sliders, Languages } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useOwner } from '../context/OwnerContext';
@@ -17,6 +18,8 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
   const { isAr, toggleLanguage, lang } = useLanguage();
   const { isOwnerMode } = useOwner();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.4 });
 
   const navLinks = [
     { nameEn: 'Work', nameAr: 'المشاريع', href: '#work' },
@@ -28,7 +31,12 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
   ];
 
   return (
-    <header className="py-4 lg:py-6 border-b border-white/10 bg-[#09090b]">
+    <header className="sticky top-0 z-50 py-4 lg:py-5 border-b border-white/10 bg-[#09090b]/85 backdrop-blur-xl">
+      {/* Reading progress: a quiet designer touch that tracks the page */}
+      <motion.div
+        className="absolute top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300"
+        style={{ scaleX: progress }}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center lg:mb-6">
           <button

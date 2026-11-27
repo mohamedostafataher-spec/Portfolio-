@@ -16,6 +16,7 @@ import { Hero } from './components/Hero';
 const MasterPortfolioSection = lazy(() => import('./components/MasterPortfolioSection').then((m) => ({ default: m.MasterPortfolioSection })));
 const CapabilitiesSection = lazy(() => import('./components/CapabilitiesSection').then((m) => ({ default: m.CapabilitiesSection })));
 import { CreativeProcess } from './components/CreativeProcess';
+import { Reveal } from './components/Reveal';
 const About = lazy(() => import('./components/About').then((m) => ({ default: m.About })));
 const LiveProjects = lazy(() => import('./components/LiveProjects').then((m) => ({ default: m.LiveProjects })));
 const AppsSection = lazy(() => import('./components/AppsSection').then((m) => ({ default: m.AppsSection })));
@@ -167,6 +168,9 @@ export function PortfolioApp() {
       {/* 3D Motion Graphics Ambient Background */}
       <Suspense fallback={null}><MotionGraphicsDecorations /></Suspense>
 
+      {/* Film grain texture over everything */}
+      <div className="grain-overlay" aria-hidden="true" />
+
       {/* 00 — Top Admin Bar (Shown ONLY when Mohamed is authenticated as Owner) */}
       <TopAdminBar
         onOpenAddModal={() => setIsAddModalOpen(true)}
@@ -196,16 +200,20 @@ export function PortfolioApp() {
         <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
 
         {/* 02 — ABOUT & CREDENTIALS (Placed before projects per user instruction) */}
+        <Reveal>
         <About
           onOpenResume={() => setIsResumeModalOpen(true)}
           onOpenContact={() => handleOpenContact('Commercial Collaboration')}
           onOpenPdfDeck={() => setIsPdfModalOpen(true)}
         />
+        </Reveal>
 
         {/* 03 — MY SERVICES & ENGAGEMENT PACKAGES (4 Pillars + Starter, Growth, Custom Packs) */}
+        <Reveal>
         <CapabilitiesSection
           onSelectService={(serviceName) => handleOpenContact(serviceName)}
         />
+        </Reveal>
 
         {/* 04 — MASTER PROJECTS HUB (3 Dedicated Corners: Videos, Carousels, SOSTAC Decks + All Projects) */}
         <MasterPortfolioSection
@@ -222,7 +230,9 @@ export function PortfolioApp() {
         {/* 05 — APPS I BUILT & SHIPPED (Nilo + Basma, real APKs) */}
         <AppsSection />
 
+        <Reveal>
         <LiveProjects />
+        </Reveal>
 
         {/* 06 — LATEST WORK FROM THE YOUTUBE CHANNEL */}
         <ChannelWorksSection />
@@ -233,7 +243,9 @@ export function PortfolioApp() {
         <FaqSection />
 
         {/* 07 — CONTACT ME */}
+        <Reveal>
         <ContactSection initialServiceOrProject={contactInitialService} />
+        </Reveal>
 
         </Suspense>
       </main>
