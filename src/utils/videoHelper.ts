@@ -48,7 +48,7 @@ export function parseVideoUrl(url?: string): VideoInfo | null {
   if (ytId) {
     return {
       type: 'youtube',
-      embedUrl: `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1`,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1`,
       isDirect: false,
     };
   }
