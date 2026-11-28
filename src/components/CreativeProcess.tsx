@@ -64,7 +64,7 @@ export const CreativeProcess: React.FC = () => {
   ];
 
   return (
-    <section id="process" className="py-24 relative bg-[#09090b] border-t border-white/5">
+    <section id="process" className="py-24 relative bg-[#0b0a08] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header matching PDF Page 20 */}
         <div className="text-center max-w-3xl mx-auto mb-14">

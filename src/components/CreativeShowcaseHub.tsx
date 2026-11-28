@@ -598,7 +598,7 @@ export const CreativeShowcaseHub: React.FC<CreativeShowcaseHubProps> = ({
   };
 
   return (
-    <section id="creative-hub" className="py-20 relative bg-[#07070a] border-t border-white/5 overflow-hidden">
+    <section id="creative-hub" className="py-20 relative bg-[#080706] border-t border-white/5 overflow-hidden">
       {/* Scroll Anchors for Direct Navigation */}
       <div id="carousels" className="absolute -top-24" />
       <div id="reels" className="absolute -top-24" />

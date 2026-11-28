@@ -30,7 +30,7 @@ export const AiCreativeSection: React.FC<AiCreativeSectionProps> = ({
   ];
 
   return (
-    <section id="ai-creative" className="py-24 relative bg-[#060608] border-t border-white/5 overflow-hidden">
+    <section id="ai-creative" className="py-24 relative bg-[#060504] border-t border-white/5 overflow-hidden">
       {/* Background ambient accents */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[300px] bg-amber-500/5 blur-[120px] pointer-events-none rounded-full" />
 

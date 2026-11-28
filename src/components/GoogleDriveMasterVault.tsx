@@ -339,7 +339,7 @@ export const GoogleDriveMasterVault: React.FC = () => {
   });
 
   return (
-    <section id="drive-vault" className="py-20 bg-[#07070a] border-t border-white/5 relative">
+    <section id="drive-vault" className="py-20 bg-[#080706] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-white/5">

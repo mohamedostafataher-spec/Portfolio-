@@ -12,15 +12,15 @@
   }
 
   body {
-    background-color: #09090b;
-    color: #f4f4f5;
+    background-color: #0b0a08;
+    color: #f5f1e8;
     font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
   }
 
   h1, h2, h3, h4, .font-display {
-    font-family: 'Syne', 'Outfit', sans-serif;
-    letter-spacing: -0.02em;
+    font-family: 'Fraunces', 'Syne', 'Outfit', serif;
+    letter-spacing: -0.015em;
   }
 
   .font-arabic {
@@ -56,7 +56,7 @@
 
   /* Consistent focus ring for keyboard users */
   a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
-    outline: 2px solid rgba(245, 158, 11, 0.7);
+    outline: 2px solid rgba(201, 162, 75, 0.75);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -96,29 +96,46 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #0b0a08;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #2e2a22;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #453f31;
 }
 
 /* Ambient glow utilities */
 .glow-amber-subtle {
-  box-shadow: 0 0 50px -10px rgba(245, 158, 11, 0.12);
+  box-shadow: 0 0 50px -10px rgba(201, 162, 75, 0.12);
 }
 
 .glow-amber-card:hover {
-  box-shadow: 0 0 40px -8px rgba(245, 158, 11, 0.18);
+  box-shadow: 0 0 40px -8px rgba(201, 162, 75, 0.18);
 }
 
 /* Readability and contrast */
 html { font-size: 106.25%; }
 @media (max-width: 640px) { html { font-size: 112.5%; } }
-.text-zinc-600 { color: #a1a1aa; }
-.text-zinc-500 { color: #a1a1aa; }
+.text-zinc-600 { color: #a8a39b; }
+.text-zinc-500 { color: #a8a39b; }
 .text-\[10px\] { font-size: 12px; }
 .text-\[11px\] { font-size: 12.5px; }
+
+/* ---------- Professional editorial retheme (champagne gold + warm charcoal) ----------
+   Unlayered on purpose: author CSS outside @layer beats Tailwind's layered
+   theme variables and utilities, so every amber/orange accent in the app
+   picks up the champagne scale without touching component files. */
+:root {
+  --color-amber-200: #f0e6cc;
+  --color-amber-300: #e6d3a3;
+  --color-amber-400: #d6b978;
+  --color-amber-500: #c9a24b;
+  --color-amber-600: #a8863a;
+  --color-amber-700: #876a2e;
+  --color-amber-800: #665023;
+  --color-amber-950: #29200f;
+  --color-orange-400: #d6b978;
+  --color-orange-500: #c9a24b;
+}

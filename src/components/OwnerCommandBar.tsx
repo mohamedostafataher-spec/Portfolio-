@@ -19,7 +19,7 @@ export const OwnerCommandBar: React.FC<OwnerCommandBarProps> = ({
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-2xl animate-fade-in-up">
-      <div className="bg-[#121218]/95 backdrop-blur-xl border border-amber-500/40 rounded-2xl p-2.5 sm:p-3 shadow-2xl shadow-black/80 flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+      <div className="bg-[#16140f]/95 backdrop-blur-xl border border-amber-500/40 rounded-2xl p-2.5 sm:p-3 shadow-2xl shadow-black/80 flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
         {/* Status Badge */}
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30">
           <Crown className="w-4 h-4 text-amber-400" />

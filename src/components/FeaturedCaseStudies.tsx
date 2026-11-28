@@ -199,7 +199,7 @@ export const FeaturedCaseStudies: React.FC<FeaturedCaseStudiesProps> = ({
   const current = caseStudies.find((c) => c.id === activeTab) || caseStudies[0];
 
   return (
-    <section id="case-studies" className="py-20 sm:py-28 relative bg-[#060608] border-b border-white/5">
+    <section id="case-studies" className="py-20 sm:py-28 relative bg-[#060504] border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">

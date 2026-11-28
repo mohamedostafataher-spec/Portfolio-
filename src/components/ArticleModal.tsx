@@ -23,7 +23,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
         aria-label="Close modal overlay"
       />
 
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/10 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#14120e] border border-white/10 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10">
         {/* Close Button */}
         <button
           onClick={onClose}

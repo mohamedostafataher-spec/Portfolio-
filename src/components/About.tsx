@@ -70,7 +70,7 @@ export const About: React.FC<AboutProps> = ({
   ];
 
   return (
-    <section id="about" className="py-24 relative bg-[#09090c] border-t border-white/5 overflow-hidden">
+    <section id="about" className="py-24 relative bg-[#0b0a08] border-t border-white/5 overflow-hidden">
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
 

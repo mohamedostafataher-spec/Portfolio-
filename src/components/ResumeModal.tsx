@@ -40,7 +40,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
         aria-label="Close modal overlay"
       />
 
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10 print:bg-white print:text-black print:p-0 print:border-none">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#14120e] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10 print:bg-white print:text-black print:p-0 print:border-none">
         
         {/* Top Control Bar */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8 print:hidden">

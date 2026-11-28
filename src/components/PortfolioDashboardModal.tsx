@@ -128,7 +128,7 @@ export const PortfolioDashboardModal: React.FC<PortfolioDashboardModalProps> = (
         aria-label="Close modal overlay"
       />
 
-      <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#101014] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10">
+      <div className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#14120e] border border-white/15 rounded-3xl shadow-2xl z-10 text-left my-auto p-6 sm:p-10">
         {/* Top Header */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
           <div className="flex items-center gap-3">

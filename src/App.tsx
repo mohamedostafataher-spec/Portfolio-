@@ -164,7 +164,7 @@ export function PortfolioApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] flex flex-col selection:bg-amber-500 selection:text-black relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#0b0a08] text-[#f5f1e8] flex flex-col selection:bg-amber-500 selection:text-black relative overflow-x-hidden">
       {/* 3D Motion Graphics Ambient Background */}
       <Suspense fallback={null}><MotionGraphicsDecorations /></Suspense>
 

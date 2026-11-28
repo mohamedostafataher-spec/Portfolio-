@@ -71,7 +71,7 @@ export const FloatingDock: React.FC<FloatingDockProps> = ({
       className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2 pointer-events-none"
     >
       {/* Floating Action Pill */}
-      <div className="pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#121218]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/80 hover:border-amber-500/40 transition-all duration-300">
+      <div className="pointer-events-auto flex items-center gap-1.5 p-1.5 rounded-full bg-[#16140f]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/80 hover:border-amber-500/40 transition-all duration-300">
         {/* WhatsApp Direct */}
         <button
           onClick={handleWhatsApp}

@@ -117,7 +117,7 @@ export const TracksOverviewSection: React.FC<TracksOverviewSectionProps> = ({
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-[#0c0c10] border-t border-white/5 relative overflow-hidden">
+    <section className="py-16 sm:py-20 bg-[#0e0d0a] border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">

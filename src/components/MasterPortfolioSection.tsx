@@ -356,7 +356,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
   };
 
   return (
-    <section id="work" className="py-20 relative bg-[#07070a] border-t border-white/5 scroll-mt-20">
+    <section id="work" className="py-20 relative bg-[#080706] border-t border-white/5 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -479,7 +479,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c10] via-black/30 to-black/30" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0e0d0a] via-black/30 to-black/30" />
 
                         {/* Top Badges */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-[11px] font-mono z-10">
@@ -651,7 +651,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-black/40" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a08] via-transparent to-black/40" />
 
                         {/* Top Badges */}
                         <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono z-10">
@@ -824,7 +824,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-black/40" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0b0a08] via-transparent to-black/40" />
 
                       <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] font-mono z-10">
                         <span className="px-2 py-0.5 rounded bg-amber-500/90 text-black font-extrabold uppercase">
@@ -890,7 +890,7 @@ export const MasterPortfolioSection: React.FC<MasterPortfolioSectionProps> = ({
       {lightboxState && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl animate-fadeIn">
           <div className="fixed inset-0" onClick={() => setLightboxState(null)} />
-          <div className="relative w-full max-w-5xl bg-[#0c0c10] border border-white/15 rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh]">
+          <div className="relative w-full max-w-5xl bg-[#0e0d0a] border border-white/15 rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[92vh]">
             <div className="px-6 py-4 bg-zinc-950 border-b border-white/10 flex items-center justify-between">
               <div>
                 <span className="text-xs font-mono text-amber-400 font-bold uppercase">

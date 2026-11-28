@@ -120,7 +120,7 @@ export const DigitalMarketingPillars: React.FC<DigitalMarketingPillarsProps> = (
   ];
 
   return (
-    <section id="what-i-do" className="py-20 relative bg-[#09090c] border-t border-white/5">
+    <section id="what-i-do" className="py-20 relative bg-[#0b0a08] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">

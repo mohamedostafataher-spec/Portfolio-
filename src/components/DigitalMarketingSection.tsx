@@ -37,7 +37,7 @@ export const DigitalMarketingSection: React.FC<DigitalMarketingSectionProps> = (
   const CurrentIcon = icons[activeTab] || Layers;
 
   return (
-    <section id="marketing" className="py-24 relative bg-[#09090b] border-t border-white/5 overflow-hidden">
+    <section id="marketing" className="py-24 relative bg-[#0b0a08] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Tag */}
         <div className="flex items-center gap-3 mb-4">

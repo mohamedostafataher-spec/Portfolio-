@@ -119,7 +119,7 @@ export const CredentialsSection: React.FC<CredentialsProps> = ({ onOpenContact }
   ];
 
   return (
-    <section id="credentials" className="py-20 sm:py-28 relative bg-[#09090b] border-t border-white/5">
+    <section id="credentials" className="py-20 sm:py-28 relative bg-[#0b0a08] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">

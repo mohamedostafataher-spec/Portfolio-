@@ -6,7 +6,7 @@ export const UspSection: React.FC = () => {
   const [activeLang, setActiveLang] = useState<'both' | 'en' | 'ar'>('both');
 
   return (
-    <section id="usp" className="py-20 relative bg-[#09090b] overflow-hidden">
+    <section id="usp" className="py-20 relative bg-[#0b0a08] overflow-hidden">
       {/* Background ambient gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-zinc-900/30 to-amber-500/5 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

@@ -18,7 +18,7 @@ export const TopAdminBar: React.FC<TopAdminBarProps> = ({
   if (!isOwnerAuthenticated) return null;
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-[#0d0d12]/95 backdrop-blur-md border-b border-amber-500/30 text-xs px-3 sm:px-6 py-2 transition-all">
+    <div className="sticky top-0 z-50 w-full bg-[#100e0b]/95 backdrop-blur-md border-b border-amber-500/30 text-xs px-3 sm:px-6 py-2 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
         {/* Identity Badge */}
         <div className="flex items-center gap-2">

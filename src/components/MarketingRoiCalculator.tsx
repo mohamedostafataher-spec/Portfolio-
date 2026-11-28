@@ -88,7 +88,7 @@ export const MarketingRoiCalculator: React.FC = () => {
   };
 
   return (
-    <section id="roi-calculator" className="py-24 relative bg-[#060608] border-t border-white/5">
+    <section id="roi-calculator" className="py-24 relative bg-[#060504] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">

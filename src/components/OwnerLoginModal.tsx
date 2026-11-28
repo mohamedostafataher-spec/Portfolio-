@@ -30,7 +30,7 @@ export const OwnerLoginModal: React.FC = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl animate-fade-in">
       <div className="fixed inset-0" onClick={closeLoginModal} />
 
-      <div className="relative w-full max-w-md bg-[#101014] border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 text-left">
+      <div className="relative w-full max-w-md bg-[#14120e] border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 text-left">
         {/* Close Button */}
         <button
           onClick={closeLoginModal}

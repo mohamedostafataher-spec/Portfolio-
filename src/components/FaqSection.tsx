@@ -56,7 +56,7 @@ export const FaqSection: React.FC = () => {
     <section
       id="faq"
       dir={isAr ? 'rtl' : 'ltr'}
-      className="py-20 sm:py-24 relative bg-[#07070a] border-t border-white/5"
+      className="py-20 sm:py-24 relative bg-[#080706] border-t border-white/5"
       aria-labelledby="faq-title"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

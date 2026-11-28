@@ -31,7 +31,7 @@ export const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 py-4 lg:py-5 border-b border-white/10 bg-[#09090b]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 py-4 lg:py-5 border-b border-white/10 bg-[#0b0a08]/85 backdrop-blur-xl">
       {/* Reading progress: a quiet designer touch that tracks the page */}
       <motion.div
         className="absolute top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300"

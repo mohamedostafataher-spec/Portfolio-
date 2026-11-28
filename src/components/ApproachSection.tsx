@@ -6,7 +6,7 @@ export const ApproachSection: React.FC = () => {
   const { isAr } = useLanguage();
 
   return (
-    <section id="approach" className="py-24 relative bg-[#09090b] border-t border-white/5 overflow-hidden">
+    <section id="approach" className="py-24 relative bg-[#0b0a08] border-t border-white/5 overflow-hidden">
       {/* Subtle radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-500/5 blur-[100px] pointer-events-none rounded-full" />
 

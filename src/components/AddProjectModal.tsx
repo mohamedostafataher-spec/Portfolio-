@@ -98,7 +98,7 @@ export const AddProjectModal: React.FC<AddProjectModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-xl">
       <div className="fixed inset-0" onClick={onClose} />
 
-      <div className="relative w-full max-w-2xl bg-[#101014] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-left my-auto">
+      <div className="relative w-full max-w-2xl bg-[#14120e] border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl z-10 text-left my-auto">
         <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
           <div className="flex items-center gap-2">
             <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400">

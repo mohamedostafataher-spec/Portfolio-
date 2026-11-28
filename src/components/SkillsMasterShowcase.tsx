@@ -129,7 +129,7 @@ export const SkillsMasterShowcase: React.FC<SkillsMasterShowcaseProps> = ({
   ];
 
   return (
-    <div id="skills-portfolio" className="relative bg-[#07070a] border-t border-white/5 py-24">
+    <div id="skills-portfolio" className="relative bg-[#080706] border-t border-white/5 py-24">
       {/* Background Ambience */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-amber-500/5 blur-[160px] pointer-events-none rounded-full" />
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />

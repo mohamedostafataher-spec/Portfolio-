@@ -76,7 +76,7 @@ const APPS: AppDef[] = [
     apkUrl: 'https://mohamedostafataher-spec.github.io/basma-download/',
     apkEn: 'Download the APK',
     apkAr: 'حمّل التطبيق',
-    accent: '#f59e0b',
+    accent: '#c9a24b',
     icon: Wrench,
   },
 ];
@@ -119,7 +119,7 @@ const PhoneCarousel: React.FC<{ shots: { src: string; alt: string }[]; accent: s
             onClick={() => setIdx(i)}
             aria-label={`screenshot ${i + 1}`}
             className="h-1.5 rounded-full transition-all cursor-pointer"
-            style={{ width: i === idx ? 18 : 6, background: i === idx ? accent : '#3f3f46' }}
+            style={{ width: i === idx ? 18 : 6, background: i === idx ? accent : '#453f31' }}
           />
         ))}
       </div>
@@ -134,7 +134,7 @@ export const AppsSection: React.FC = () => {
     <section
       id="apps"
       dir={isAr ? 'rtl' : 'ltr'}
-      className="py-20 sm:py-24 relative bg-[#07070a] border-t border-white/5 overflow-hidden"
+      className="py-20 sm:py-24 relative bg-[#080706] border-t border-white/5 overflow-hidden"
       aria-labelledby="apps-title"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

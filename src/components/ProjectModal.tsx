@@ -193,12 +193,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
       <div
         ref={modalScrollRef}
-        className="relative w-full max-w-4xl max-h-[94vh] overflow-y-auto bg-[#0c0c10] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-left my-auto selection:bg-amber-500 selection:text-black flex flex-col"
+        className="relative w-full max-w-4xl max-h-[94vh] overflow-y-auto bg-[#0e0d0a] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl z-10 text-left my-auto selection:bg-amber-500 selection:text-black flex flex-col"
       >
         {/* ========================================================= */}
         {/* STICKY TOP BAR: NAVIGATION & ACTIONS */}
         {/* ========================================================= */}
-        <div className="sticky top-0 z-40 px-4 sm:px-6 py-3.5 bg-[#0c0c10]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between gap-3">
+        <div className="sticky top-0 z-40 px-4 sm:px-6 py-3.5 bg-[#0e0d0a]/95 backdrop-blur-md border-b border-white/10 flex items-center justify-between gap-3">
           {/* Brand + Project indicator */}
           <div className="flex items-center gap-2 overflow-hidden">
             <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">

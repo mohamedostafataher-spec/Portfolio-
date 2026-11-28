@@ -147,7 +147,7 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
         aria-label="Close modal"
       />
 
-      <div className="relative w-full max-w-5xl bg-[#0c0c10] border border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[95vh]">
+      <div className="relative w-full max-w-5xl bg-[#0e0d0a] border border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col max-h-[95vh]">
         {/* Top Header Bar */}
         <div className="px-4 sm:px-6 py-3 bg-zinc-950/90 border-b border-white/10 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 overflow-hidden">
