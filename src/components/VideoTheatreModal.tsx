@@ -75,6 +75,7 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
 
   const videoInfo = currentVideo ? parseVideoUrl(currentVideo.url) : null;
   const isYouTube = videoInfo?.type === 'youtube';
+  const isEmbed = !!videoInfo && !videoInfo.isDirect;
 
   const nextVideo = () =>
     setVideoIndex((prev) => (prev + 1) % (allVideos.length || 1));
@@ -228,7 +229,7 @@ export const VideoTheatreModal: React.FC<VideoTheatreModalProps> = ({
 
         {/* Video Player Center Area */}
         <div className="relative flex-1 bg-black flex items-center justify-center overflow-hidden p-2 sm:p-4 min-h-[300px] sm:min-h-[460px] max-h-[68vh]">
-          {isYouTube && videoInfo?.embedUrl ? (
+          {isEmbed && videoInfo?.embedUrl ? (
             <div
               className={`w-full h-full flex items-center justify-center ${
                 isVertical
